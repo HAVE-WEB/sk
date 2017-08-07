@@ -47,7 +47,7 @@
             color: red;
         }
         li{
-            padding:1rem;
+            padding:0.5rem;
         }
         #leftNav ul{
             background-color: #FFFFFF;
@@ -60,6 +60,9 @@
         #leftNav li.active{
             background-color: #F4F4F4;
             border-right: 1px solid #F4F4F4;
+        }
+        .w-5{
+            width:25%;
         }
     </style>
 </head>
@@ -123,64 +126,72 @@
                         <i class="fa fa-rocket"></i>
                         <span>快速入口</span>
                     </a>
-                    <ul id="index_child" class="submenu" style="display: none;">
-                        <li>
-                            <a href="../manage/ajax!notice.action?viewtype=1">
-                                <i class="fa fa-bullhorn"></i>
-                                公告通知发布
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../manage/ajax!schedule.action">
-                                <i class="fa fa-calendar"></i>
-                                日程安排登记
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../manage/ajax!meetinguse.action?viewtype=1">
-                                <i class="fa fa-coffee"></i>
-                                会议使用申请
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../manage/ajax!dispatch.action?viewtype=1">
-                                <i class="fa fa-file-powerpoint-o"></i>
-                                发文登记管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../manage/ajax!receive.action?viewtype=1">
-                                <i class="fa fa-file-archive-o"></i>
-                                收文登记管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../finance/ajax!expend.action?viewtype=1">
-                                <i class="fa fa-yen"></i>
-                                出款登记管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="../party/ajax-strongbig.action?viewtype=1">
-                                <i class="fa fa-gavel"></i>
-                                三重一大管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="ajax-train.action?viewtype=1">
-                                <i class="fa fa-graduation-cap"></i>
-                                培训报名登记
-                            </a>
-                        </li>
 
-                    </ul>
                 </li>
             </ul>
+            <!--<ul id="index_child" class="submenu" style="display: none;">-->
+                <!--<li>-->
+                    <!--<a href="../manage/ajax!notice.action?viewtype=1">-->
+                        <!--<i class="fa fa-bullhorn"></i>-->
+                        <!--公告通知发布-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="../manage/ajax!schedule.action">-->
+                        <!--<i class="fa fa-calendar"></i>-->
+                        <!--日程安排登记-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="../manage/ajax!meetinguse.action?viewtype=1">-->
+                        <!--<i class="fa fa-coffee"></i>-->
+                        <!--会议使用申请-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="../manage/ajax!dispatch.action?viewtype=1">-->
+                        <!--<i class="fa fa-file-powerpoint-o"></i>-->
+                        <!--发文登记管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="../manage/ajax!receive.action?viewtype=1">-->
+                        <!--<i class="fa fa-file-archive-o"></i>-->
+                        <!--收文登记管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="../finance/ajax!expend.action?viewtype=1">-->
+                        <!--<i class="fa fa-yen"></i>-->
+                        <!--出款登记管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="../party/ajax-strongbig.action?viewtype=1">-->
+                        <!--<i class="fa fa-gavel"></i>-->
+                        <!--三重一大管理-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="ajax-train.action?viewtype=1">-->
+                        <!--<i class="fa fa-graduation-cap"></i>-->
+                        <!--培训报名登记-->
+                    <!--</a>-->
+                <!--</li>-->
+
+            <!--</ul>-->
         </div>
 
 </div>
+<div style="width: 100%; position: fixed;left: 0px;right: 0px;height: 3rem; background-color: #FFFFFF;border-top: 1px solid #BEBEBE;" class="sl-flex-row-center-center" id="bottom-nav">
+    <div class="w-5 sl-flex-column-center-center" ><i class="fa fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 0.8rem;">主页</span></div>
+    <div class="w-5 sl-flex-column-center-center" ><i class="fa fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 0.8rem;">行政</span></div>
+    <div class="w-5 sl-flex-column-center-center" ><i class="fa fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 0.8rem;">人事</span></div>
+    <div class="w-5 sl-flex-column-center-center" ><i class="fa fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 0.8rem;">财务</span></div>
+    <div class="w-5 sl-flex-column-center-center" ><i class="fa fa-home" style="font-size: 1.5rem;"></i><span style="font-size: 0.8rem;">党政</span></div>
+</div>
 
-
+r
 
 </body>
 <script>
@@ -188,6 +199,15 @@
         var rem = new Rem();
         rem.adapterWidth_object();
     });
+    //底部导航栏
+    $(document).ready(function () {
+        var hWindow = window.innerHeight
+        var hDiv = $("#bottom-nav").outerHeight();
+        $("#bottom-nav").css({
+            top: hWindow-hDiv+"px"
+        });
+
+    })
     $("#leftNav li").click(function () {
         $(this).addClass('active').siblings('li').removeClass('active');
 
@@ -195,9 +215,9 @@
     })
     $("#quick").click(function () {
         if($(this).attr("state") == "open" ){
-            $(this).attr("state","close").children("ul").css('display','none');
+            $(this).attr("state","close");$("#index_child").css('display','none');
         } else{
-            $(this).attr("state","open").children("ul").css('display','block');
+            $(this).attr("state","open");$("#index_child").css('display','block');
         }
 
     })

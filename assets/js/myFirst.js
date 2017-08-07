@@ -93,7 +93,7 @@ var Out =(function (window, document,$) {
             }else if(num <= 414){//宽度在iphone6-iphone6s之间
                 $("html").css("font-size","16px");//16px
             }else if(num <= 768){
-                $("html").css("font-size","20px");
+                $("html").css("font-size","24px");
             } else {
                 $("html").css("font-size","30px");
             }
