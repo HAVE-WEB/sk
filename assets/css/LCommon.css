@@ -1,0 +1,107 @@
+a{
+    text-decoration: none;
+    color:black;
+}
+a:active{
+    color: red;
+}
+.clicked-state{
+    background-color: #FFFFFF;
+    color: red;
+}
+.document-state{
+    margin: 10px 5px;
+}
+#bottom-nav{
+    width: 100%;
+    height: 3rem;
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    background-color: #FFFFFF;
+    border-top: 1px solid #BEBEBE;
+}
+li{
+    padding:0.5rem;
+}
+#leftNav{
+    position: fixed;
+    top: 3.5rem;
+    left: 0;
+    width:7.5rem;
+}
+#leftNav li{
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #E2E2E2;
+    border-right: 1px solid #E2E2E2;
+    text-align: center;
+}
+#leftNav li.active{
+    background-color: #F4F4F4;
+    border-right: 1px solid #F4F4F4;
+}
+.hr{
+    border:1px solid #E6E6E6;
+    margin: 5px 0px;
+    width:100%;
+}
+.menu-right{
+    position: inherit;
+    right:0;
+    bottom:0;
+    left:6.5rem;
+    margin-left:7.7rem;
+    margin-right:0.2rem;
+    margin-top: 3.5rem;
+    padding: 0.5rem;
+    border:2px solid #FFFFFF;
+}
+.content{
+    border: 1px solid #CDCDCD;
+    background-color: white;
+    padding: 10px 5px;
+    margin-bottom:10px;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    border-radius: 0.3rem;
+}
+.content div{
+    width:100%;
+}
+.hidden-money{
+
+}
+.width100{
+    width:100%;
+}
+/*.finished div{*/
+    /*border: 1px solid #CDCDCD;*/
+    /*background-color: white;*/
+    /*padding: 10px 5px;*/
+    /*margin-bottom:10px;*/
+    /*-webkit-border-radius: 0.3rem;*/
+    /*-moz-border-radius: 0.3rem;*/
+    /*border-radius: 0.3rem;*/
+/*}*/
+.small-font{
+    color: #898989;
+    font-size: 0.7rem;
+}
+.top-div{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right:0px;
+    height:3rem;
+}
+.top-info{
+    width: 100%;
+    height: 3rem;
+    border-bottom: 1px solid #E2E2E2;
+}
+ul{
+    list-style: none;
+}
+.w-5{
+    width:25%;
+}
