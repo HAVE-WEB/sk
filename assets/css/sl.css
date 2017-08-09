@@ -73,18 +73,17 @@ body{
 .sl-margin-0px{
     margin: 0px;
 }
-.sl-margin-right-1rem{
-    margin-right: 1rem;
-}
-.sl-margin-left-1rem{
-    margin-left: 1rem;
+
+.sl-margin-top-1rem{
+    margin-top: 1rem;
 }
 .sl-margin-1rem{
-    margin: 1rem;
+    margin: .8rem;
 }
 .sl-margin-left-1rem{
     margin-left: 1rem;
 }
+
 .sl-margin-right-1rem{
     margin-right: 1rem;
 }
@@ -127,6 +126,9 @@ body{
 }
 .sl-background-color-white{
     background-color: #FFFFFF;
+}
+.sl-background-color-red{
+    background-color: #F14551;
 }
 .sl-icon-color-white{
     color: #FFFFFF;

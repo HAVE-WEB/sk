@@ -1,0 +1,238 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="description" content="">-->
+    <!--<meta name="keywords" content="">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>你的标题</title>
+
+    <!--&lt;!&ndash; Set render engine for 360 browser &ndash;&gt;-->
+    <!--<meta name="renderer" content="webkit">-->
+
+    <!--&lt;!&ndash; No Baidu Siteapp&ndash;&gt;-->
+    <!--<meta http-equiv="Cache-Control" content="no-siteapp"/>-->
+
+    <!--<link rel="icon" type="image/png" href="i/favicon.png">-->
+
+    <!--&lt;!&ndash; Add to homescreen for Chrome on Android &ndash;&gt;-->
+    <!--<meta name="mobile-web-app-capable" content="yes">-->
+    <!--<link rel="icon" sizes="192x192" href="i/app-icon72x72@2x.png">-->
+
+    <!--&lt;!&ndash; Add to homescreen for Safari on iOS &ndash;&gt;-->
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+    <!--<meta name="apple-mobile-web-app-title" content="Amaze UI"/>-->
+    <!--<link rel="apple-touch-icon-precomposed" href="i/app-icon72x72@2x.png">-->
+
+    <!--&lt;!&ndash; Tile icon for Win8 (144x144 + tile color) &ndash;&gt;-->
+    <!--<meta name="msapplication-TileImage" content="i/app-icon72x72@2x.png">-->
+    <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
+
+    <!-- Amaze UI CSS -->
+    <!--<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">-->
+    <link rel="stylesheet" href="../../assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/css/LCommon.css">
+    <link rel="stylesheet" href="../../assets/css/sl.css">
+    <!--<link rel="stylesheet" href="../../assets/css/form.css">-->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <!--<script src="../../assets/js/amazeui.js"></script>-->
+    <script src="../../assets/js/myFirst.js"></script>
+
+</head>
+<body class="body-background-color">
+
+<div class="top-div">
+    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >
+        <i class="fa fa-lg fa-angle-left" style="margin-left: 0.5rem;"></i>
+        <!--<div class="sl-margin-left-1rem title" style="flex-grow: 2;"><span>三重一大</span></div>-->
+        <div class="sl-flex-row-center-flex-end">
+            <div class="sl-margin-right-1rem">发布</div>
+            <div class="sl-margin-right-1rem">存为草稿</div>
+        </div>
+
+    </div>
+</div>
+<div style="margin-top: 3rem;">
+    <!--<div class="button button-brown" id="btn-re-common" href="javascript:void(0)"><i class="fa fa-lg fa-mail-reply-all"></i>返回</div>-->
+    <!--<a class="button button-brown" id="btn-confirm-common" href="javascript:void(0);"><i class="fa fa-rocket"></i> <span>提交</span> </a>-->
+    <!--<a class="button button-brown" id="btn-recommit-common" href="javascript:void(0);" style="display: none;"><i class="fa fa-rocket"></i> 再提交</a>-->
+    <!--<a class="button button-brown" id="btn-save-common" href="javascript:void(0);"><i class="fa fa-lg fa-download"></i> 保存</a>-->
+    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
+        <!--<input type="hidden" name="keyId" id="keyId" value=""/>-->
+        <!--<input type="hidden" name="curDutyId" id="curDutyId" value=""/>-->
+        <!--<header  style="display: block;">-->
+            <!--三重一大登记表&nbsp;&nbsp;<span id="title"></span>-->
+        <!--</header>-->
+        <fieldset>
+            <div class="sl-flex-row-center-flex-start sl-margin-1rem">
+                <label class="sl-flex-row-center-flex-start">
+                    <i class="fa fa-asterisk text-icon-color" ></i>
+                    登记名称
+                </label>
+                <section class="sl-margin-left-1rem" >
+                    <label class="">
+                        <input type="text" name="registerName" id="registerName" placeholder="请输入登记事宜名称" value="" >
+                    </label>
+                </section>
+            </div>
+            <hr class="hr">
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    会议类型
+                </label>
+                <section class="col col-5">
+                    <div class="inline-group" name="strongBigType" style="padding-top: 4px;">
+                        <label class="radio">
+                            <input type="radio" checked="checked" name="type" value="1" >
+                            <i></i>部门三重一大会议</label>
+                        <label class="radio">
+                            <input type="radio"  name="type" value="2">
+                            <i></i>中心党政联席会议</label>
+                        <label class="radio">
+                            <input type="radio"  name="type" value="3" >
+                            <i></i>党总支会议</label>
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    是否中心审核
+                </label>
+                <section class="col col-5">
+                    <div class="inline-group" name="strongBigType" style="padding-top: 4px;">
+                        <label class="radio">
+                            <input type="radio" checked="checked" name="isCheck" value="1" >
+                            <i></i>是</label>
+                        <label class="radio">
+                            <input type="radio"  name="isCheck" value="2" >
+                            <i></i>否</label>
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    备案
+                </label>
+                <section class="col col-5">
+                    <label class="input">
+                        <input type="text" name="strongBigRecord" id="strongBigRecord" placeholder="请输入备案" value="" >
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    结论
+                </label>
+                <section class="col col-5">
+                    <label class="input">
+                        <input type="text" name="conclusion" id="conclusion" placeholder="请输入结论" value="" >
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    <a  href="javascript:void(0);" key="btn-choose-users">通知对象</a>
+                </label>
+                <section class="col col-5">
+                    <label class="input">
+                        <label class="input state-disabled">
+                            <input disabled type="text" id="users" name="tellUsersName" placeholder="请选择通知对象"
+                                   value=""/>
+                            <input type="hidden" id="usersId" name="tellUsersId"
+                                   value=""/>
+                        </label>
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    <a  href="javascript:void(0);" key="btn-choose-meetinguse">相应会议记录</a>
+                </label>
+                <section class="col col-5">
+
+                    <div id="meeting" style="display: flex;height: 32px;align-items: center">
+
+
+                        <div name="meetingDiv">
+                            <a  key="btn-choose-meetingName" onclick="meetingDetail()"></a>
+                            <input type="hidden" id="meetingId" name="meetingId" value=""/>
+                        </div>
+                    </div>
+
+
+                    <label class="input state-disabled">
+                        <input disabled type="hidden" id="meetingUseName" name="meetingUseName" placeholder="请选择相应会议记录"
+                               value=""/>
+                        <input type="hidden" id="meetingUseId" name="meetingUseId"
+                               value=""/>
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    <i class="fa fa-asterisk txt-color-red"></i>
+                    相关附件
+                </label>
+                <section class="col col-5">
+                    <label class="input">
+                        <input type="text" name="attchmentText" id="attchmentText" placeholder="请输入相关附件" value="" >
+                    </label>
+                    <label class="input">
+                        <input name="uploadify" id="attchmentFileName" placeholder="" type="file">
+                        <input name="attchmentFileId" id="attchmentFileId" style="display:none" value="" >
+                    </label>
+                </section>
+            </div>
+            <div class="row">
+                <label class="label col col-2">
+                    操作人
+                </label>
+                <section class="col col-2">
+                    <label class="input state-disabled">
+                        <input disabled style="border: hidden" type="text" name="applyUserName" id="applyUserName" placeholder="系统自动" value="" >
+                        <input disabled type="hidden" name="applyUserId" id="applyUserId" placeholder="" value="" >
+                    </label>
+                </section>
+                <label class="label col col-1">
+                    操作日期
+                </label>
+                <section class="col col-2 ">
+                    <label class="input state-disabled">
+                        <input style="border: hidden"  disabled type="text" name="applyUserDate" id=applyUserDate" placeholder="系统自动" value="" >
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+<script>
+    //文字排版
+    $(document).ready(function () {
+        var rem = new Rem();
+        rem.adapterWidth_object();
+    });
+    //文字居中
+    $(document).ready(function () {
+        var w = window.screen.width;
+        $('.title').children('span').css('left',w/2);
+    })
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

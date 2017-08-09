@@ -83,11 +83,12 @@ var Out =(function (window, document,$) {
         this.innerHeight = 0;//屏幕高度
 
         //为属性赋值
-        this.innerWidth = window.innerWidth;
-        this.innerHeight = window.innerHeight;
+        this.innerWidth = window.screen.width;
+        this.innerHeight = window.screen.width;
         this.adapterWidth_object = function () {//对象方法
             var self = this;
             var num = self.innerWidth;
+            console.log("num_1:"+num);
             if(num <= 375){//iphone6的宽度一下 字体大小为14px
                 $("html").css("font-size","14px");//百分比对象的字体大小为14px，0.875em
             }else if(num <= 414){//宽度在iphone6-iphone6s之间

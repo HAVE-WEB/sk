@@ -123,10 +123,55 @@
         </div>
         <!--右侧列表-->
         <div class="menu-right" >
-            <div menu-index="0">
+            <div>
                 <div class="sl-flex-row-center-space-between">
                     <h5>三重一大</h5>
-                    <span>新建<span>三重一大</span></span>
+                    <a href="party/strong-big.html" class="button button-brown"><i class="fa fa-lg fa-plus"></i><span>新建三重一大</span></a>
+                </div>
+
+                <div class="sl-flex-row-center-flex-start document-state" >
+                    <div class="clicked-state " index="0">
+                        <span>流转中</span>
+                    </div>
+                    <div class="" style="margin-left: 0.4rem;" index="1">
+                        <span>已归档</span>
+                    </div>
+                </div>
+                <div class="running ">
+                    <div class="sl-flex-column-flex-start-flex-start content" >
+                        <h4><span>三重一大</span>提醒</h4>
+                        <div style="margin: 5px 0px;"  class="small-font">
+                            <span>登记事宜名称:</span>
+                            <span>开会1</span>
+                        </div>
+                        <span  class="small-font">2017-08-07 09:58:26</span>
+                        <hr class="hr"/>
+                        <span class="sl-flex-row-center-space-between width100" >
+                            <span>查看</span>
+                            <i class="fa fa-angle-right"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="finished " style="display: none;">
+                    <div class="sl-flex-column-flex-start-flex-start content" >
+                        <h4><span>三重一大</span>提醒</h4>
+                        <div style="margin: 5px 0px;"  class="small-font">
+                            <span>登记事宜名称:</span>
+                            <span>归档1</span>
+                        </div>
+                        <span  class="small-font">2017-08-07 09:58:26</span>
+                        <hr class="hr"/>
+                        <span class="sl-flex-row-center-space-between width100">
+                        <span>查看</span>
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;">
+                <div class="sl-flex-row-center-space-between">
+                    <h5>三重一大</h5>
+                    <a href="#" class="button button-brown"><i class="fa fa-lg fa-plus"></i><span>三重一大</span></a>
                 </div>
 
                 <div class="sl-flex-row-center-flex-start document-state" >
@@ -269,6 +314,11 @@
 
 </body>
 <script>
+    //将子菜单栏右移
+    $(document).ready(function () {
+       $('.hidden-rebate a').addClass('sl-flex-row-center-flex-end');
+       $('.hidden-money a').addClass('sl-flex-row-center-flex-end');
+    });
     //文字排版
     $(document).ready(function () {
         var rem = new Rem();
@@ -287,61 +337,73 @@
     $("#leftNav ul").children('li').click(function () {
         //先获取是那个菜单的点击事件
         var index=$(this).index();//点击的元素在同辈中的索引位置
+
         $(this).addClass('active').siblings('li').removeClass('active');
         var name = $(this).find('span').html();
+        //右边菜单栏切换
         $(".menu-right").children().each(function (i,value) {
             if(i === index){
-                $(this).css('display','block');
-                $(this).find('h5,h4 span').html(name);
-
+                $(this).slideDown();
+                $(this).find('h5,h4 span').html('').html(name);
+                $(this).find('h5').next().children('span').html('').html('新建'+name);
             }else{
-                $(this).css('display','none');
+                $(this).slideUp();
             }
         })
         if(name == '党费管理'){
             if($(this).attr('state') == '1'){
                 $(this).attr('state','2').siblings('.hidden-money').each(function () {
-                    $(this).css('display','none')
+                    $(this).slideUp();
                 });
             }else{
                 $(this).siblings(".hidden-rebate").each(function () {
-                    $(this).css("display",'none');
+                    $(this).slideUp();
                 });
                 $(this).siblings('.hidden-rebate').eq(0).prev().attr('state','2');
                 $(this).attr('state','1').siblings('.hidden-money').each(function () {
-                    $(this).css('display','block')
+//                    $(this).css('display','block')
+                    $(this).slideDown();
                 });
 
             }
+            $(this).siblings().removeClass('active');
+            $(this).siblings('.hidden-money:first').addClass('active');
+
         }else if(name == '退管会管理'){
             if($(this).attr('state') == '1'){//第一次是undefined的，也不等于1。
                 $(this).attr('state','2').siblings('.hidden-rebate').each(function () {
-                    $(this).css('display','none')//2代表隐藏状态
+                    $(this).slideUp();//2代表隐藏状态
                 });
             }else{
                 $(this).siblings(".hidden-money").each(function () {
-                    $(this).css('display','none');
+                    $(this).slideUp();
                 });
                 $(this).siblings('.hidden-money').eq(0).prev().attr('state','2');
                 $(this).attr('state','1').siblings('.hidden-rebate').each(function () {//state=1表示li是显示状态
-                    $(this).css('display','block')
+                    $(this).slideDown();
                 });
             }
-
+            $(this).siblings().removeClass('active');
+            $(this).siblings('.hidden-rebate:first').addClass('active');
         }else if($(this).hasClass('small-font')) {
-
-
+            if($(this).hasClass('hidden-money')){
+                $('.hidden-money:first').prev().addClass('active');
+            }else if($(this).hasClass('hidden-rebate')){
+                $('.hidden-rebate:first').prev().addClass('active');
+            }
+//            $(this).addClass('active')
         }else{
             //隐藏党费
             $(this).siblings(".hidden-money").each(function () {
-                $(this).css('display','none');
+                $(this).slideUp();
             });
             $(this).siblings('.hidden-money').eq(0).prev().attr('state','2');
             //
             $(this).siblings(".hidden-rebate").each(function () {
-                $(this).css("display",'none');
+                $(this).slideUp();
             });
             $(this).siblings('.hidden-rebate').eq(0).prev().attr('state','2');
+            $(this).siblings().removeClass('active');
         }
 
 

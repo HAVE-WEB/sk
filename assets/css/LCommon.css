@@ -5,6 +5,40 @@ a{
 a:active{
     color: red;
 }
+.body-background-color{
+    background-color: #FEFEFE;
+}
+.button, .button span {
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+}
+.button {
+    /*margin: 10px;*/
+    padding:0.2rem;
+    text-decoration: none;
+    font:  1em 'Trebuchet MS',Arial, Helvetica;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #9c9c9c;
+     border: 1px solid rgba(0, 0, 0, 0.3);
+     text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 0.05em rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0 0 0.05em rgba(0,0,0,0.4);
+}
+.button:hover {
+    box-shadow: 0 0 0.1em rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 0 .1em rgba(0,0,0,0.4);
+     -webkit-box-shadow: 0 0 0.1em rgba(0,0,0,0.4);
+}
+.button-brown {
+    /*background: #8f3714;*/
+    /*background: -webkit-gradient(linear, left top, left bottom, from(#bf6f50), to(#8f3714) );*/
+    /*background: -moz-linear-gradient(-90deg, #bf6f50, #8f3714);*/
+    /*filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#bf6f50', EndColorStr='#8f3714');*/
+    background-color: #4FA5D0;
+}
 .clicked-state{
     background-color: #FFFFFF;
     color: red;
@@ -20,6 +54,16 @@ a:active{
     right: 0px;
     background-color: #FFFFFF;
     border-top: 1px solid #BEBEBE;
+}
+/*fieldset{*/
+    /*margin:0rem 0rem 0rem .8rem;*/
+    /*padding-top: 1rem;*/
+/*}*/
+.input-background-color{
+    background-color: #FEFEFE;
+}
+input:focus{
+    outline: #FEFEFE solid 0px;
 }
 li{
     padding:0.5rem;
@@ -68,8 +112,18 @@ li{
 .content div{
     width:100%;
 }
-.hidden-money{
-
+.hidden-money a{
+    text-align: right;
+}
+.hidden-rebate{
+    text-align: right;
+}
+.newDo{
+    text-decoration: none;
+    text-align: center;
+    color:#fff;
+    background-color: #bf6f50;
+    /*border:1px solid rgba();*/
 }
 .width100{
     width:100%;
@@ -86,6 +140,9 @@ li{
 .small-font{
     color: #898989;
     font-size: 0.7rem;
+}
+.text-icon-color{
+    color: red;
 }
 .top-div{
     position: fixed;
