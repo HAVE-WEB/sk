@@ -77,15 +77,24 @@ body{
 .sl-margin-top-1rem{
     margin-top: 1rem;
 }
-.sl-margin-1rem{
+.sl-margin-08rem{
     margin: .8rem;
 }
-.sl-margin-left-1rem{
-    margin-left: 1rem;
+.sl-padding-08rem{
+    padding: .8rem;
+}
+.sl-border-bottom-1px-solid-E6E6E6{
+    border-bottom:1px solid #E6E6E6;
+}
+.sl-margin-left-05rem{
+    margin-left: 0.5rem;
 }
 
 .sl-margin-right-1rem{
     margin-right: 1rem;
+}
+.sl-margin-right-02rem{
+    margin-right: 0.2rem;
 }
 .sl-padding-left-1rem{
     padding-left: 1rem;
@@ -109,6 +118,12 @@ body{
 .sl-margin-0px-10px{
     margin: 0px 10px;
 }
+.sl-margin-0rem-08rem{
+    margin: 0rem 0.8rem;
+}
+.sl-margin-0px-5px{
+    margin: 0px 5px;
+}
 .sl-margin-0px-10px-10px-10px{
     margin: 0px 10px 10px 10px;
 }
@@ -117,6 +132,12 @@ body{
 }
 .sl-margin-10px-20px{
     margin: 10px 20px;
+}
+.sl-margin-5px-10px{
+    margin: 5px 10px;
+}
+.sl-margin-05rem-10px{
+    margin: 5px 10px;
 }
 .sl-padding-5px-0px{
     padding: 10px 0px;
@@ -159,6 +180,9 @@ body{
 }
 .sl-padding-2px-10px{
     padding: 2px 10px;
+}
+.sl-padding-5px-10px{
+    padding: 5px 10px;
 }
 .sl-flex-row-center-center{
     display: flex;
@@ -213,11 +237,20 @@ body{
 .sl-width-percent50{
     width: 50%;
 }
+.sl-width-percent35{
+    width: 35%;
+}
+.sl-width-percent65{
+    width: 65%;
+}
 .sl-border-bottom-1px-solid-D3D3D3{
     border-bottom:1px solid #D3D3D3;
 }
 .sl-padding-10px-0px{
     padding: 10px 0px;
+}
+.sl-padding-10px-10px{
+    padding: 10px 10px;
 }
 .sl-margin-10px-10px-0px-10px{
     margin:10px 10px 0px 10px;

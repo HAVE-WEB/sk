@@ -1,0 +1,215 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>字典查询页面</title>
+
+
+    <link rel="stylesheet" href="../assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../assets/css/LCommon.css">
+    <script src="../assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/sl.css">
+    <script src="../assets/js/myFirst.js"></script>
+</head>
+
+<body style="background-color: white;">
+
+<div class="top-div">
+    <div class="sl-flex-row-center-flex-start sl-background-color-red top-info sl-font-color-white" >
+        <i class="fa fa-lg fa-angle-left" style="margin-left: 0.5rem;" onclick="topNav()"></i>
+        <div class="sl-margin-left-1rem title" ><span>选择</span></div>
+    </div>
+</div>
+<div class="sl-border-bottom-1px-solid-E6E6E6 search-div" style="position:fixed;top: 3rem;left: 0rem;width: 100%; background-color: #E3E3E3">
+    <div class="sl-background-color-white  sl-flex-row-center-space-between sl-padding-2px-10px" style="border-radius: 3rem ;margin: 0.5rem 1rem;padding: 0.3rem 1rem;">
+        <input type="text" placeholder="请输入关键字" id="search" oninput="inputVal()" style="width: 90%;">
+        <i class="fa fa-search" style="margin-right: 10px;color: #a9a9a9;display: none" id="search-data"></i>
+    </div>
+</div>
+<div class="data-list">
+    <ul class="am-list sl-padding-10px-10px" id="list1" style="display: block">
+        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6"  style="display: flex;"><span >1党总支会议</span><input type="radio" name="list"></li>-->
+        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6" style="display: flex;"><span >2党总支会议</span><input type="radio" name="list" ></li>-->
+        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6" style="display: flex;"><span >3党总支会议</span><input type="radio" name="list" ></li>-->
+        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6" style="display: flex;"><span >4党总支会议</span><input type="radio" name="list" ></li>-->
+    </ul>
+    <ul class="am-list sl-padding-10px-10px" style="display: none;" id="list2">
+    </ul>
+
+
+</div>
+
+<div style="width: 100%; position: fixed;left: 0px;right: 0px;height: 3rem; background-color: #D1D1D1;border-top: 1px solid #BEBEBE;" class="sl-flex-row-center-center sl-icon-color-CACACA" id="bottom-nav">
+    <div class=" sl-flex-column-center-center" style="width: 50%"><button style="font-size: 0.8rem;padding: 0.5rem 3rem;background: #fff; color: #a9a9a9;">取消</button></div>
+    <div class=" sl-flex-column-center-center" style="width: 50%"><button style="font-size: 0.8rem;padding: 0.5rem 3rem;background: #F14551; color: #FFF;">确认</button></div>
+</div>
+
+
+
+</body>
+
+<script>
+    //文字排版
+    $(document).ready(function () {
+        var rem = new Rem();
+        rem.adapterWidth_object();
+        rem.titleCenter();
+    });
+    //底部导航栏
+    $(document).ready(function () {
+        var hWindow = window.innerHeight
+        var hDiv = $("#bottom-nav").outerHeight();
+        $("#bottom-nav").css({
+            top: hWindow-hDiv+"px"
+        });
+    });
+    //根据字典码来判断该显示什么样的字典列表
+    $(document).ready(function () {
+        var hTitle = $(".top-div").outerHeight();
+        var hSearch= $(".search-div").outerHeight();
+        $('.data-list').css('margin-top',hTitle+hSearch+'px');
+        var code = sessionStorage.getItem('dictCode');
+        var type = sessionStorage.getItem('type');
+        var val = sessionStorage.getItem('val');
+        var dictArr =[];
+        var li='';
+        var listPrev = '<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6"  style="display: flex;"><span >';
+        var listCenter ='</span><input type="';
+        var listNext = '" name="list" checked="';
+        var listCheck = '"></li>';
+        if(code === '110'){
+            dictArr =['部门三重一大会议','中心党政联席会议','党总支会议'];
+        }else if(code === '111'){
+            dictArr =['小明1','小明2','小明3','小明4','小明5','小明6','小明7','小明8','小明9'];
+        }
+        var checkboxArr =[];
+        if(type === 'checkbox'){
+            checkboxArr = val.split(',');
+        }
+        for(var i = 0;i< dictArr.length; i++){
+            if(type === 'radio'){
+                if(dictArr[i] === val){
+                    li+=listPrev+dictArr[i]+listCenter+type+listNext+'true'+listCheck;
+                }else{
+                    li+=listPrev+dictArr[i]+listCenter+type+listNext+'false'+listCheck;
+                }
+
+            }else if(type === 'checkbox'){
+                for(var j= 0;j<checkboxArr.length;j++){
+                    if(dictArr[i] == checkboxArr[j]){
+                        li+=listPrev+dictArr[i]+listCenter+type+listNext+'true'+listCheck;
+                    }
+                }
+                li+=listPrev+dictArr[i]+listCenter+type+listNext+'false'+listCheck;
+            }
+
+        }
+        $("#list1").append(li);
+    })
+    //显示和隐藏查询按钮
+    function inputVal() {
+        console.log("start")
+
+        if($("#search").val() !== ""){
+            $("#search").next().css("display","block");
+        }else{
+            $("#search").next().css("display","none");
+            $("#list1").css('display','block');
+            $("#list2").css('display','none').empty()
+        }
+        console.log("end")
+    }
+    //点击查询按钮
+    $("#search-data").click(function () {
+        var val = $("#search").val();
+        var tempArr=[];
+        if($.trim(val) !== ""){
+            $("#list1 span").each(function (i,v) {
+                if(v.innerHTML.indexOf($.trim(val)) != -1){
+                    tempArr.push(v.innerHTML);
+                }
+            });
+            var li = '';
+            for(var i=0;i<tempArr.length;i++){
+                var li1 =' <li class="sl-flex-row-center-space-between sl-padding-top-10px"  style="display: flex;"><span>'+tempArr[i]+'</span><input type="radio" name="radio" value="option'+i+'"></li>'
+                li+=li1;
+            }
+            $("#list2").empty().append(li).css('display','block').attr('disabled',false);
+            $("#list1").css({display:'none'}).attr('disabled',true);
+        }else{
+            alert("请输入查询条件")
+        }
+    })
+    //点击li盒子，input获取焦点
+    $('.am-list li').click(function () {
+
+        var index = $(this).index();
+//        $(this).find('input')[0].checked=true;
+//        alert("i:"+index);
+//        alert(typeof $(this).find('input')[0])
+    })
+    //点击确认按钮，跳转页面传输数据
+    $("#bottom-nav button").click(function () {
+        var name= $(this).html();
+//        alert("I:"+name+"l:"+$("#bottom-nav button").length);
+        if(name === '取消'){
+            history.back();
+        }else {
+            var result = '';
+            $(".am-list:visible input").each(function (i ,v) {
+//                alert("c:"+$(this)[0].checked);
+                //如果类型是radio
+                if($(this)[0].type === 'radio' ){
+                    if($(this)[0].checked){
+                        result =  $(this).prev().html();
+                        if(window.sessionStorage){
+                            sessionStorage.setItem("result", result);
+                        }else{
+                            alert('This browser does NOT support localStorage');
+                        }
+                        history.back();
+                        return false;//调出循环
+                    }
+                    //最后一个也没有选中
+                    if(result === ''){
+                        if(i == $(".am-list:visible input").length-1){
+                            alert("请选择一条数据");
+                        }
+                    }
+                }
+
+                //如果类型是checkbox
+                if($(this)[0].type === 'checkbox' ) {
+                    if ($(this)[0].checked) {
+                        var temp = $(this).prev().html();
+                        result += temp + ',';
+                    }
+                    //到达最后一个
+                    if (i == $(".am-list:visible input").length - 1) {
+                        if (result === '') {
+                            alert("请选择一条数据");
+                        } else {
+                            if (window.sessionStorage) {
+                                sessionStorage.setItem("result", result);
+                            } else {
+                                alert('This browser does NOT support localStorage');
+                            }
+                            history.back();
+                        }
+                    }
+
+                }
+            })
+        }
+
+    });
+    //顶部导航栏
+    function topNav() {
+        history.back();
+    }
+</script>
+</html>

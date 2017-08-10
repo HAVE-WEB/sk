@@ -84,7 +84,7 @@ var Out =(function (window, document,$) {
 
         //为属性赋值
         this.innerWidth = window.screen.width;
-        this.innerHeight = window.screen.width;
+        this.innerHeight = window.screen.height;
         this.adapterWidth_object = function () {//对象方法
             var self = this;
             var num = self.innerWidth;
@@ -192,6 +192,17 @@ var Out =(function (window, document,$) {
                     '</div>';
                 $(".am-modal").remove();
                 $(m).appendTo("body");
+            },
+            titleCenter: function () {
+                var self = this;
+                var wWindow = self.innerWidth;//屏幕宽度
+                var $i = $(".top-div").find('i');//i图标对象
+                var $div = $('.top-div .title');//标题对象
+                var leftI = $i.offset().left;
+                var wI = $i.outerWidth();
+                var wDiv = $div.outerWidth();
+                var marginLeft = wWindow/2-leftI-wI-wDiv/2;
+                $div.css('margin-left',marginLeft);
             },
 
     };

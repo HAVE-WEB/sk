@@ -42,16 +42,19 @@
 
 </head>
 <body class="body-background-color">
-
+<!--
+    字典查询
+    1：党政
+        1
+-->
 <div class="top-div">
     <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >
-        <i class="fa fa-lg fa-angle-left" style="margin-left: 0.5rem;"></i>
+        <i class="fa fa-lg fa-angle-left" style="margin-left: 0.5rem;" onclick="topNav()"></i>
         <!--<div class="sl-margin-left-1rem title" style="flex-grow: 2;"><span>三重一大</span></div>-->
         <div class="sl-flex-row-center-flex-end">
             <div class="sl-margin-right-1rem">发布</div>
             <div class="sl-margin-right-1rem">存为草稿</div>
         </div>
-
     </div>
 </div>
 <div style="margin-top: 3rem;">
@@ -66,91 +69,94 @@
             <!--三重一大登记表&nbsp;&nbsp;<span id="title"></span>-->
         <!--</header>-->
         <fieldset>
-            <div class="sl-flex-row-center-flex-start sl-margin-1rem">
-                <label class="sl-flex-row-center-flex-start">
-                    <i class="fa fa-asterisk text-icon-color" ></i>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     登记名称
                 </label>
-                <section class="sl-margin-left-1rem" >
+                <section class="sl-margin-left-05rem sl-width-percent65" >
                     <label class="">
-                        <input type="text" name="registerName" id="registerName" placeholder="请输入登记事宜名称" value="" >
+                        <input type="text" name="" id="registerName" placeholder="请输入登记事宜名称" value="" >
                     </label>
                 </section>
             </div>
-            <hr class="hr">
-            <div class="row">
-                <label class="label col col-2">
-                    <i class="fa fa-asterisk txt-color-red"></i>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     会议类型
                 </label>
-                <section class="col col-5">
-                    <div class="inline-group" name="strongBigType" style="padding-top: 4px;">
-                        <label class="radio">
-                            <input type="radio" checked="checked" name="type" value="1" >
-                            <i></i>部门三重一大会议</label>
-                        <label class="radio">
-                            <input type="radio"  name="type" value="2">
-                            <i></i>中心党政联席会议</label>
-                        <label class="radio">
-                            <input type="radio"  name="type" value="3" >
-                            <i></i>党总支会议</label>
-                    </div>
+                <section class="sl-margin-left-05rem sl-width-percent65 sl-flex-row-center-space-between" >
+                    <label class="">
+                        <input type="text" name="" placeholder="请选择会议类型" value="" readonly>
+                    </label>
+                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </section>
             </div>
-            <div class="row">
-                <label class="label col col-2">
-                    <i class="fa fa-asterisk txt-color-red"></i>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     是否中心审核
                 </label>
-                <section class="col col-5">
-                    <div class="inline-group" name="strongBigType" style="padding-top: 4px;">
-                        <label class="radio">
+                <section class="sl-margin-left-05rem sl-width-percent65" >
+                    <label class="sl-flex-row-center-flex-start">
+                        <label class="sl-flex-row-center-center">
                             <input type="radio" checked="checked" name="isCheck" value="1" >
-                            <i></i>是</label>
-                        <label class="radio">
+                            <span class="sl-margin-0px-5px">是</span>
+                        </label>
+                        <label class="sl-flex-row-center-center">
                             <input type="radio"  name="isCheck" value="2" >
-                            <i></i>否</label>
-                    </div>
-                </section>
-            </div>
-            <div class="row">
-                <label class="label col col-2">
-                    <i class="fa fa-asterisk txt-color-red"></i>
-                    备案
-                </label>
-                <section class="col col-5">
-                    <label class="input">
-                        <input type="text" name="strongBigRecord" id="strongBigRecord" placeholder="请输入备案" value="" >
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <label class="label col col-2">
-                    <i class="fa fa-asterisk txt-color-red"></i>
-                    结论
-                </label>
-                <section class="col col-5">
-                    <label class="input">
-                        <input type="text" name="conclusion" id="conclusion" placeholder="请输入结论" value="" >
-                    </label>
-                </section>
-            </div>
-            <div class="row">
-                <label class="label col col-2">
-                    <i class="fa fa-asterisk txt-color-red"></i>
-                    <a  href="javascript:void(0);" key="btn-choose-users">通知对象</a>
-                </label>
-                <section class="col col-5">
-                    <label class="input">
-                        <label class="input state-disabled">
-                            <input disabled type="text" id="users" name="tellUsersName" placeholder="请选择通知对象"
-                                   value=""/>
-                            <input type="hidden" id="usersId" name="tellUsersId"
-                                   value=""/>
+                            <span class="sl-margin-0px-5px">否</span>
                         </label>
                     </label>
                 </section>
             </div>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    备案
+                </label>
+                <section class="sl-margin-left-05rem sl-width-percent65" >
+                    <label class="">
+                        <input type="text" name=""  placeholder="请输入备案" value="" >
+                    </label>
+                </section>
+            </div>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    结论
+                </label>
+                <section class="sl-margin-left-05rem sl-width-percent65" >
+                    <label class="">
+                        <input type="text" name=""  placeholder="请输入结论" value="" >
+                    </label>
+                </section>
+            </div>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    通知对象
+                </label>
+                <section class="sl-margin-left-05rem sl-width-percent65 sl-flex-row-center-space-between" >
+                    <label class="">
+                        <input type="text" name="" placeholder="请选择通知对象" value="" readonly>
+                    </label>
+                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                </section>
+            </div>
+            <div class="sl-flex-row-center-flex-start sl-padding-08rem sl-border-bottom-1px-solid-E6E6E6 data-row">
+                <label class="sl-flex-row-center-flex-start sl-width-percent35">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    相应会议记录
+                </label>
+                <section class="sl-margin-left-05rem sl-width-percent65 sl-flex-row-center-space-between" >
+                    <div>请选择相应会议记录</div>
+                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                </section>
+            </div>
+
+
+
             <div class="row">
                 <label class="label col col-2">
                     <i class="fa fa-asterisk txt-color-red"></i>
@@ -216,6 +222,14 @@
 </div>
 
 <script>
+    //从本地数据读取数据
+    $(document).ready(function () {
+       var result = sessionStorage.getItem('result');
+       var code =sessionStorage.getItem('dictCode');
+       var lastNum = code.charAt(2);
+       $('input:read-only').eq(lastNum).val(result);
+       sessionStorage.removeItem('result');
+    });
     //文字排版
     $(document).ready(function () {
         var rem = new Rem();
@@ -225,7 +239,25 @@
     $(document).ready(function () {
         var w = window.screen.width;
         $('.title').children('span').css('left',w/2);
+    });
+
+    //点击div,跳转页面
+    $("div.data-row").click(function () {
+        var eleInput = $(this).find('input:read-only')[0];
+        $('input:read-only').each(function (i,v) {
+            if(eleInput == v){
+                sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
+                sessionStorage.setItem('val',$(this).val());
+                if(i === 0){
+                    sessionStorage.setItem('type','radio');
+                }else{
+                    sessionStorage.setItem('type','checkbox');
+                }
+                location.href='../dict-search.html'
+            }
+        });
     })
+
 </script>
 
 </body>
