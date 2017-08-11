@@ -88,7 +88,6 @@ var Out =(function (window, document,$) {
         this.adapterWidth_object = function () {//对象方法
             var self = this;
             var num = self.innerWidth;
-            console.log("num_1:"+num);
             if(num <= 375){//iphone6的宽度一下 字体大小为14px
                 $("html").css("font-size","14px");//百分比对象的字体大小为14px，0.875em
             }else if(num <= 414){//宽度在iphone6-iphone6s之间
@@ -204,6 +203,13 @@ var Out =(function (window, document,$) {
                 var marginLeft = wWindow/2-leftI-wI-wDiv/2;
                 $div.css('margin-left',marginLeft);
             },
+            commonNav:function (src,index) {
+                $.get(src,function (data) {
+                    $("body").append(data);
+                    $('ul.am-navbar-nav li').eq(index).find('i,span').addClass('sl-font-color-red');
+                    $('ul.am-navbar-nav li').eq(index).find('a').attr('href','#');
+                })
+            }
 
     };
     if(typeof module !="undefined" && module.exports){

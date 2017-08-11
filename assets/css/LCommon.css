@@ -1,7 +1,7 @@
-a{
-    text-decoration: none;
-    color:black;
-}
+/*a{*/
+    /*text-decoration: none;*/
+    /*color:black;*/
+/*}*/
 a:active{
     color: red;
 }
@@ -65,9 +65,9 @@ a:active{
 input:focus{
     outline: #FEFEFE solid 0px;
 }
-li{
-    padding:0.5rem;
-}
+/*li{*/
+    /*padding:0.5rem;*/
+/*}*/
 #leftNav{
     position: fixed;
     top: 3.5rem;
@@ -150,6 +150,7 @@ li{
     top: 0px;
     right:0px;
     height:3rem;
+    z-index: 10001;
 }
 .top-info{
     width: 100%;

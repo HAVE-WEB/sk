@@ -80,8 +80,11 @@ body{
 .sl-margin-08rem{
     margin: .8rem;
 }
-.sl-padding-08rem{
-    padding: .8rem;
+.sl-padding-08rem-0rem{
+    padding: .6rem 0rem;
+}
+.sl-padding-0rem-05rem{
+    padding: 0rem 0.5rem;
 }
 .sl-border-bottom-1px-solid-E6E6E6{
     border-bottom:1px solid #E6E6E6;

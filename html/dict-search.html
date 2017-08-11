@@ -79,12 +79,14 @@
         var li='';
         var listPrev = '<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6"  style="display: flex;"><span >';
         var listCenter ='</span><input type="';
-        var listNext = '" name="list" checked="';
-        var listCheck = '"></li>';
+        var listNext = '" name="list" ';
+        var listCheck = '></li>';
         if(code === '110'){
             dictArr =['部门三重一大会议','中心党政联席会议','党总支会议'];
         }else if(code === '111'){
             dictArr =['小明1','小明2','小明3','小明4','小明5','小明6','小明7','小明8','小明9'];
+        }else if(code === '112'){
+            dictArr =['会议1','会议2','会议3','会议4','会议5','会议6','会议7','会议8','会议9'];
         }
         var checkboxArr =[];
         if(type === 'checkbox'){
@@ -93,18 +95,28 @@
         for(var i = 0;i< dictArr.length; i++){
             if(type === 'radio'){
                 if(dictArr[i] === val){
-                    li+=listPrev+dictArr[i]+listCenter+type+listNext+'true'+listCheck;
+                    li+=listPrev+dictArr[i]+listCenter+type+listNext+'checked'+listCheck;
                 }else{
-                    li+=listPrev+dictArr[i]+listCenter+type+listNext+'false'+listCheck;
+                    li+=listPrev+dictArr[i]+listCenter+type+listNext+listCheck;
                 }
 
-            }else if(type === 'checkbox'){
-                for(var j= 0;j<checkboxArr.length;j++){
-                    if(dictArr[i] == checkboxArr[j]){
-                        li+=listPrev+dictArr[i]+listCenter+type+listNext+'true'+listCheck;
+            }else if(type === 'checkbox'){//类型是checkbox
+                var flag = false;
+                if(checkboxArr.length > 0){//再次选择的时候，如果有选择
+                    for(var j= 0;j<checkboxArr.length;j++){
+                        if(dictArr[i] == checkboxArr[j]){//当前元素和传入的数组进行一一比对
+                            li+=listPrev+dictArr[i]+listCenter+type+listNext+'checked'+listCheck;
+                            flag = true;
+                        }
                     }
+                    if(!flag){
+                        li+=listPrev+dictArr[i]+listCenter+type+listNext+listCheck;
+                    }
+
+                }else{
+                    li+=listPrev+dictArr[i]+listCenter+type+listNext+listCheck;//第一次选择
                 }
-                li+=listPrev+dictArr[i]+listCenter+type+listNext+'false'+listCheck;
+
             }
 
         }

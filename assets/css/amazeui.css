@@ -12966,12 +12966,12 @@ tbody.am-collapse.am-in {
 .am-navbar-default a {
   color: #fff;
 }
-/*.am-navbar-default .am-navbar-nav {*/
-  /*background-color: #0e90d2;*/
-/*}*/
 .am-navbar-default .am-navbar-nav {
-  background-color: #FFFFFF;
+  background-color: #0e90d2;
 }
+/*.am-navbar-default .am-navbar-nav {*/
+  /*background-color: #FFFFFF;*/
+/*}*/
 .am-navbar-default .am-navbar-actions {
   background-color: #0d86c4;
 }
