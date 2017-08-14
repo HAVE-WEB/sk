@@ -6,7 +6,7 @@
     <!--<meta name="description" content="">-->
     <!--<meta name="keywords" content="">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>三重一大</title>
+    <title>审核活动管理</title>
 
     <!--&lt;!&ndash; Set render engine for 360 browser &ndash;&gt;-->
     <!--<meta name="renderer" content="webkit">-->
@@ -32,8 +32,8 @@
 
     <!-- Amaze UI CSS -->
     <!--<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">-->
+    <!--<link rel="stylesheet" href="../../assets/css/font-awesome.css">-->
     <link rel="stylesheet" href="../../assets/css/amazeui.css">
-    <link rel="stylesheet" href="../../assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../assets/css/LCommon.css">
     <link rel="stylesheet" href="../../assets/css/sl.css">
     <!--<link rel="stylesheet" href="../../assets/css/form.css">-->
@@ -48,10 +48,6 @@
         fieldset{
             padding:0
         }
-        input{
-            width:90%;
-            background-color: #F4F4F4;
-        }
     </style>
 </head>
 <body class="">
@@ -62,125 +58,87 @@
 -->
 <!--<div class="top-div">-->
     <!--<div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >-->
-        <!--<a href="party.html"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;"></i></a>-->
+        <!--<i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;" onclick="topNav()"></i>-->
+        <!--&lt;!&ndash;<div class="sl-margin-left-1rem title" style="flex-grow: 2;"><span>三重一大</span></div>&ndash;&gt;-->
         <!--<div class="sl-flex-row-center-flex-end">-->
-            <!--<div class="sl-margin-right-1rem">发布</div>-->
-            <!--<div class="sl-margin-right-1rem">存为草稿</div>-->
+            <!--&lt;!&ndash;<div class="sl-margin-right-1rem">发布</div>&ndash;&gt;-->
+            <!--<a href="strong-big-input.html" class="sl-margin-right-1rem sl-font-color-white"><i class="am-icon-plus"></i></a>-->
         <!--</div>-->
     <!--</div>-->
 <!--</div>-->
 <div style="margin-top: 3rem;">
-    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
-        <fieldset>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>-->
-                    登记名称
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入登记事宜名称" value="" >
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
-                    会议类型
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择会议类型" value="" readonly>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
-                    是否中心审核
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <label class="sl-flex-row-center-center">
-                        <input type="radio" checked="checked" name="isCheck" value="1" >
-                        <span class="sl-margin-0px-5px">是</span>
-                    </label>
-                    <label class="sl-flex-row-center-center">
-                        <input type="radio"  name="isCheck" value="2" >
-                        <span class="sl-margin-0px-5px">否</span>
-                    </label>
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>-->
-                    备案
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入备案" value="" >
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>-->
-                    结论
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入结论" value="" >
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
-                    通知对象
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择通知对象" value="" readonly>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
-                    相应会议记录
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <div class="meeting-record">请选择相应会议记录</div>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
-                </div>
-            </div>
-            <div class="am-g sl-margin-top-10px sl-flex-row-center-center">
-                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6">
-                    <div class=" am-form-file">
-                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                            <i class="am-icon-cloud-upload"></i> 上传图片</button>
-                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()">
+    <!--搜索栏-->
+
+
+
+    <div data-am-widget="tabs" class="am-tabs am-tabs-default">
+        <ul class="am-tabs-nav am-cf">
+            <li class="am-active"><a href="[data-tab-panel-0]">待审批</a></li>
+            <li class=""><a href="[data-tab-panel-1]">审核中</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div data-tab-panel-0 class="am-tab-panel am-active">
+                <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+                    <div class="am-list-news-bd">
+                        <ul class="am-list">
+                            <li class="am-g am-list-item-dated">
+                                <a href="#" class="am-list-item-hd ">待审批内容 1 </a>
+                                <span class="am-list-date">2013-09-18</span>
+                            </li>
+                            <li class="am-g am-list-item-dated">
+                                <a href="##" class="am-list-item-hd ">待审批内容 2</a>
+                                <span class="am-list-date">2013-10-14</span>
+                            </li>
+                            <li class="am-g am-list-item-dated">
+                                <a href="##" class="am-list-item-hd ">待审批内容 3</a>
+                                <span class="am-list-date">2013-11-18</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6 sl-flex-row-center-center sl-padding-0px">
-                    <span class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>
+            </div>
+            <div data-tab-panel-1 class="am-tab-panel">
+                <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+                    <div class="am-list-news-bd">
+                        <ul class="am-list">
+                            <li class="am-g am-list-item-dated">
+                                <a href="##" class="am-list-item-hd ">审核中内容 1 </a>
+                                <span class="am-list-date">2013-09-18</span>
+                            </li>
+                            <li class="am-g am-list-item-dated">
+                                <a href="##" class="am-list-item-hd ">审核中内容 2</a>
+                                <span class="am-list-date">2013-10-14</span>
+                            </li>
+                            <li class="am-g am-list-item-dated">
+                                <a href="##" class="am-list-item-hd ">审核中内容 3</a>
+                                <span class="am-list-date">2013-11-18</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">
-
-            </ul>
-        </fieldset>
-    </form>
-
+        </div>
+    </div>
 </div>
+
 <script>
     //导入通用页面
     $(document).ready(function () {
         var rem = new Rem();
-        rem.topNavInput();
-        rem.commonNav("strong-big-common.html",1);
-
+        rem.topNav();
+        rem.bottomNav();
+//        rem.commonNav("activity-manager-common.html",2);
     });
     //从本地数据读取数据
     $(document).ready(function () {
        var result = sessionStorage.getItem('result');
        var code =sessionStorage.getItem('dictCode');
+       console.log(code);
        if(code !== null && result !== null){
            if(code === '112'){
 //               var str1='<div name="meetingDiv"><a  key="btn-choose-meetingName" onclick="meetingDetail(\''+$.trim(meetingUseIdArr[i])+'\')">'+s+',';
 //               var str2 ='</a><input type="hidden" id="meetingId" name="meetingId" value="'+$.trim(meetingUseIdArr[i])+'"/></div>' ;
-               $("div.meeting-record").html(result);
+               $("div.meeting-record").html(result)
                sessionStorage.removeItem('result');
                sessionStorage.removeItem('val');
                sessionStorage.removeItem('type')
@@ -199,7 +157,6 @@
     $(document).ready(function () {
         var rem = new Rem();
         rem.adapterWidth_object();
-        rem.titleCenter();
     });
     //文字居中
     $(document).ready(function () {
@@ -291,9 +248,10 @@
 //        alert(222)
     }
     function topNav(){
-        history.back()
+       location.href='party.html'
     }
 </script>
+
 
 </body>
 </html>

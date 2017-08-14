@@ -6,7 +6,7 @@
     <!--<meta name="description" content="">-->
     <!--<meta name="keywords" content="">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>三重一大</title>
+    <title>新建活动管理</title>
 
     <!--&lt;!&ndash; Set render engine for 360 browser &ndash;&gt;-->
     <!--<meta name="renderer" content="webkit">-->
@@ -62,7 +62,8 @@
 -->
 <!--<div class="top-div">-->
     <!--<div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >-->
-        <!--<a href="party.html"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;"></i></a>-->
+        <!--<i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;" onclick="topNav()"></i>-->
+        <!--&lt;!&ndash;<div class="sl-margin-left-1rem title" ><span>三重一大</span></div>&ndash;&gt;-->
         <!--<div class="sl-flex-row-center-flex-end">-->
             <!--<div class="sl-margin-right-1rem">发布</div>-->
             <!--<div class="sl-margin-right-1rem">存为草稿</div>-->
@@ -70,7 +71,16 @@
     <!--</div>-->
 <!--</div>-->
 <div style="margin-top: 3rem;">
+    <!--<div class="button button-brown" id="btn-re-common" href="javascript:void(0)"><i class="fa fa-lg fa-mail-reply-all"></i>返回</div>-->
+    <!--<a class="button button-brown" id="btn-confirm-common" href="javascript:void(0);"><i class="fa fa-rocket"></i> <span>提交</span> </a>-->
+    <!--<a class="button button-brown" id="btn-recommit-common" href="javascript:void(0);" style="display: none;"><i class="fa fa-rocket"></i> 再提交</a>-->
+    <!--<a class="button button-brown" id="btn-save-common" href="javascript:void(0);"><i class="fa fa-lg fa-download"></i> 保存</a>-->
     <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
+        <!--<input type="hidden" name="keyId" id="keyId" value=""/>-->
+        <!--<input type="hidden" name="curDutyId" id="curDutyId" value=""/>-->
+        <!--<header  style="display: block;">-->
+            <!--三重一大登记表&nbsp;&nbsp;<span id="title"></span>-->
+        <!--</header>-->
         <fieldset>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
@@ -158,7 +168,6 @@
                 </div>
             </div>
             <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">
-
             </ul>
         </fieldset>
     </form>
@@ -169,8 +178,8 @@
     $(document).ready(function () {
         var rem = new Rem();
         rem.topNavInput();
-        rem.commonNav("strong-big-common.html",1);
-
+        rem.bottomNav();
+//        rem.commonNav("activity-manager-common.html",1);//底部
     });
     //从本地数据读取数据
     $(document).ready(function () {
@@ -180,7 +189,7 @@
            if(code === '112'){
 //               var str1='<div name="meetingDiv"><a  key="btn-choose-meetingName" onclick="meetingDetail(\''+$.trim(meetingUseIdArr[i])+'\')">'+s+',';
 //               var str2 ='</a><input type="hidden" id="meetingId" name="meetingId" value="'+$.trim(meetingUseIdArr[i])+'"/></div>' ;
-               $("div.meeting-record").html(result);
+               $("div.meeting-record").html(result)
                sessionStorage.removeItem('result');
                sessionStorage.removeItem('val');
                sessionStorage.removeItem('type')
@@ -200,11 +209,6 @@
         var rem = new Rem();
         rem.adapterWidth_object();
         rem.titleCenter();
-    });
-    //文字居中
-    $(document).ready(function () {
-        var w = window.screen.width;
-        $('.title').children('span').css('left',w/2);
     });
 
     //点击div,跳转页面
@@ -228,68 +232,8 @@
             sessionStorage.setItem('type','checkbox');
             location.href='../dict-search.html'
         }
-    })
-    //将文件以DataURL形式读入页面
-    function html5Upload() {
-        var file;
-        var fileReader;
-        var fileTag = document.getElementById("doc-form-file").files;//每次点击按钮上传的图片个数
-        var len = fileTag.length;
-        //判断是否是图片
-        for (var i = 0; i < len; i++) {
-            var simpleFile = fileTag[i];
-            if(!/image\/\w+/.test(simpleFile.type)){
-                alert("请确保文件类型为图像类型");
-                return false;
-            }
-        }
-        if(!/image\/\w+/.test(simpleFile.type)){
-            alert("请确保文件类型为图像类型");
-            return false;
-        }
-        //一次性上传图片
-        if(len > 3){
-            alert("最多上传3个文件");
-            return ;
-        }
-        //分多次上传图片
-        var num = $("#result").children().length;
-        if(num + len > 3){
-            alert("最多上传3个文件");
-            return;
-        }
+    });
 
-
-        //显示和隐藏提示信息
-        if(len > 0){
-            $("#hintImage").css('display','block');
-        }else{
-            $("#hintImage").css('display','none');
-        }
-        for (var i = 0; i < fileTag.length; i++) {
-            file = fileTag[i];
-            fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-            fileReader.onload = (function () {//this代表fileReader对象
-//                var img = '<li><img src="' + this.result + '" alt="" class="am-thumbnail" style="width: 95%;height: 95%" onclick="removeSelf(this)"/></li>';
-                var img = '<li><img src="' + this.result + '" alt="" class="am-thumbnail" style="width: 95%;height: 95%" onclick="removeSelf(this)"/></li>';
-//                $(img).appendTo(result);
-                $("#result").append(img)
-            })
-        }
-    }
-    //点击图片，删除图片
-    function removeSelf(p) {
-//        alert(111)
-        $(p).parent().remove();
-        var num = $("#result").children();
-        if(num.length > 0){
-            $("#hintImage").css('display','block');
-        }else{
-            $("#hintImage").css('display','none');
-        }
-//        alert(222)
-    }
     function topNav(){
         history.back()
     }

@@ -164,6 +164,7 @@
 </body>
 <script>
     //将子菜单栏右移
+    var rem = new Rem();
     $(document).ready(function () {
        $('.hidden-rebate a').addClass('sl-flex-row-center-flex-end');
        $('.hidden-money a').addClass('sl-flex-row-center-flex-end');
@@ -251,9 +252,24 @@
 
 
             //跳转页面
-            if(index === 0){
-                location.href='strong-big-input.html'
-            }
+            var moduleId = 0;
+            var menuId = index;
+            var menuName = name;
+            rem.moduleSelect(moduleId,menuId,menuName);
+//            if(index === 0){
+//                href='strong-big';
+//                flag = true;
+//            }else if(index == 1){
+//
+//            }else if(index ==2){
+//                href='activity-manager';
+//                flag = true;
+//            }
+            //设置属于什么模块，属于哪个模块的菜单，
+//            if(flag){
+//                sessionStorage.setItem('module',href);
+//                location.href=href+'-input.html';
+//            }
 
         }
 

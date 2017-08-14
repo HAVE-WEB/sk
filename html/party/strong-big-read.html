@@ -56,16 +56,16 @@
     1：党政
         1
 -->
-<div class="top-div">
-    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >
-        <i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;" onclick="topNav()"></i>
-        <!--<div class="sl-margin-left-1rem title" style="flex-grow: 2;"><span>三重一大</span></div>-->
-        <div class="sl-flex-row-center-flex-end">
-            <!--<div class="sl-margin-right-1rem">发布</div>-->
-            <a href="strong-big-input.html" class="sl-margin-right-1rem sl-font-color-white"><i class="am-icon-plus"></i></a>
-        </div>
-    </div>
-</div>
+<!--<div class="top-div">-->
+    <!--<div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >-->
+        <!--<i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;" onclick="topNav()"></i>-->
+        <!--&lt;!&ndash;<div class="sl-margin-left-1rem title" style="flex-grow: 2;"><span>三重一大</span></div>&ndash;&gt;-->
+        <!--<div class="sl-flex-row-center-flex-end">-->
+            <!--&lt;!&ndash;<div class="sl-margin-right-1rem">发布</div>&ndash;&gt;-->
+            <!--<a href="strong-big-input.html" class="sl-margin-right-1rem sl-font-color-white"><i class="am-icon-plus"></i></a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 <div style="margin-top: 3rem;">
     <div data-am-widget="tabs"
          class="am-tabs am-tabs-default"
@@ -73,7 +73,7 @@
         <ul class="am-tabs-nav am-cf">
             <li class="am-active"><a href="[data-tab-panel-0]">流转中</a></li>
             <li class=""><a href="[data-tab-panel-1]">已归档</a></li>
-            <li class=""><a href="[data-tab-panel-2]">更多</a></li>
+            <!--<li class=""><a href="[data-tab-panel-2]">更多</a></li>-->
         </ul>
         <div class="am-tabs-bd">
             <div data-tab-panel-0 class="am-tab-panel am-active">
@@ -170,6 +170,7 @@
     //导入通用页面
     $(document).ready(function () {
         var rem = new Rem();
+        rem.topNav();
         rem.commonNav("strong-big-common.html",0);
     });
     //从本地数据读取数据
