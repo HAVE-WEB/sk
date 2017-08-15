@@ -163,6 +163,10 @@
     </div>
 </body>
 <script>
+    //定义模块索引
+    $(function () {
+       sessionStorage.setItem('moduleId',0);
+    });
     //将子菜单栏右移
     var rem = new Rem();
     $(document).ready(function () {
@@ -172,11 +176,12 @@
            $(this).css('padding','0rem')
        })
     });
-    //文字排版
-    $(document).ready(function () {
-        var rem = new Rem();
-        rem.adapterWidth_object();
-    });
+//    //文字排版
+//    $(document).ready(function () {
+//        var rem = new Rem();
+//        rem.adapterWidth_object();
+//        rem.weiXinBrowers();
+//    });
 
     //点击左边菜单，
     $("ul.am-list").children('li').click(function () {

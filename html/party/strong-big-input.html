@@ -55,20 +55,6 @@
     </style>
 </head>
 <body class="">
-<!--
-    字典查询
-    1：党政
-        1
--->
-<!--<div class="top-div">-->
-    <!--<div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >-->
-        <!--<a href="party.html"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;"></i></a>-->
-        <!--<div class="sl-flex-row-center-flex-end">-->
-            <!--<div class="sl-margin-right-1rem">发布</div>-->
-            <!--<div class="sl-margin-right-1rem">存为草稿</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
 <div style="margin-top: 3rem;">
     <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
         <fieldset>
@@ -165,13 +151,7 @@
 
 </div>
 <script>
-    //导入通用页面
-    $(document).ready(function () {
-        var rem = new Rem();
-        rem.topNavInput();
-        rem.commonNav("strong-big-common.html",1);
 
-    });
     //从本地数据读取数据
     $(document).ready(function () {
        var result = sessionStorage.getItem('result');
@@ -195,18 +175,6 @@
        }
 
     });
-    //文字排版
-    $(document).ready(function () {
-        var rem = new Rem();
-        rem.adapterWidth_object();
-        rem.titleCenter();
-    });
-    //文字居中
-    $(document).ready(function () {
-        var w = window.screen.width;
-        $('.title').children('span').css('left',w/2);
-    });
-
     //点击div,跳转页面
     $("div.am-g").click(function () {
         var eleInput = $(this).find('input:read-only')[0];
@@ -290,12 +258,15 @@
         }
 //        alert(222)
     }
-    function topNav(){
-        history.back()
-    }
 </script>
 
 </body>
+
+<script>
+    function getModuleId(i) {
+        sessionStorage.setItem('moduleId',i);
+    }
+</script>
 </html>
 
 

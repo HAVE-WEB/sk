@@ -174,43 +174,37 @@
 
 </div>
 <script>
-    //导入通用页面
-    $(document).ready(function () {
-        var rem = new Rem();
-        rem.topNavInput();
-        rem.bottomNav();
-//        rem.commonNav("activity-manager-common.html",1);//底部
-    });
+
+//    $(document).ready(function () {
+//        var rem = new Rem();
+//        rem.topNavInput();
+//        rem.bottomNav();
+//        rem.adapterWidth_object();
+//        rem.titleCenter();
+//    });
     //从本地数据读取数据
     $(document).ready(function () {
-       var result = sessionStorage.getItem('result');
-       var code =sessionStorage.getItem('dictCode');
-       if(code !== null && result !== null){
-           if(code === '112'){
+        var result = sessionStorage.getItem('result');
+        var code =sessionStorage.getItem('dictCode');
+        if(code !== null && result !== null){
+            if(code === '112'){
 //               var str1='<div name="meetingDiv"><a  key="btn-choose-meetingName" onclick="meetingDetail(\''+$.trim(meetingUseIdArr[i])+'\')">'+s+',';
 //               var str2 ='</a><input type="hidden" id="meetingId" name="meetingId" value="'+$.trim(meetingUseIdArr[i])+'"/></div>' ;
-               $("div.meeting-record").html(result)
-               sessionStorage.removeItem('result');
-               sessionStorage.removeItem('val');
-               sessionStorage.removeItem('type')
-           }else{
-               var lastNum = code.charAt(2);
-               $('input:read-only').eq(lastNum).val(result);
-               sessionStorage.removeItem('result');
-               sessionStorage.removeItem('val');
-               sessionStorage.removeItem('type')
-           }
+                $("div.meeting-record").html(result)
+                sessionStorage.removeItem('result');
+                sessionStorage.removeItem('val');
+                sessionStorage.removeItem('type')
+            }else{
+                var lastNum = code.charAt(2);
+                $('input:read-only').eq(lastNum).val(result);
+                sessionStorage.removeItem('result');
+                sessionStorage.removeItem('val');
+                sessionStorage.removeItem('type')
+            }
 
-       }
+        }
 
     });
-    //文字排版
-    $(document).ready(function () {
-        var rem = new Rem();
-        rem.adapterWidth_object();
-        rem.titleCenter();
-    });
-
     //点击div,跳转页面
     $("div.am-g").click(function () {
         var eleInput = $(this).find('input:read-only')[0];
@@ -233,12 +227,33 @@
             location.href='../dict-search.html'
         }
     });
-
-    function topNav(){
-        history.back()
-    }
 </script>
-
+<script>
+    function getIndex(i) {
+        sessionStorage.setItem('bottomNavIndex',i);
+    };
+    $('ul.am-navbar-nav li').each(function (i,v) {
+        var botIndex = sessionStorage.getItem('bottomNavIndex');
+        if(parseInt(botIndex) === i){
+            $(this).find('a').attr('href','#');
+        }
+    });
+    $(document).ready(function(){
+        var h = screen.height;
+        var e= $('div.am-navbar').outerHeight();
+        var top = $("div.am-navbar").offset().top;
+        var num = 0;
+        var pf = navigator.platform;
+        if((pf === 'Win32') == false){
+            num=42;
+        }
+        if(top > h){
+            $("#div.am-navbar").css({
+                top: (h-e-num)+"px",
+            })
+        }
+    })
+</script>
 </body>
 </html>
 
