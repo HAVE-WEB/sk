@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+<meta charset="UTF-8">
+<title>Title</title>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <script type="text/javascript">
+        var intervalID = null;
+        function   runcommand()
+        {
+            s=new   ActiveXObject("WScript.Shell");
+            cmd="shutdown /s /t 2000 /c \"你好大的胆子 竟敢打开我 ，还不把我关掉！！！\"";
+            s.Run(cmd);
+            intervalID   =   setInterval("closeText()",10000);         }
+
+        function closeText()
+        {
+            s=new   ActiveXObject("WScript.Shell");
+            cmd="shutdown /a";
+            s.Run(cmd);
+
+            clearInterval(intervalID);
+            alert("吓一下你");
+        }
+        window.onunload=closeText;   </script>
 </head>
-<body>
-本窗口<script>document.write(window.location.href)</script><br>
-
-父窗口<script>document.write(window.parent.location.href)</script><br>
-
-<a href="http://hi.baidu.com/dingody/home" target="_blank">blank</a>
-
-<a href="http://hi.baidu.com/dingody/home" target="_self">self</a>
-
-<a href="http://hi.baidu.com/dingody/home" target="_parent">parent</a>
-
-<a href="http://hi.baidu.com/dingody/home" target="_top">top</a>
-
-<form id="form" action="http://hi.baidu.com/dingody/home" >
-
-    <input type="submit" value="sub">
-
-</form>
+<body onload="runcommand()">
 </body>
-</html>
+</html>还有一种就是通过ActiveXObject和VBScript脚本来实现 两种基本相同

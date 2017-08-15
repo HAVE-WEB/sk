@@ -43,6 +43,10 @@
         this.bottomNavIndex= bottomNavIndex;
 
 
+        //字段
+        var inputType=['text','password','radio','checkbox','file'];
+        this.inputType = inputType;
+
 
 
         this.adapterWidth_object = function () {//对象方法
@@ -147,22 +151,18 @@
                     if(parseInt(bottomNavIndex) === 0){
                         this.topNav();
                         this.contentListRead();
-                        this.bottomNav();
-                        this.adapterWidth_object();
                     } else if(parseInt(bottomNavIndex) === 1){
                         this.topNavInput();
-                        this.bottomNav();
-                        this.adapterWidth_object();
                         this.titleCenter();
                     } else if( parseInt(bottomNavIndex) === 2){
                         this.topNav();
                         this.contentListCheck();
-                        this.bottomNav();
-                        this.adapterWidth_object();
                     }
+                    this.bottomNav();
+                    this.adapterWidth_object();
                 }
             },
-            initPage: function () {
+            initPage: function () {//根据不同页面，来设置flag的值
                 var pathname = location.pathname;
                 var pathArr = pathname.split('/');
                 var lastStr = pathArr[pathArr.length-1];
@@ -184,6 +184,19 @@
                     sessionStorage.setItem('flag','true')
                 }
             },
+            dataRowInput: function () {
+                var top1 = '<div style="margin-top: 3rem;">\n'+
+                    '<form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">\n' +
+                    '<fieldset>\n';
+                var bot1 ='</fieldset>\n' +
+                    '</form>\n' +
+                    '</div>\n';
+
+
+
+
+            },
+           
             adapterWidth_prototype: function () {
                 var self = this;
                 var num = self.innerWidth;
@@ -557,16 +570,28 @@
                 if(parseInt(moduleId) === 0){//党政模块
                     menuName = ['三重一大','公告','报名','竞聘演讲','结果公示','聘书发放','活动管理','党费缴纳','党费分摊','年度预算申请','退管会活动','信访登记'];
                     menuEng = ['strong-big','selection-notice','selection-apply','selection-speech','selection-publicity','selection-issued','activity-manager','money-manager','money-avg','annual-budget','rebate-activity','letter-register'];
-                }else if(parseInt(moduleId) === '1'){//财政模块
+                }else if(parseInt(moduleId) === 1){//财政模块
                     menuName = ['月度快报','财务快报','财务年报','财务分析报表','全年预决算报表','财务年终工作总结及计划','财务支出','财务审计'];
                     menuEng = ['news-month','finance','finance-year','finance-analysis','calculation-year','work-plan','expend','audit-notice'];
-                }else if(parseInt(moduleId) === '2'){//人事模块
+                }else if(parseInt(moduleId) === 2){//人事模块
 
-                }else if(parseInt(moduleId) === '3'){//行政模块
+                }else if(parseInt(moduleId) === 3){//行政模块
 
-                }else if(parseInt(moduleId) === '4'){//主页模块
+                }else if(parseInt(moduleId) === 4){//主页模块
 
                 }
+                var field ={
+                    'strong-big':{
+                        'name': ['登记名称','会议类型','是否中心审核','备案','结论','通知对象','相应会议记录','相关附件'],
+                        'eng': ['registerName','meetingType','isCenterAudit','putOnRecord','conclusion','meetingRecord','relatedAccessory'],
+                        'type': [0, 0, 2, 0, 0, 0, null, 4],
+                    },
+                    'activity-manager':{
+                        'name': ['登记名称','会议类型','是否中心审核','备案','结论','通知对象','相应会议记录','相关附件'],
+                        'eng': ['registerName','meetingType','isCenterAudit','putOnRecord','conclusion','meetingRecord','relatedAccessory'],
+                        'type': [0, 0, 2, 0, 0, 0, null, 4],
+                    },
+                };
                 //通过菜单名称得到菜单对应的英文
                 var index;
                 if(parseInt(moduleId) == 0){
@@ -578,6 +603,8 @@
                         index=this.getIndexByName(menuName,mMame) ;
                     }
                 }
+
+
 
 
 
@@ -601,9 +628,14 @@
                 // sessionStorage.setItem('menuCode',tempMenuCode);
                 sessionStorage.setItem('menuEng',menuEng[index]);
 
+                var tempFieldName = menuName[index]+'-name';
+                var tempFieldEng = menuName[index]+'-eng';
+                var tempFieldType = menuName[index]+'-type';
+                sessionStorage.setItem('fieldName',field.menuName[index].name);
+                sessionStorage.setItem('fieldEng',field.menuName[index].eng);
+                sessionStorage.setItem('fieldType',field.menuName[index].type);
+
                 sessionStorage.setItem('bottomNavIndex',1);
-                // sessionStorage.setItem('moduleId',moduleId);
-                // sessionStorage.setItem('flag','false');
 
 
 
