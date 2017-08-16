@@ -84,8 +84,10 @@
         if(code === '110'){
             dictArr =['部门三重一大会议','中心党政联席会议','党总支会议'];
         }else if(code === '111'){
-            dictArr =['小明1','小明2','小明3','小明4','小明5','小明6','小明7','小明8','小明9'];
+            dictArr =['是','否'];
         }else if(code === '112'){
+            dictArr =['小明1','小明2','小明3','小明4','小明5','小明6','小明7','小明8','小明9'];
+        }else if(code === '113'){
             dictArr =['会议1','会议2','会议3','会议4','会议5','会议6','会议7','会议8','会议9'];
         }
         var checkboxArr =[];
@@ -112,7 +114,6 @@
                     if(!flag){
                         li+=listPrev+dictArr[i]+listCenter+type+listNext+listCheck;
                     }
-
                 }else{
                     li+=listPrev+dictArr[i]+listCenter+type+listNext+listCheck;//第一次选择
                 }

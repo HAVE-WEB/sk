@@ -22,7 +22,7 @@
         this.innerWidth = window.screen.width;
         this.innerHeight = window.screen.height;
 
-
+        //模块对象
         var moduleName = sessionStorage.getItem('moduleName');
         var moduleEng = sessionStorage.getItem('moduleEng');
         var moduleId = sessionStorage.getItem('moduleId');
@@ -31,21 +31,32 @@
         this.moduleEng = moduleEng;
         this.moduleId = moduleId;
         // this.flag = flag;
-
+        //菜单对象
         var menuEng = sessionStorage.getItem('menuEng');
         var menuName = sessionStorage.getItem('menuName');
         this.menuEng = menuEng;
         this.menuName = menuName;
+
+        //字段对象
+        var inputType=['text','password','radio','checkbox','file'];
+        this.inputType = inputType;
+        var fieldName = sessionStorage.getItem('fieldName');
+        var fieldEng = sessionStorage.getItem('fieldEng');
+        var fieldType = sessionStorage.getItem('fieldType');
+        var readOnly = sessionStorage.getItem('readOnly');
+        var oneOrMany = sessionStorage.getItem('oneOrMany');
+
+        this.fieldName = fieldName;
+        this.fieldEng = fieldEng;
+        this.fieldType = fieldType;
+        this.readOnly = readOnly;
+        this.oneOrMany = oneOrMany;
 
         //获取底部导航栏点击的索引
         var bottomNavIndex = sessionStorage.getItem('bottomNavIndex');
 
         this.bottomNavIndex= bottomNavIndex;
 
-
-        //字段
-        var inputType=['text','password','radio','checkbox','file'];
-        this.inputType = inputType;
 
 
 
@@ -118,6 +129,18 @@
                $('.search-div').css('display','none');
            }
         };
+        Rem.setBottonNavIndex=function (i) {
+            sessionStorage.setItem('bottomNavIndex',i);
+            if($(this).html() === '发布' || $(this).html() === '存为草稿'){
+                var result = this.getConfirmResult();
+                alert('result'+result);
+                if(result === 0){
+                    return true;
+                }else {
+                    return false;
+                }
+            }
+        };
         Rem.init= function () {
             var bottomNavIndex = this.bottomNavIndex;
             if(parseInt(bottomNavIndex) === 0){
@@ -144,6 +167,7 @@
                 var bottomNavIndex = this.bottomNavIndex;
                 var moduleId = this.moduleId;
                 var flag = sessionStorage.getItem('flag');//true:表示在首页，false：在各个模块中的菜单
+                console.log("flag:"+flag+",in:"+parseInt(bottomNavIndex));
                 if(flag === 'true'){
                     this.adapterWidth_object();
                     this.weiXinBrowers();
@@ -154,6 +178,11 @@
                     } else if(parseInt(bottomNavIndex) === 1){
                         this.topNavInput();
                         this.titleCenter();
+                        // this.dataRowInput();
+                        this.getDictData();
+                        this.setSearchDict();
+                        // this. my_modal();
+                        this.my_confirm();
                     } else if( parseInt(bottomNavIndex) === 2){
                         this.topNav();
                         this.contentListCheck();
@@ -184,6 +213,76 @@
                     sessionStorage.setItem('flag','true')
                 }
             },
+            getDictData: function () {
+                $(document).ready(function () {
+                    var result = sessionStorage.getItem('result');
+                    var code =sessionStorage.getItem('dictCode');
+                    if(code !== null && result !== null){
+                        var len = code.length;
+                        var lastNum = code.charAt(len-1);
+                    }
+
+                    if(code !== null && result !== null){
+                        $('.dict-data').each(function (i) {
+                            if(parseInt(lastNum) === i){
+                                if($(this)[0].nodeName ===  'DIV'){
+                                    $(this).html(result);
+                                }else{
+                                    $(this).val(result)
+                                }
+                            }
+                        });
+        //                 if(code === '11'+$('input:read-only').length){
+        // //                 var str1='<div name="meetingDiv"><a  key="btn-choose-meetingName" onclick="meetingDetail(\''+$.trim(meetingUseIdArr[i])+'\')">'+s+',';
+        // //                 var str2 ='</a><input type="hidden" id="meetingId" name="meetingId" value="'+$.trim(meetingUseIdArr[i])+'"/></div>' ;
+        //                     $("div.meeting-record").html(result);
+        //                     sessionStorage.removeItem('result');
+        //                     sessionStorage.removeItem('val');
+        //                     sessionStorage.removeItem('type')
+        //                 }else{
+        //                     var l = code.length;
+        //                     var lastNum = code.charAt(l-1);
+        //                     $('input:read-only').eq(lastNum).val(result);
+        //                     sessionStorage.removeItem('result');
+        //                     sessionStorage.removeItem('val');
+        //                     sessionStorage.removeItem('type')
+        //                 }
+
+                    }
+                    sessionStorage.removeItem('result');
+                    sessionStorage.removeItem('val');
+                    sessionStorage.removeItem('type')
+
+                });
+            },
+            setSearchDict: function () {
+                var om = this.oneOrMany;
+                console.log('om:'+om);
+                var oneOrMany =om.split(',');
+                if(oneOrMany.length === $("div.am-g").length){
+                    alert('数组长度不匹配');
+                    return;
+                }
+                $("div.am-g").click(function () {
+                    var eleInput = $(this).find('.dict-data')[0];
+                    $('.dict-data').each(function (i,v) {
+                        if(eleInput == v){
+                            sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
+                            if($(this)[0].nodeName === 'DIV'){
+                                sessionStorage.setItem('val',$(this).html())
+                            }else{
+                                sessionStorage.setItem('val',$(this).val());
+                            }
+                            if(parseInt(oneOrMany[i]) === 0){
+                                sessionStorage.setItem('type','radio');
+                            }else{
+                                sessionStorage.setItem('type','checkbox');
+                            }
+                            location.href='../dict-search.html'
+                        }
+                    });
+                })
+            },
             dataRowInput: function () {
                 var top1 = '<div style="margin-top: 3rem;">\n'+
                     '<form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">\n' +
@@ -191,12 +290,118 @@
                 var bot1 ='</fieldset>\n' +
                     '</form>\n' +
                     '</div>\n';
+                //通用部分
+                var common0 = '<div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">\n' +
+                    '                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">\n' +
+                    '                    ';
+
+                //文本类型
+                var text0 = '\n' +
+                    '                </div>\n' +
+                    '                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">\n' +
+                    '                    <input type="text" name="';
+                var text0_ro = '\n' +
+                    '                </div>\n' +
+                    '                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">\n' +
+                    '                    <input type="text" name="';
+                var text1 = '"  placeholder="请输入';
+                var text1_ro = '"  placeholder="请选择';
+                var text2 = '" value="" >\n' +
+                    '                </div>\n' +
+                    '            </div>';
+                var text2_ro = '" value="" readonly>\n' +
+                    '           <i class="fa fa-angle-right sl-icon-color-CACACA"></i>\n' +
+                    '                </div>\n' +
+                    '            </div>';
+
+                //div类型
+                var div0 = '\n' +
+                    '                </div>\n' +
+                    '                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">\n' +
+                    '                    <div class="meeting-record">请选择';
+                var div1 = '</div>\n' +
+                    '                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>\n' +
+                    '                </div>\n' +
+                    '            </div>';
+
+                //file类型
+                var file0 = '<div class="am-g sl-margin-top-10px sl-flex-row-center-center">\n' +
+                    '                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6">\n' +
+                    '                    <div class=" am-form-file">\n' +
+                    '                        <button type="button" class="am-btn am-btn-danger am-btn-sm">\n' +
+                    '                            <i class="am-icon-cloud-upload"></i> 上传附件</button>\n' +
+                    '                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()">\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6 sl-flex-row-center-center sl-padding-0px">\n' +
+                    '                    <span class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">\n' +
+                    '            </ul>';
 
 
+                var fieldName = this.fieldName.split(',');
+                var fieldEng = this.fieldEng.split(',');
+                var fieldType = this.fieldType.split(',');
+                var readOnly = this.readOnly.split(',');
+                var inputType = this.inputType;
+
+                //alert("n:"+typeof fieldName+",e:"+ typeof fieldEng+",t:"+ typeof fieldType)
+                //alert("n:"+fieldName+",e:"+ fieldEng+",t:"+ fieldType)
+                //alert("n:"+fieldName.length+",e:"+fieldEng.length+",t:"+fieldType.length)
+                if(fieldName.length !== fieldEng.length || fieldName.length !== fieldType.length){
+                    alert('定义的数组的长度不相等');
+                    return;
+                }
+                var len = fieldName.length;
+                var data = '';
+                for(var i=0; i < len; i++){
+                    if(parseInt(fieldType[i]) >= 0){
+                        if(inputType[parseInt(fieldType[i])] === 'text'){
+                            if(parseInt(readOnly[i]) === 1){//只读字段
+                                data += common0 + fieldName[i] + text0_ro + fieldEng[i] + text1_ro + fieldName[i] + text2_ro;
+                            }else{
+                                data += common0 + fieldName[i] + text0+fieldEng[i] + text1 + fieldName[i] + text2;
+                            }
+                        }else if(inputType[fieldType[i]] === 'file'){
+                                data += file0;
+                        }
+                    }else{
+                        data += common0 + fieldName[i] + div0 + fieldName[i] + div1;
+                    }
+                }
+                var d = top1 + data + bot1;
+                $('body').append(d);
+
+                // this.searchDict();
 
 
             },
-           
+            searchDict: function () {
+                //点击div,跳转页面
+                $("div.am-g").click(function () {
+                    var eleInput = $(this).find('input:read-only')[0];
+                    $('input:read-only').each(function (i,v) {
+                        if(eleInput == v){
+                            sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
+                            sessionStorage.setItem('val',$(this).val());
+                            if(i === 0){
+                                sessionStorage.setItem('type','radio');
+                            }else{
+                                sessionStorage.setItem('type','checkbox');
+                            }
+                            location.href='../dict-search.html'
+                        }
+                    });
+                    if( $(this).find('div').hasClass('meeting-record')){
+                        sessionStorage.setItem('dictCode','112');
+                        sessionStorage.setItem('val',$(this).find('div.meeting-record').html());
+                        sessionStorage.setItem('type','checkbox');
+                        location.href='../dict-search.html'
+                    }
+                })
+            },
             adapterWidth_prototype: function () {
                 var self = this;
                 var num = self.innerWidth;
@@ -226,6 +431,34 @@
                     $(":button").css("font-size","1rem");
                 }
             },
+            my_confirm: function () {
+                var confirm = '<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">\n' +
+                    '  <div class="am-modal-dialog">\n' +
+                    '    <div class="am-modal-hd">Amaze UI</div>\n' +
+                    '    <div class="am-modal-bd">\n' +
+                    '      你，确定要删除这条记录吗？\n' +
+                    '    </div>\n' +
+                    '    <div class="am-modal-footer">\n' +
+                    '      <span class="am-modal-btn" data-am-modal-cancel>取消</span>\n' +
+                    '      <span class="am-modal-btn" data-am-modal-confirm>确定</span>\n' +
+                    '    </div>\n' +
+                    '  </div>\n' +
+                    '</div>';
+                $("body").append(confirm);
+            },
+            my_modal: function () {
+                var m = '<div class="am-modal am-modal-no-btn" tabindex="-1" id="your-modal">\n' +
+                    '  <div class="am-modal-dialog">\n' +
+                    '    <div class="am-modal-hd">Modal 标题\n' +
+                    '      <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>\n' +
+                    '    </div>\n' +
+                    '    <div class="am-modal-bd">\n' +
+                    '      Modal 内容。\n' +
+                    '    </div>\n' +
+                    '  </div>\n' +
+                    '</div>';
+                $('body').append(m);
+            },
             alert_modal: function (message) {
                 var m ='<div class="am-modal am-modal-alert" tabindex="-1" style="border-radius: 1000px" id="my-alert">\n' +
                     '  <div class="am-modal-dialog">\n' +
@@ -252,29 +485,54 @@
                 var marginLeft = wWindow/2-leftI-wI-wDiv/2;
                 $div.css('margin-left',marginLeft);
             },
-            topNavInput:function () {//input页面顶部导航栏
-                var top1 ='<div class="top-div">\n' +
-                    '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
-                    '        <a href="';
-                var top2 = '.html"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
-                    '        <div class="sl-flex-row-center-flex-end">\n' +
-                    '            <a href="';
-                var top3 = '-read.html" class="sl-margin-right-1rem" style="color:white">发布</a>\n' +
-                    '            <a href="';
-                var top4 = '-read.html" class="sl-margin-right-1rem" style="color:white">存为草稿</a>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '</div>';
-               var top = top1+this.moduleEng+top2+this.menuEng+top3+this.menuEng+top4;
-                $('body').prepend(top);
 
-                // var script = '<script>\n' +
-                //     '    function setFlag() {\n' +
-                //     '        sessionStorage.setItem(\'flag\',\'true\')\n' +
-                //     '    }\n' +
-                //     '</script>';
-                // $('body').append(script);
+            setBottonNavIndex: function (i) {
+                sessionStorage.setItem('bottomNavIndex',i);
+                if($(this).html() === '发布' || $(this).html() === '存为草稿'){
+                    var result = this.getConfirmResult();
+                    alert('result'+result);
+                    if(result === 0){
+                        return true;
+                    }else {
+                        return false;
+                    }
+                }
             },
+            getConfirmResult: function () {
+                $("#my-confirm").modal({
+                    onConfirm: function () {
+                        return 0;
+                    },
+                    onCancel: function () {
+                        return 1;
+                    }
+                });
+            },
+            topNavInput:function () {//input页面顶部导航栏
+            var top1 ='<div class="top-div">\n' +
+                '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
+                '        <a href="';
+            var top2 = '.html" ><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
+                '        <div class="sl-flex-row-center-flex-end">\n' +
+                '            <a href="';
+            var top3 = '-read.html" onclick="getIndex(0);return false;"  class="sl-margin-right-1rem" style="color:white">发布</a>\n' +
+                '            <a href="';
+            var top4 = '-read.html" onclick="getIndex(0);return false;"  class="sl-margin-right-1rem" style="color:white">存为草稿</a>\n' +
+                '        </div>\n' +
+                '    </div>\n' +
+                '</div>';
+            var top = top1+this.moduleEng+top2+this.menuEng+top3+this.menuEng+top4;
+            $('body').prepend(top);
+
+            // var script = '<script>\n' +
+            //     '    function getIndex(i) {\n' +
+            //     '        alert("get");\n' +
+            //     '        var rem = new Rem();\n' +
+            //     '        rem.setBottonNavIndex(i);\n' +
+            //     '    }\n' +
+            //     '</script>';
+            // $('body').append(script);
+        },
             topNav:function () {//read页面和check页面顶部导航栏
                 var top1 = '<div class="top-div">\n' +
                     '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
@@ -292,14 +550,12 @@
 
                 //插入脚本
                 var script = '<script>\n' +
-                    '    function getIndex(i) {\n' +
-                    '        sessionStorage.setItem(\'bottomNavIndex\',i);\n' +
-                    '    };\n' +
                     '    function insertSearch() {\n' +
                     '        Rem.insertSearch();\n' +
                     '    };\n' +
                     '</script>';
                 $('body').append(script);
+
 
 
 
@@ -364,19 +620,38 @@
 
                 }
                 $('body').append(bot);
-                var script='<script>\n' +
-                    '    function getIndex(i) {\n' +
-                    '        sessionStorage.setItem(\'bottomNavIndex\',i);\n' +
-                    '    };\n' +
-                    '    $(\'ul.am-navbar-nav li\').each(function (i,v) {\n' +
-                    '        var botIndex = sessionStorage.getItem(\'bottomNavIndex\');\n' +
-                    '        if(parseInt(botIndex) === i){\n' +
-                    '            $(this).find(\'a\').attr(\'href\',\'#\');\n' +
-                    '        }\n' +
-                    '    })\n' +
-                    '</script>';
-                $('body').append(script);
+                // var script='<script>\n' +
+                //     '    function getIndex(i) {\n' +
+                //     '        sessionStorage.setItem(\'bottomNavIndex\',i);\n' +
+                //     '    };\n' +
+                //     '    $(\'ul.am-navbar-nav li\').each(function (i,v) {\n' +
+                //     '        var botIndex = sessionStorage.getItem(\'bottomNavIndex\');\n' +
+                //     '        if(parseInt(botIndex) === i){\n' +
+                //     '            $(this).find(\'a\').attr(\'href\',\'#\');\n' +
+                //     '        }\n' +
+                //     '    })\n' +
+                //     '</script>';
+                // $('body').append(script);
 
+                var script = '<script>\n' +
+                    '    function getIndex(i) {\n' +
+                    '        alert("get");\n' +
+                    '         alert($(\'script\').length);\n' +
+                    // '        var rem = new Rem();\n' +
+                    '        window.Rem.setBottonNavIndex(i);\n' +
+                    '          alert("end");\n' +
+                    '    }\n' +
+                    '</script>';
+                var s = '\n' +
+                    '    function getIndex(i) {\n' +
+                    '        alert("get");\n' +
+                    '         alert($(\'script\').length);\n' +
+                    '        var rem = new Rem();\n' +
+                    '        rem.setBottonNavIndex(i);\n' +
+                    '    }';
+                // var b = '<script></script>';
+                $('body').append(script);
+                // $('script:last').append(s);
                 //设置title
                 var s = '';
                 if(parseInt(bottomNavIndex) === 0){
@@ -390,15 +665,23 @@
                 $('title').html(title);
                 this.weiXinBrowers();
             },
+           setHref: function () {
+               $('ul.am-navbar-nav li').each(function (i,v) {
+                   var botIndex = sessionStorage.getItem('bottomNavIndex');
+                   if(parseInt(botIndex) === i){
+                       $(this).find('a').attr('href','#');
+                   }
+               })
+           },
             weiXinBrowers: function () {//对于微信内置浏览器，得剪掉上面导航栏的高度
                 var h = screen.height;
                 var e= $('div.am-navbar').outerHeight();
-                var top = $("div.am-navbar").offset().top;
                 var num = 0;
                 var pf = navigator.platform;
                 if((pf === 'Win32') == false){
                     num=42;
                 }
+                console.log("h:"+h+",e:"+e+",n:"+num);
                 $("div.am-navbar").css({
                     top: (h-e-num)+"px",
                 })
@@ -559,7 +842,7 @@
                 '</script>';
             $('body').append(script);
             },
-            moduleSelect: function (moduleId,menuId,mMame) {//模块的选择
+            moduleSelect: function (moduleId,mMame) {//模块的选择
                 var moduleName = ['党政','财政','人事','行政','主页'];
                 var moduleCode = [];
                 moduleCode = this.codeFor(moduleCode,moduleName.length);
@@ -580,16 +863,29 @@
                 }else if(parseInt(moduleId) === 4){//主页模块
 
                 }
+                //readOnly: 0:可以编辑。1：只能选择值
+                //oneOrMany:0:表示单选，1：表示多选
                 var field ={
                     'strong-big':{
-                        'name': ['登记名称','会议类型','是否中心审核','备案','结论','通知对象','相应会议记录','相关附件'],
-                        'eng': ['registerName','meetingType','isCenterAudit','putOnRecord','conclusion','meetingRecord','relatedAccessory'],
-                        'type': [0, 0, 2, 0, 0, 0, null, 4],
+                        name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
+                        eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                        type: '0,0,0,0,0,0,-1,4',
+                        readOnly: '0,1,1,0,0,1,1,0',
+                        oneOrMany:'0,0,1,1',
                     },
                     'activity-manager':{
-                        'name': ['登记名称','会议类型','是否中心审核','备案','结论','通知对象','相应会议记录','相关附件'],
-                        'eng': ['registerName','meetingType','isCenterAudit','putOnRecord','conclusion','meetingRecord','relatedAccessory'],
-                        'type': [0, 0, 2, 0, 0, 0, null, 4],
+                        name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
+                        eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                        type: '0,0,0,0,0,0,-1,4',
+                        readOnly: '0,1,1,0,0,1,1,0',
+                        oneOrMany:'1,0,1',
+                    },
+                    'letter-register':{
+                        name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
+                        eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                        type: '0,0,0,0,0,0,-1,4',
+                        readOnly: '0,1,1,0,0,1,1,0',
+                        oneOrMany:'0,0',
                     },
                 };
                 //通过菜单名称得到菜单对应的英文
@@ -603,6 +899,7 @@
                         index=this.getIndexByName(menuName,mMame) ;
                     }
                 }
+                console.log("i:"+index)
 
 
 
@@ -616,9 +913,9 @@
                 var tempModuleCode = moduleCode[parseInt(moduleId)];
                 var tempModuleEng = moduleEng[parseInt(moduleId)];
 
-                // var tempMenuName = menuName[menuId];
-                // var tempMenuCode = menuCode[menuId];
-                // var tempMenuEng = menuEng[menuId];
+                var tempMenuName = menuName[index];
+                var tempMenuCode = menuCode[index];
+                var tempMenuEng = menuEng[index];
 
                 sessionStorage.setItem('moduleName',tempModuleName);
                 sessionStorage.setItem('moduleCode',tempModuleCode);
@@ -628,12 +925,12 @@
                 // sessionStorage.setItem('menuCode',tempMenuCode);
                 sessionStorage.setItem('menuEng',menuEng[index]);
 
-                var tempFieldName = menuName[index]+'-name';
-                var tempFieldEng = menuName[index]+'-eng';
-                var tempFieldType = menuName[index]+'-type';
-                sessionStorage.setItem('fieldName',field.menuName[index].name);
-                sessionStorage.setItem('fieldEng',field.menuName[index].eng);
-                sessionStorage.setItem('fieldType',field.menuName[index].type);
+                console.log("eng:"+tempMenuEng);
+                // sessionStorage.setItem('fieldName',field[tempMenuEng].name);
+                // sessionStorage.setItem('fieldEng',field[tempMenuEng].eng);
+                // sessionStorage.setItem('fieldType',field[tempMenuEng].type);
+                // sessionStorage.setItem('readOnly',field[tempMenuEng].readOnly);
+                sessionStorage.setItem('oneOrMany',field[tempMenuEng].oneOrMany);
 
                 sessionStorage.setItem('bottomNavIndex',1);
 
