@@ -16,10 +16,12 @@
     <link rel="stylesheet" href="../../assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../assets/css/LCommon.css">
     <link rel="stylesheet" href="../../assets/css/sl.css">
+    <link rel="stylesheet" href="../../assets/css/plugin/mvalidate/validate.css">
     <!--<link rel="stylesheet" href="../../assets/css/form.css">-->
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/amazeui.js"></script>
     <script src="../../assets/js/myFirst.js"></script>
+    <script src="../../assets/js/plugin/validate/jquery-mvalidate.js"></script>
     <style>
         div{
             padding:0;
@@ -36,7 +38,7 @@
 </head>
 <body class="">
 <div style="margin-top: 3rem;">
-    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
+    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post" data-am-validator>
         <fieldset>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
@@ -44,7 +46,7 @@
                     登记名称
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入登记事宜名称" value="" >
+                    <input type="text" name=""  placeholder="请输入登记事宜名称" value="" data-required="true" data-descriptions="registerName" >
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
@@ -53,7 +55,7 @@
                     会议类型
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择会议类型" value="" class="dict-data" readonly>
+                    <input type="text" name=""  placeholder="请选择会议类型" value="" class="dict-data" readonly data-required="true" data-descriptions="meetingType">
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
@@ -63,7 +65,7 @@
                     是否中心审核
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择是否中心审核" value="" class="dict-data" readonly>
+                    <input type="text" name=""  placeholder="请选择是否中心审核" value="" class="dict-data" readonly data-required="true" data-descriptions="isCenterAudit">
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
                 <!--<div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">-->
@@ -83,7 +85,7 @@
                     备案
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入备案" value="" >
+                    <input type="text" name=""  placeholder="请输入备案" value=""  data-required="true" data-descriptions="putOnRecord">
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
@@ -92,7 +94,7 @@
                     结论
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入结论" value="" >
+                    <input type="text" name=""  placeholder="请输入结论" value=""  data-required="true" data-descriptions="conclusion">
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
@@ -101,7 +103,7 @@
                     通知对象
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择通知对象" value="" class="dict-data" readonly>
+                    <input type="text" name=""  placeholder="请选择通知对象" value="" class="dict-data" readonly data-required="true" data-descriptions="informObject">
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
@@ -113,6 +115,8 @@
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
                     <div class="meeting-record dict-data" >请选择相应会议记录</div>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <input type="hidden" name="meetingName" id="meetingName" value="" readonly >
+                    <input type="hidden" name="meetingId" id="meetingId" value="">
                 </div>
             </div>
             <div class="am-g sl-margin-top-10px sl-flex-row-center-center">
@@ -120,7 +124,7 @@
                     <div class=" am-form-file">
                         <button type="button" class="am-btn am-btn-danger am-btn-sm">
                             <i class="am-icon-cloud-upload"></i> 上传图片</button>
-                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()">
+                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()" readonly data-required="true" data-descriptions="relatedAccessory">
                     </div>
                 </div>
                 <div class="am-u-sm-6 am-u-md-6 am-u-lg-6 sl-flex-row-center-center sl-padding-0px">
@@ -130,10 +134,83 @@
             <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">
 
             </ul>
+            <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
+                <button type="submit"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>
+                <button type="submit" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>
+            </div>
         </fieldset>
     </form>
 </div>
 <script>
+    //表单验证
+    $(function () {
+        $("#strongBig").mvalidate({
+            type:1,
+            onKeyup:true,
+            validateInSubmit:true,
+            sendForm:true,
+            firstInvalidFocus:false,
+            valid:function(event,options){
+                //点击提交按钮时,表单通过验证触发函数
+                //alert("验证通过！接下来可以做你想做的事情啦！");
+
+//                var rem = new Rem();
+//                rem.setBottonNavIndexBySubmit(0);
+                sessionStorage.setItem('bottomNavIndex',0);
+                $("#my-confirm").modal({
+                    onConfirm: function () {
+                        alert("aaa");
+                        location.href='strong-big-read.html';
+                    },
+                    onCancel: function () {
+                        return false;
+                    }
+                });
+                alert("bbb");
+                event.preventDefault();
+            },
+            invalid:function(event, status, options){
+                //点击提交按钮时,表单未通过验证触发函数
+            },
+            eachField:function(event,status,options){
+                //点击提交按钮时,表单每个输入域触发这个函数 this 执向当前表单输入域，是jquery对象
+            },
+            eachValidField:function(val){},
+            eachInvalidField:function(event, status, options){},
+            conditional:{
+                confirmpwd:function(){
+                    return $("#pwd").val()==$("#confirmpwd").val();
+                }
+            },
+            descriptions:{
+                registerName:{
+                    required : '请输入登记事宜名称'
+                },
+                meetingType:{
+                    required : '请选择会议类型'
+                },
+                isCenterAudit : {
+                    required : '请选择是否中心审核',
+                },
+                putOnRecord:{
+                    required : '请输入备案'
+                },
+                conclusion:{
+                    required : '请输入结论',
+                },
+                informObject:{
+                    required : '请选择通知对象',
+                },
+                meetingRecord:{
+                    required : '请选择会议记录',
+                },
+                relatedAccessory:{
+                    required : '请上传附件',
+                },
+
+            }
+        });
+    })
 
 
     //将文件以DataURL形式读入页面
@@ -197,20 +274,27 @@
         }
 //        alert(222)
     }
+    //
+//    function getIndex(i,self) {
+////        var name = $(self).html();
+//        //alert(name);
+////        alert('111');
+//        var rem = new Rem();
+////        alert('22222');
+//
+//        rem.setBottonNavIndex(i,self);
+////        alert('3333');
+//    }
+
 </script>
 
 </body>
-
-<!--<script>-->
-    <!--function getIndex(i) {-->
-        <!--var rem = new Rem();-->
-        <!--rem.setBottonNavIndex(i);-->
-    <!--}-->
-<!--</script>-->
 </html>
 
 
-
-
-
-
+<!--<script>-->
+    <!--function getIndex(i,self) {-->
+        <!--var rem = new Rem();-->
+        <!--rem.setBottonNavIndex(i,self);-->
+    <!--}-->
+<!--</script>-->

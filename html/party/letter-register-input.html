@@ -31,62 +31,90 @@
 </head>
 <body class="">
 <div style="margin-top: 3rem;">
-    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
+    <form id="letterRegister" class="smart-form" novalidate="novalidate" action="" method="post">
         <fieldset>
 
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem am-form-group" style="margin-bottom: 0rem;">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     信访类别
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择信访类别" value="" class="dict-data" readonly>
+                    <input type="text" name=""  placeholder="请选择信访类别" value="" class="dict-data" readonly required>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     信访开始日期
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                        <input type="text" name=""  placeholder="请选择信访开始日期" value="" class="am-form-field" data-am-datepicker readonly >
+                        <input type="text" name=""  placeholder="请选择信访开始日期" value="" class="am-form-field" data-am-datepicker readonly  required>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     信访结束日期
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择信访结束日期" value="" class="am-form-field" data-am-datepicker readonly >
+                    <input type="text" name=""  placeholder="请选择信访结束日期" value="" class="am-form-field" data-am-datepicker readonly  required>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     信访处理结果
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请选择信访处理结果" value="" class="dict-data" readonly>
+                    <input type="text" name=""  placeholder="请选择信访处理结果" value="" class="dict-data" readonly required>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     信访处理评价
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入信访处理评价" value="" >
+                    <input type="text" name=""  placeholder="请输入信访处理评价" value=""  required>
                 </div>
             </div>
 
-
+            <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
+                <button type="submit"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>
+                <button type="submit" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>
+            </div>
         </fieldset>
     </form>
 </div>
 </body>
+<script>
+    $(function() {
+        $('#letterRegister').validator({
+            onValid: function(validity) {
+                $(validity.field).closest('.am-g').find('.am-alert').hide();
+            },
+
+            onInValid: function(validity) {
+                var $field = $(validity.field);
+                console.log("letter");
+                var $group = $field.closest('.am-g');
+                var $alert = $group.find('.am-alert');
+                // 使用自定义的提示信息 或 插件内置的提示信息
+                var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+
+                if (!$alert.length) {
+                    $alert = $('<div class="am-alert am-alert-danger"></div>').hide().
+                    appendTo($group);
+                }
+
+                $alert.html(msg).show();
+            }
+        });
+    });
+</script>
 </html>
 
 

@@ -129,7 +129,7 @@
                     活动费用
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="请输入活动费用" value="" >
+                    <input type="number" name=""  placeholder="请输入活动费用" value="" >
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
@@ -138,7 +138,7 @@
                     可支配金额
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name=""  placeholder="自动计算" value="" readonly>
+                    <input type="number" name=""  placeholder="自动计算" value="" readonly>
                 </div>
             </div>
 
@@ -171,61 +171,11 @@
 
 </div>
 <script>
+    $(function () {
 
-//    $(document).ready(function () {
-//        var rem = new Rem();
-//        rem.topNavInput();
-//        rem.bottomNav();
-//        rem.adapterWidth_object();
-//        rem.titleCenter();
-//    });
-    //从本地数据读取数据
-//    $(document).ready(function () {
-//        var result = sessionStorage.getItem('result');
-//        var code =sessionStorage.getItem('dictCode');
-//        if(code !== null && result !== null){
-//            if(code === '112'){
-////               var str1='<div name="meetingDiv"><a  key="btn-choose-meetingName" onclick="meetingDetail(\''+$.trim(meetingUseIdArr[i])+'\')">'+s+',';
-////               var str2 ='</a><input type="hidden" id="meetingId" name="meetingId" value="'+$.trim(meetingUseIdArr[i])+'"/></div>' ;
-//                $("div.meeting-record").html(result)
-//                sessionStorage.removeItem('result');
-//                sessionStorage.removeItem('val');
-//                sessionStorage.removeItem('type')
-//            }else{
-//                var lastNum = code.charAt(2);
-//                $('input:read-only').eq(lastNum).val(result);
-//                sessionStorage.removeItem('result');
-//                sessionStorage.removeItem('val');
-//                sessionStorage.removeItem('type')
-//            }
-//
-//        }
-//
-//    });
-//    //点击div,跳转页面
-//    $("div.am-g").click(function () {
-//        var eleInput = $(this).find('input:read-only')[0];
-//        $('input:read-only').each(function (i,v) {
-//            if(eleInput == v){
-//                sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
-//                sessionStorage.setItem('val',$(this).val());
-//                if(i === 0){
-//                    sessionStorage.setItem('type','radio');
-//                }else{
-//                    sessionStorage.setItem('type','checkbox');
-//                }
-//                location.href='../dict-search.html'
-//            }
-//        });
-//        if( $(this).find('div').hasClass('meeting-record')){
-//            sessionStorage.setItem('dictCode','112');
-//            sessionStorage.setItem('val',$(this).find('div.meeting-record').html());
-//            sessionStorage.setItem('type','checkbox');
-//            location.href='../dict-search.html'
-//        }
-//    });
-</script>
-<script>
+    })
+
+
     function getIndex(i) {
         sessionStorage.setItem('bottomNavIndex',i);
     };

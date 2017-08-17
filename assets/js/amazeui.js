@@ -14788,7 +14788,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  validate: function(validity) {
-	    // return validity;
+	    return validity;
 	  },
 
 	  submit: null

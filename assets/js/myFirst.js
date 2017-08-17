@@ -213,6 +213,45 @@
                     sessionStorage.setItem('flag','true')
                 }
             },
+            getPageName: function () {//根据不同页面，来设置flag的值
+            var pathname = location.pathname;
+            var pathArr = pathname.split('/');
+            var lastStr = pathArr[pathArr.length-1];
+            var tempArr = lastStr.split('.');
+            if(tempArr.length !== 2){
+                alert('命名不规范');
+                return;
+            }
+            if(tempArr[1] !== 'html'){
+                alert('页面不是html文件');
+                return;
+            }
+            var pageName = tempArr[0];
+            var pageNameArr = pageName.split('-');
+            var t =pageNameArr[pageNameArr.length-1];
+            return t;
+        },
+            getPageNameCallback: function (callback_fun) {//根据不同页面，来设置flag的值
+            var pathname = location.pathname;
+            var pathArr = pathname.split('/');
+            var lastStr = pathArr[pathArr.length-1];
+            var tempArr = lastStr.split('.');
+            if(tempArr.length !== 2){
+                alert('命名不规范');
+                return;
+            }
+            if(tempArr[1] !== 'html'){
+                alert('页面不是html文件');
+                return;
+            }
+            var pageName = tempArr[0];
+            var pageNameArr = pageName.split('-');
+            var t =pageNameArr[pageNameArr.length-1];
+            if(typeof callback_fun == 'function'){
+                callback_fun(t);
+            }
+            return t;
+        },
             getDictData: function () {
                 $(document).ready(function () {
                     var result = sessionStorage.getItem('result');
@@ -434,9 +473,9 @@
             my_confirm: function () {
                 var confirm = '<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">\n' +
                     '  <div class="am-modal-dialog">\n' +
-                    '    <div class="am-modal-hd">Amaze UI</div>\n' +
+                    '    <div class="am-modal-hd">提示信息</div>\n' +
                     '    <div class="am-modal-bd">\n' +
-                    '      你，确定要删除这条记录吗？\n' +
+                    '     确认提交么？\n' +
                     '    </div>\n' +
                     '    <div class="am-modal-footer">\n' +
                     '      <span class="am-modal-btn" data-am-modal-cancel>取消</span>\n' +
@@ -485,53 +524,80 @@
                 var marginLeft = wWindow/2-leftI-wI-wDiv/2;
                 $div.css('margin-left',marginLeft);
             },
-
-            setBottonNavIndex: function (i) {
+            setBottonNavIndexBySubmit: function (i) {
                 sessionStorage.setItem('bottomNavIndex',i);
-                if($(this).html() === '发布' || $(this).html() === '存为草稿'){
-                    var result = this.getConfirmResult();
-                    alert('result'+result);
-                    if(result === 0){
-                        return true;
-                    }else {
-                        return false;
-                    }
-                }
-            },
-            getConfirmResult: function () {
                 $("#my-confirm").modal({
                     onConfirm: function () {
-                        return 0;
+                         alert("aaa");
+                        location.href='strong-big-read.html';
                     },
                     onCancel: function () {
-                        return 1;
+                        return false;
                     }
                 });
             },
+            setBottonNavIndex: function (i,self) {
+                var name = $(self).html();
+                console.log('I:'+i);
+                sessionStorage.setItem('bottomNavIndex',i);
+                console.log("html:"+name);
+                if(name === '发布' || name === '存为草稿'){
+                    // alert("发布")
+                    // var result = this.getConfirmResult();
+                    $("#my-confirm").modal({
+                        onConfirm: function () {
+                            // alert();
+                            location.href='strong-big-read.html';
+                        },
+                        onCancel: function () {
+                            return false;
+                        }
+                    });
+                    // console.log('result:'+result);
+                    // if(result === 0){
+                    //
+                    //     return true;
+                    // }else {
+                    //     console.log("false");
+                    //     return false;
+                    // }
+                }
+            },
+            // getConfirmResult: function () {
+            //     $("#my-confirm").modal({
+            //         onConfirm: function () {
+            //             return 0;
+            //         },
+            //         onCancel: function () {
+            //             return 1;
+            //         }
+            //     });
+            // },
             topNavInput:function () {//input页面顶部导航栏
-            var top1 ='<div class="top-div">\n' +
-                '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
-                '        <a href="';
-            var top2 = '.html" ><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
-                '        <div class="sl-flex-row-center-flex-end">\n' +
-                '            <a href="';
-            var top3 = '-read.html" onclick="getIndex(0);return false;"  class="sl-margin-right-1rem" style="color:white">发布</a>\n' +
-                '            <a href="';
-            var top4 = '-read.html" onclick="getIndex(0);return false;"  class="sl-margin-right-1rem" style="color:white">存为草稿</a>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '</div>';
-            var top = top1+this.moduleEng+top2+this.menuEng+top3+this.menuEng+top4;
+            // var top1 ='<div class="top-div">\n' +
+            //     '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
+            //     '        <a href="';
+            // var top2 = '.html" ><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
+            //     '        <div class="sl-flex-row-center-flex-end">\n' +
+            //     '            <a href="';
+            // var top3 = '-read.html" onclick="getIndex(0)"  class="sl-margin-right-1rem" style="color:white">发布</a>\n' +
+            //     '            <a href="';
+            // var top4 = '-read.html" onclick="getIndex(0)"  class="sl-margin-right-1rem" style="color:white">存为草稿</a>\n' +
+            //     '        </div>\n' +
+            //     '    </div>\n' +
+            //     '</div>';
+                var top1 ='<div class="top-div">\n' +
+                    '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
+                    '        <a href="';
+                var top2 = '.html" ><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
+                    // '        <div class="sl-flex-row-center-flex-end">\n' +
+                    // '            <button type="submit" onclick="getIndex(0,this)" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>\n' +
+                    // '            <button  type="submit" onclick="getIndex(0,this)"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>\n' +
+                    // '        </div>\n' +
+                    '    </div>\n' +
+                    '</div>';
+            var top = top1+this.moduleEng+top2
             $('body').prepend(top);
-
-            // var script = '<script>\n' +
-            //     '    function getIndex(i) {\n' +
-            //     '        alert("get");\n' +
-            //     '        var rem = new Rem();\n' +
-            //     '        rem.setBottonNavIndex(i);\n' +
-            //     '    }\n' +
-            //     '</script>';
-            // $('body').append(script);
         },
             topNav:function () {//read页面和check页面顶部导航栏
                 var top1 = '<div class="top-div">\n' +
@@ -540,7 +606,7 @@
                 var module ='.html"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
                     '        <div class="sl-flex-row-center-flex-end"><i class="am-icon-search" style="margin-right: 0.8rem;" onclick="insertSearch()"></i>\n' +
                     '            <a href="';
-                var top2 = '-input.html" onclick="getIndex(1)" class="sl-margin-right-1rem sl-font-color-white"><i class="am-icon-plus"></i></a>\n' +
+                var top2 = '-input.html" onclick="getIndex(1,this)" class="sl-margin-right-1rem sl-font-color-white"><i class="am-icon-plus"></i></a>\n' +
                     '        </div>\n' +
                     '    </div>\n' +
                     '</div>'
@@ -549,12 +615,7 @@
 
 
                 //插入脚本
-                var script = '<script>\n' +
-                    '    function insertSearch() {\n' +
-                    '        Rem.insertSearch();\n' +
-                    '    };\n' +
-                    '</script>';
-                $('body').append(script);
+
 
 
 
@@ -571,7 +632,7 @@
                     '        <li>\n' +
                     '            <a href="';
                 tempArr[1] = '-read.html" style="';
-                tempArr[2] = '" onclick="getIndex(0)">\n' +
+                tempArr[2] = '" onclick="getIndex(0,this)">\n' +
                     '                <i class="am-icon-eye "></i>\n' +
                     '                <span class="am-navbar-label">查看';
                 tempArr[3] = '</span>\n' +
@@ -580,7 +641,7 @@
                     '        <li >\n' +
                     '            <a href="';
                 tempArr[4] = '-input.html" style="';
-                tempArr[5] = '" onclick="getIndex(1)">\n' +
+                tempArr[5] = '" onclick="getIndex(1,this)">\n' +
                     '                <span class="am-icon-plus"></span>\n' +
                     '                <span class="am-navbar-label">新建';
                 tempArr[6] = '</span>\n' +
@@ -589,7 +650,7 @@
                     '        <li >\n' +
                     '            <a href="';
                 tempArr[7] = '-check.html" style="';
-                tempArr[8] = '" onclick="getIndex(2)">\n' +
+                tempArr[8] = '" onclick="getIndex(2,this)">\n' +
                     '                <span class="am-icon-check"></span>\n' +
                     '                <span class="am-navbar-label">审批';
                 tempArr[9] = '</span>\n' +
@@ -620,38 +681,6 @@
 
                 }
                 $('body').append(bot);
-                // var script='<script>\n' +
-                //     '    function getIndex(i) {\n' +
-                //     '        sessionStorage.setItem(\'bottomNavIndex\',i);\n' +
-                //     '    };\n' +
-                //     '    $(\'ul.am-navbar-nav li\').each(function (i,v) {\n' +
-                //     '        var botIndex = sessionStorage.getItem(\'bottomNavIndex\');\n' +
-                //     '        if(parseInt(botIndex) === i){\n' +
-                //     '            $(this).find(\'a\').attr(\'href\',\'#\');\n' +
-                //     '        }\n' +
-                //     '    })\n' +
-                //     '</script>';
-                // $('body').append(script);
-
-                var script = '<script>\n' +
-                    '    function getIndex(i) {\n' +
-                    '        alert("get");\n' +
-                    '         alert($(\'script\').length);\n' +
-                    // '        var rem = new Rem();\n' +
-                    '        window.Rem.setBottonNavIndex(i);\n' +
-                    '          alert("end");\n' +
-                    '    }\n' +
-                    '</script>';
-                var s = '\n' +
-                    '    function getIndex(i) {\n' +
-                    '        alert("get");\n' +
-                    '         alert($(\'script\').length);\n' +
-                    '        var rem = new Rem();\n' +
-                    '        rem.setBottonNavIndex(i);\n' +
-                    '    }';
-                // var b = '<script></script>';
-                $('body').append(script);
-                // $('script:last').append(s);
                 //设置title
                 var s = '';
                 if(parseInt(bottomNavIndex) === 0){
@@ -899,7 +928,7 @@
                         index=this.getIndexByName(menuName,mMame) ;
                     }
                 }
-                console.log("i:"+index)
+                // console.log("i:"+index)
 
 
 
@@ -967,10 +996,36 @@
     }
 }(window, jQuery));
 
-(function (window, document) {
+(function (window, document,$) {
+    var rem =  new Rem();
     $(document).ready(function () {
-        var rem =  new Rem();
         rem.init();
-    })
+        // var pageName = rem.getPageName();
+        rem.getPageNameCallback(function (page) {
+            if(page === 'input'){
+                var s = '<script>\n' +
+                    '    function getIndex(i,self) {\n' +
+                    '        var rem = new Rem();\n' +
+                    '        rem.setBottonNavIndex(i,self);\n' +
+                    '    }\n' +
+                    '</script>';
+                $('body').append(s);
+            }else if(page == 'check' || page === 'read'){
+                var script = '<script>\n' +
+                    '    function insertSearch() {\n' +
+                    '        Rem.insertSearch();\n' +
+                    '    };\n' +
+                    '    function getIndex(i,self) {\n' +
+                    '        var rem = new Rem();\n' +
+                    '        rem.setBottonNavIndex(i,self);\n' +
+                    '    }\n' +
+                    '</script>';
+                // $('body').append(s);
+                $('body').append(script);
+            }
+        });
+    });
 
-}(window, document))
+
+
+}(window, document,jQuery))
