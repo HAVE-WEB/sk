@@ -72,7 +72,7 @@
         var hTitle = $(".top-div").outerHeight();
         var hSearch= $(".search-div").outerHeight();
         $('.data-list').css('margin-top',hTitle+hSearch+'px');
-        var code = sessionStorage.getItem('dictCode');
+        var fieldName = sessionStorage.getItem('fieldName')
         var type = sessionStorage.getItem('type');
         var val = sessionStorage.getItem('val');
         var dictArr =[];
@@ -81,13 +81,13 @@
         var listCenter ='</span><input type="';
         var listNext = '" name="list" ';
         var listCheck = '></li>';
-        if(code === '110'){
+        if(fieldName === 'meetingType'){
             dictArr =['部门三重一大会议','中心党政联席会议','党总支会议'];
-        }else if(code === '111'){
+        }else if(fieldName === 'isCenterAudit'){
             dictArr =['是','否'];
-        }else if(code === '112'){
+        }else if(fieldName === 'informObject'){
             dictArr =['小明1','小明2','小明3','小明4','小明5','小明6','小明7','小明8','小明9'];
-        }else if(code === '113'){
+        }else if(fieldName === 'meetingRecord'){
             dictArr =['会议1','会议2','会议3','会议4','会议5','会议6','会议7','会议8','会议9'];
         }
         var checkboxArr =[];
@@ -168,6 +168,9 @@
     //点击确认按钮，跳转页面传输数据
     $("#bottom-nav button").click(function () {
         var name= $(this).html();
+        var rem = new Rem();
+        var moduleEng = sessionStorage.getItem('moduleEng');
+        var menuEng = sessionStorage.getItem('menuEng');
 //        alert("I:"+name+"l:"+$("#bottom-nav button").length);
         if(name === '取消'){
             history.back();
@@ -180,7 +183,10 @@
                     if($(this)[0].checked){
                         result =  $(this).prev().html();
                         if(window.sessionStorage){
-                            sessionStorage.setItem("result", result);
+                            var fileName = sessionStorage.getItem('fieldName');
+                            sessionStorage.setItem(fileName.toString(), result);
+                            rem.setModuleMenu(moduleEng,menuEng)
+                            //判断返回到哪个模块，哪个菜单的，哪个页面
                         }else{
                             alert('This browser does NOT support localStorage');
                         }
@@ -207,7 +213,9 @@
                             alert("请选择一条数据");
                         } else {
                             if (window.sessionStorage) {
-                                sessionStorage.setItem("result", result);
+                                var fileName = sessionStorage.getItem('fieldName');
+                                sessionStorage.setItem(fileName.toString(), result);
+                                rem.setModuleMenu(moduleEng,menuEng);
                             } else {
                                 alert('This browser does NOT support localStorage');
                             }

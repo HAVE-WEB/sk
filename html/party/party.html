@@ -64,36 +64,36 @@
         <li class="active " >
             <a href="#" title="三重一大">
                 <i class="am-icon-home"></i>
-                <span>三重一大</span>
+                <span eng="strong-big">三重一大</span>
             </a>
         </li>
         <li >
             <a href="#" title="干部选拔">
                 <i class="am-icon-rss"></i>
-                <span>干部选拔</span>
+                <span eng="selection-apply">干部选拔</span>
             </a>
         </li>
         <li>
             <a href="#" title="活动管理">
                 <i class="am-icon-reorder"></i>
-                <span>活动管理</span>
+                <span eng="activity-manager">活动管理</span>
             </a>
         </li>
         <li>
             <a href="#" title="党费管理">
                 <i class="am-icon-bar-chart"></i>
-                <span>党费管理</span>
+                <span eng="money-manager">党费管理</span>
             </a>
         </li>
 
         <li style="display: none;" class="hidden-money small-font">
             <a href="#" title="党费缴纳">
-                <span>党费缴纳</span>
+                <span eng="strong-big">党费缴纳</span>
             </a>
         </li>
         <li style="display: none;" class="hidden-money small-font">
             <a href="#" title="党费分摊">
-                <span>党费分摊</span>
+                <span eng="money-avg">党费分摊</span>
             </a>
         </li>
         <li style="display: none;" class="hidden-money small-font">
@@ -104,23 +104,23 @@
         <li>
             <a href="#" title="退管会管理">
                 <i class="am-icon-print"></i>
-                <span>退管会管理</span>
+                <span >退管会管理</span>
             </a>
         </li>
         <li style="display: none;" class="hidden-rebate small-font">
             <a href="#" title="年度预算申请">
-                <span>年度预算申请</span>
+                <span eng="annual-budget">年度预算申请</span>
             </a>
         </li>
         <li style="display: none;" class="hidden-rebate small-font">
             <a href="#" title="退管会活动">
-                <span>退管会活动</span>
+                <span eng="rebate-activity">退管会活动</span>
             </a>
         </li>
         <li>
             <a href="#" title="信访等级">
                 <i class="am-icon-file-text-o"></i>
-                <span>信访登记</span>
+                <span eng="letter-register">信访登记</span>
             </a>
         </li>
     </ul>
@@ -129,7 +129,7 @@
          id="">
         <ul class="am-navbar-nav am-cf am-avg-sm-5" >
             <li >
-                <a href="strong-big-read.html" class="">
+                <a href="" class="">
                     <span class="am-icon-home"></span>
                     <span class="am-navbar-label">主页</span>
                 </a>
@@ -141,7 +141,7 @@
                 </a>
             </li>
             <li >
-                <a href="strong-big-check.html" class="">
+                <a href="l" class="">
                     <span class="am-icon-user-plus"></span>
                     <span class="am-navbar-label">人事</span>
                 </a>
@@ -261,9 +261,10 @@
 
 
             //跳转页面
-            var moduleId = 0;
-            var menuName = name;
-            rem.moduleSelect(moduleId,menuName);
+            var moduleEng = 'party';
+//            var menuName = name;
+            var menuEng = $(this).find('span').attr('eng')
+            rem.setModuleMenu(moduleEng,menuEng);
 //            if(index === 0){
 //                href='strong-big';
 //                flag = true;

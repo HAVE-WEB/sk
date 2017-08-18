@@ -26,11 +26,11 @@
         var moduleName = sessionStorage.getItem('moduleName');
         var moduleEng = sessionStorage.getItem('moduleEng');
         var moduleId = sessionStorage.getItem('moduleId');
-        // var flag = sessionStorage.getItem('flag');
+        var flag = sessionStorage.getItem('flag');//true:表示在首页，false：在各个模块中的菜单
         this.moduleName = moduleName;
         this.moduleEng = moduleEng;
         this.moduleId = moduleId;
-        // this.flag = flag;
+        this.flag = flag;
         //菜单对象
         var menuEng = sessionStorage.getItem('menuEng');
         var menuName = sessionStorage.getItem('menuName');
@@ -165,9 +165,8 @@
             init:function () {
                 this.initPage();
                 var bottomNavIndex = this.bottomNavIndex;
-                var moduleId = this.moduleId;
-                var flag = sessionStorage.getItem('flag');//true:表示在首页，false：在各个模块中的菜单
-                console.log("flag:"+flag+",in:"+parseInt(bottomNavIndex));
+                var flag = this.flag;//true:表示在首页，false：在各个模块中的菜单
+                 console.log("flag:"+flag+",in:"+parseInt(bottomNavIndex));
                 if(flag === 'true'){
                     this.adapterWidth_object();
                     this.weiXinBrowers();
@@ -178,7 +177,7 @@
                     } else if(parseInt(bottomNavIndex) === 1){
                         this.topNavInput();
                         this.titleCenter();
-                        // this.dataRowInput();
+                         this.dataRowInput();
                         this.getDictData();
                         this.setSearchDict();
                         // this. my_modal();
@@ -207,10 +206,10 @@
                 var pageName = tempArr[0];
                 var pageNameArr = pageName.split('-');
                 var t =pageNameArr[pageNameArr.length-1];
-                if(t === 'check' || t === 'input' || t === 'read'){
-                    sessionStorage.setItem('flag','false')
+                if(t === 'checkList' || t === 'input' || t === 'readList'){
+                    this.flag = 'false';
                 }else{
-                    sessionStorage.setItem('flag','true')
+                    this.flag = 'true';
                 }
             },
             getPageName: function () {//根据不同页面，来设置flag的值
@@ -252,48 +251,111 @@
             }
             return t;
         },
-            getDictData: function () {
-                $(document).ready(function () {
-                    var result = sessionStorage.getItem('result');
-                    var code =sessionStorage.getItem('dictCode');
-                    if(code !== null && result !== null){
-                        var len = code.length;
-                        var lastNum = code.charAt(len-1);
-                    }
+        html5Upload: function() {
+        var file;
+        var fileReader;
+        var fileTag = document.getElementById("doc-form-file").files;//每次点击按钮上传的图片个数
+        var len = fileTag.length;
+       //判断是否是图片
+       for (var i = 0; i < len; i++) {
+           var simpleFile = fileTag[i];
+           if(!/image\/\w+/.test(simpleFile.type)){
+               alert("请确保文件类型为图像类型");
+               return false;
+           }
+       }
+       if(!/image\/\w+/.test(simpleFile.type)){
+           alert("请确保文件类型为图像类型");
+           return false;
+       }
+        //一次性上传图片
+        if(len > 3){
+            alert("最多上传3个文件");
+            return ;
+        }
+        //分多次上传图片
+        var num = $("#result").children().length;
+        if(num + len > 3){
+            alert("最多上传3个文件");
+            return;
+        }
 
-                    if(code !== null && result !== null){
-                        $('.dict-data').each(function (i) {
-                            if(parseInt(lastNum) === i){
-                                if($(this)[0].nodeName ===  'DIV'){
-                                    $(this).html(result);
-                                }else{
-                                    $(this).val(result)
+
+        //显示和隐藏提示信息
+        if(len > 0){
+            $("#hintImage").css('display','block');
+        }else{
+            $("#hintImage").css('display','none');
+        }
+        for (var i = 0; i < fileTag.length; i++) {
+            file = fileTag[i];
+            fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = (function () {//this代表fileReader对象
+//                var img = '<li><img src="' + this.result + '" alt="" class="am-thumbnail" style="width: 95%;height: 95%" onclick="removeSelf(this)"/></li>';
+                var img = '<li><img src="' + this.result + '" alt="" class="am-thumbnail" style="width: 95%;height: 95%" onclick="removeSelf(this)"/></li>';
+//                $(img).appendTo(result);
+                $("#result").append(img)
+            })
+        }
+    },
+        getDictData: function () {
+            var self = this;//this表示Rem对象
+            $(document).ready(function () {
+                var a = this;//this表示document对象
+                var keyArr =[];
+                for(var i =0;i<sessionStorage.length;i++){
+                    keyArr[i]=sessionStorage.key(i);
+                }
+                var arr = self.fieldEng;
+                // console.log("arr"+arr);
+                var fieldEng =arr.split(',');
+                for(var j = 0 ;j < keyArr.length; j++){
+                    // console.log("key:"+keyArr[j]);
+                    for(var k = 0; k < fieldEng.length; k++){
+                        // console.log("fieldEng:"+fieldEng[k]);
+                        if(keyArr[j] === fieldEng[k]){
+                            // console.log("k:"+keyArr[j]+"f:"+fieldEng[k])
+                            var name = fieldEng[k];
+                            var fieldValue = sessionStorage.getItem(name);
+                            if(fieldValue == 'undefined'){
+
+                            }else{
+                                console.log("type:"+fieldEng[k]);
+                                var t = $("input[name="+name+"]").prop('type');
+
+                                if(t === 'hidden'){
+                                    $("input[name="+name+"]").val(fieldValue);
+                                    $("input[name="+name+"]").siblings("div[name="+name+"]").empty().html(fieldValue);
+                                }else if(t === 'file'){
+                                    $("input[name="+name+"Name]").val('').val(fieldValue);
+                                    var nameArr = fieldValue.split(',');
+                                    // alert("nameArrLength:"+nameArr.length);
+                                    var noKong = [];
+                                    for(var i =0; i < nameArr.length;i++){
+                                        if(nameArr[i] != ''){
+                                            noKong[i]=nameArr[i];
+                                        }
+                                    }
+                                    // alert("noKong:"+noKong.length);
+                                    if(noKong.length > 0){
+                                        $('#hintImage').css('display','block');
+                                    }
+                                    var d = '';
+                                    for(var i =0;i<noKong.length;i++){
+                                        var div = '<li style="width: 100%;" onclick="removeSelf(this)"><div  class="sl-flex-row-center-flex-start" style="border:3px solid #E1E1E1;background-color: #F6F6F8;padding: 0.3rem;margin: .3rem .6rem;"><i class="fa fa-ils fa-lg text-success" ></i><div style="color: black;">'+noKong[i]+'</div></div></li>';
+                                        d += div;
+                                    }
+                                    $("#result").empty().append(d)
+                                } else {
+                                    $("input[name="+name+"]").val(fieldValue);
                                 }
                             }
-                        });
-        //                 if(code === '11'+$('input:read-only').length){
-        // //                 var str1='<div name="meetingDiv"><a  key="btn-choose-meetingName" onclick="meetingDetail(\''+$.trim(meetingUseIdArr[i])+'\')">'+s+',';
-        // //                 var str2 ='</a><input type="hidden" id="meetingId" name="meetingId" value="'+$.trim(meetingUseIdArr[i])+'"/></div>' ;
-        //                     $("div.meeting-record").html(result);
-        //                     sessionStorage.removeItem('result');
-        //                     sessionStorage.removeItem('val');
-        //                     sessionStorage.removeItem('type')
-        //                 }else{
-        //                     var l = code.length;
-        //                     var lastNum = code.charAt(l-1);
-        //                     $('input:read-only').eq(lastNum).val(result);
-        //                     sessionStorage.removeItem('result');
-        //                     sessionStorage.removeItem('val');
-        //                     sessionStorage.removeItem('type')
-        //                 }
-
+                        }
                     }
-                    sessionStorage.removeItem('result');
-                    sessionStorage.removeItem('val');
-                    sessionStorage.removeItem('type')
-
-                });
-            },
+                }
+            });
+        },
             setSearchDict: function () {
                 var om = this.oneOrMany;
                 console.log('om:'+om);
@@ -303,15 +365,13 @@
                     return;
                 }
                 $("div.am-g").click(function () {
-                    var eleInput = $(this).find('.dict-data')[0];
-                    $('.dict-data').each(function (i,v) {
+                    var eleInput = $(this).find('input.dict-data').parent().get(0);//DOM元素对象
+                    console.log("len:"+$('input.dict-data').parent().length);
+                    $('input.dict-data').parent().each(function (i,v) {
                         if(eleInput == v){
-                            sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
-                            if($(this)[0].nodeName === 'DIV'){
-                                sessionStorage.setItem('val',$(this).html())
-                            }else{
-                                sessionStorage.setItem('val',$(this).val());
-                            }
+                            // sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
+                            sessionStorage.setItem('val',$(this).find('input.dict-data').val());
+                            sessionStorage.setItem('fieldName',$(this).find('input.dict-data').prop('name'));
                             if(parseInt(oneOrMany[i]) === 0){
                                 sessionStorage.setItem('type','radio');
                             }else{
@@ -326,8 +386,12 @@
                 var top1 = '<div style="margin-top: 3rem;">\n'+
                     '<form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">\n' +
                     '<fieldset>\n';
-                var bot1 ='</fieldset>\n' +
-                    '</form>\n' +
+                var bot1 ='<div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">\n' +
+                    '                <button type="submit"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>\n' +
+                    '                <button type="submit" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>\n' +
+                    '            </div>\n' +
+                    '       </fieldset>\n' +
+                    '  </form>\n' +
                     '</div>\n';
                 //通用部分
                 var common0 = '<div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">\n' +
@@ -345,10 +409,10 @@
                     '                    <input type="text" name="';
                 var text1 = '"  placeholder="请输入';
                 var text1_ro = '"  placeholder="请选择';
-                var text2 = '" value="" >\n' +
+                var text2 = '" value="" oninput="setStorage(this)">\n' +
                     '                </div>\n' +
                     '            </div>';
-                var text2_ro = '" value="" readonly>\n' +
+                var text2_ro = '" value="" readonly class="dict-data">\n' +
                     '           <i class="fa fa-angle-right sl-icon-color-CACACA"></i>\n' +
                     '                </div>\n' +
                     '            </div>';
@@ -357,9 +421,14 @@
                 var div0 = '\n' +
                     '                </div>\n' +
                     '                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">\n' +
-                    '                    <div class="meeting-record">请选择';
-                var div1 = '</div>\n' +
+                    '                    <div name="';
+                var div1 = '">请选择';
+                var div2 = '</div>\n' +
                     '                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>\n' +
+                    '                    <input type="hidden" name="';
+                var div3 = '"  value="" readonly class="dict-data">\n' +
+                    '                    <input type="hidden" name="';
+                var div4 = 'Id"  value="">\n' +
                     '                </div>\n' +
                     '            </div>';
 
@@ -369,11 +438,14 @@
                     '                    <div class=" am-form-file">\n' +
                     '                        <button type="button" class="am-btn am-btn-danger am-btn-sm">\n' +
                     '                            <i class="am-icon-cloud-upload"></i> 上传附件</button>\n' +
-                    '                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()">\n' +
+                    '                        <input name="';
+                var file1 = '" type="file"  id="doc-form-file" multiple onchange="html5Upload()" >\n' +
+                    '                     <input type="hidden" name="relatedAccessoryName">\n' +
+                    '                     <input type="hidden" name="relatedAccessoryId">\n' +
                     '                    </div>\n' +
                     '                </div>\n' +
                     '                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6 sl-flex-row-center-center sl-padding-0px">\n' +
-                    '                    <span class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>\n' +
+                    '                    <span  class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">\n' +
@@ -404,10 +476,10 @@
                                 data += common0 + fieldName[i] + text0+fieldEng[i] + text1 + fieldName[i] + text2;
                             }
                         }else if(inputType[fieldType[i]] === 'file'){
-                                data += file0;
+                                data += file0+fieldEng[i]+file1;
                         }
                     }else{
-                        data += common0 + fieldName[i] + div0 + fieldName[i] + div1;
+                        data += common0 + fieldName[i] + div0 + fieldEng[i] + div1+fieldName[i]+div2+fieldEng[i]+div3+fieldEng[i]+div4;
                     }
                 }
                 var d = top1 + data + bot1;
@@ -529,7 +601,7 @@
                 $("#my-confirm").modal({
                     onConfirm: function () {
                          alert("aaa");
-                        location.href='strong-big-read.html';
+                        location.href='strong-big-readList.html';
                     },
                     onCancel: function () {
                         return false;
@@ -538,16 +610,14 @@
             },
             setBottonNavIndex: function (i,self) {
                 var name = $(self).html();
-                console.log('I:'+i);
                 sessionStorage.setItem('bottomNavIndex',i);
-                console.log("html:"+name);
                 if(name === '发布' || name === '存为草稿'){
                     // alert("发布")
                     // var result = this.getConfirmResult();
                     $("#my-confirm").modal({
                         onConfirm: function () {
                             // alert();
-                            location.href='strong-big-read.html';
+                            location.href='strong-big-readList.html';
                         },
                         onCancel: function () {
                             return false;
@@ -631,7 +701,7 @@
                     '    <ul class="am-navbar-nav am-cf am-avg-sm-3">\n' +
                     '        <li>\n' +
                     '            <a href="';
-                tempArr[1] = '-read.html" style="';
+                tempArr[1] = '-readList.html" style="';
                 tempArr[2] = '" onclick="getIndex(0,this)">\n' +
                     '                <i class="am-icon-eye "></i>\n' +
                     '                <span class="am-navbar-label">查看';
@@ -649,7 +719,7 @@
                     '        </li>\n' +
                     '        <li >\n' +
                     '            <a href="';
-                tempArr[7] = '-check.html" style="';
+                tempArr[7] = '-checkList.html" style="';
                 tempArr[8] = '" onclick="getIndex(2,this)">\n' +
                     '                <span class="am-icon-check"></span>\n' +
                     '                <span class="am-navbar-label">审批';
@@ -693,6 +763,7 @@
                 var title = s + menuName;
                 $('title').html(title);
                 this.weiXinBrowers();
+                this.setHref();
             },
            setHref: function () {
                $('ul.am-navbar-nav li').each(function (i,v) {
@@ -871,7 +942,80 @@
                 '</script>';
             $('body').append(script);
             },
-            moduleSelect: function (moduleId,mMame) {//模块的选择
+        setModuleMenu: function (moEng,meEng) {//模块的选择
+            var moduleName = ['党政','财政','人事','行政','主页'];
+            var moduleEng = ['party','finance','','',''];
+
+            var menuName = [];
+            var menuEng = [];
+            if(moEng === 'party'){//党政模块
+                menuName = ['三重一大','公告','报名','竞聘演讲','结果公示','聘书发放','活动管理','党费缴纳','党费分摊','年度预算申请','退管会活动','信访登记'];
+                menuEng = ['strong-big','selection-notice','selection-apply','selection-speech','selection-publicity','selection-issued','activity-manager','money-manager','money-avg','annual-budget','rebate-activity','letter-register'];
+            }else if(parseInt(moEng) === 1){//财政模块
+                menuName = ['月度快报','财务快报','财务年报','财务分析报表','全年预决算报表','财务年终工作总结及计划','财务支出','财务审计'];
+                menuEng = ['news-month','finance','finance-year','finance-analysis','calculation-year','work-plan','expend','audit-notice'];
+            }else if(parseInt(moEng) === 2){//人事模块
+
+            }else if(parseInt(moEng) === 3){//行政模块
+
+            }else if(parseInt(moEng) === 4){//主页模块
+
+            }
+            //readOnly: 0:可以编辑。1：只能选择值
+            //oneOrMany:0:表示单选，1：表示多选
+            var field ={
+                'strong-big':{
+                    name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
+                    eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                    type: '0,0,0,0,0,0,-1,4',
+                    readOnly: '0,1,1,0,0,1,1,0',
+                    oneOrMany:'0,0,1,1',
+                },
+                'activity-manager':{
+                    name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
+                    eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                    type: '0,0,0,0,0,0,-1,4',
+                    readOnly: '0,1,1,0,0,1,1,0',
+                    oneOrMany:'1,0,1',
+                },
+                'letter-register':{
+                    name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
+                    eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                    type: '0,0,0,0,0,0,-1,4',
+                    readOnly: '0,1,1,0,0,1,1,0',
+                    oneOrMany:'0,0',
+                },
+            };
+
+            var j=this.getIndexByName(moduleEng,moEng) ;
+
+            var index=this.getIndexByName(menuEng,meEng) ;
+
+            this.setStorage(moduleName[j],moEng,menuName[index],meEng,field[meEng]);
+
+        },
+        setStorage: function (moN,moE,meN,meE,o) {
+            //设置模块
+            sessionStorage.setItem('moduleName',moN);
+            sessionStorage.setItem('moduleEng',moE);
+
+            //设置菜单
+            sessionStorage.setItem('menuName',meN);
+            sessionStorage.setItem('menuEng',meE);
+
+            //设置页面中字段的值
+            sessionStorage.setItem('fieldName',o.name);
+            sessionStorage.setItem('fieldEng',o.eng);
+            sessionStorage.setItem('fieldType',o.type);
+            sessionStorage.setItem('readOnly',o.readOnly);
+            sessionStorage.setItem('oneOrMany',o.oneOrMany);
+
+            sessionStorage.setItem('bottomNavIndex',1);//设置到哪个页面
+            sessionStorage.setItem('flag','false');
+            location.href=meE+'-input.html';
+
+        },
+        moduleSelect: function (moduleId,mMame) {//模块的选择
                 var moduleName = ['党政','财政','人事','行政','主页'];
                 var moduleCode = [];
                 moduleCode = this.codeFor(moduleCode,moduleName.length);
@@ -955,10 +1099,10 @@
                 sessionStorage.setItem('menuEng',menuEng[index]);
 
                 console.log("eng:"+tempMenuEng);
-                // sessionStorage.setItem('fieldName',field[tempMenuEng].name);
-                // sessionStorage.setItem('fieldEng',field[tempMenuEng].eng);
-                // sessionStorage.setItem('fieldType',field[tempMenuEng].type);
-                // sessionStorage.setItem('readOnly',field[tempMenuEng].readOnly);
+                sessionStorage.setItem('fieldName',field[tempMenuEng].name);
+                sessionStorage.setItem('fieldEng',field[tempMenuEng].eng);
+                sessionStorage.setItem('fieldType',field[tempMenuEng].type);
+                sessionStorage.setItem('readOnly',field[tempMenuEng].readOnly);
                 sessionStorage.setItem('oneOrMany',field[tempMenuEng].oneOrMany);
 
                 sessionStorage.setItem('bottomNavIndex',1);
@@ -970,23 +1114,28 @@
 
 
             },
-            getIndexByName: function (arrName,name) {
-                for(var i =0;i < arrName.length; i++){
-                    if(arrName[i] === name){
-                        return i;
-                    }
+        getIndexByName: function (arrName,name) {
+            // alert(typeof arrName);
+            // if(typeof arrName !== 'Array'){
+            //     alert('传入的不是数组');
+            //     return;
+            // }
+            for(var i =0;i < arrName.length; i++){
+                if(arrName[i] === name){
+                    return i;
                 }
-            },
-            codeFor: function (arrName,len) {//
-                for(var i =0;i< len; i++){
-                    if(i < 10){
-                        arrName[i]='0'+i;
-                    }else{
-                        arrName[i]=i+'';
-                    }
-                }
-                return arrName;
             }
+        },
+        codeFor: function (arrName,len) {//
+            for(var i =0;i< len; i++){
+                if(i < 10){
+                    arrName[i]='0'+i;
+                }else{
+                    arrName[i]=i+'';
+                }
+            }
+            return arrName;
+        }
 
     };
     if(typeof module !="undefined" && module.exports){
@@ -1000,6 +1149,7 @@
     var rem =  new Rem();
     $(document).ready(function () {
         rem.init();
+        console.log("rem:"+rem);
         // var pageName = rem.getPageName();
         rem.getPageNameCallback(function (page) {
             if(page === 'input'){
@@ -1007,10 +1157,14 @@
                     '    function getIndex(i,self) {\n' +
                     '        var rem = new Rem();\n' +
                     '        rem.setBottonNavIndex(i,self);\n' +
-                    '    }\n' +
+                    '    };\n' +
+                    '    function setStorage(self) {\n' +
+                    '        var name = $(self).prop(\'name\');\n' +
+                    '        sessionStorage.setItem(name.toString(),$(self).val());  \n' +
+                    '    };\n' +
                     '</script>';
                 $('body').append(s);
-            }else if(page == 'check' || page === 'read'){
+            }else if(page == 'checkList' || page === 'readList'){
                 var script = '<script>\n' +
                     '    function insertSearch() {\n' +
                     '        Rem.insertSearch();\n' +
@@ -1022,6 +1176,8 @@
                     '</script>';
                 // $('body').append(s);
                 $('body').append(script);
+            }else if(page === ''){
+
             }
         });
     });

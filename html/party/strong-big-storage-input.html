@@ -6,32 +6,12 @@
     <!--<meta name="description" content="">-->
     <!--<meta name="keywords" content="">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>新建活动管理</title>
+    <title>三重一大</title>
 
     <!--&lt;!&ndash; Set render engine for 360 browser &ndash;&gt;-->
     <!--<meta name="renderer" content="webkit">-->
 
-    <!--&lt;!&ndash; No Baidu Siteapp&ndash;&gt;-->
-    <!--<meta http-equiv="Cache-Control" content="no-siteapp"/>-->
 
-    <!--<link rel="icon" type="image/png" href="i/favicon.png">-->
-
-    <!--&lt;!&ndash; Add to homescreen for Chrome on Android &ndash;&gt;-->
-    <!--<meta name="mobile-web-app-capable" content="yes">-->
-    <!--<link rel="icon" sizes="192x192" href="i/app-icon72x72@2x.png">-->
-
-    <!--&lt;!&ndash; Add to homescreen for Safari on iOS &ndash;&gt;-->
-    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
-    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
-    <!--<meta name="apple-mobile-web-app-title" content="Amaze UI"/>-->
-    <!--<link rel="apple-touch-icon-precomposed" href="i/app-icon72x72@2x.png">-->
-
-    <!--&lt;!&ndash; Tile icon for Win8 (144x144 + tile color) &ndash;&gt;-->
-    <!--<meta name="msapplication-TileImage" content="i/app-icon72x72@2x.png">-->
-    <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
-
-    <!-- Amaze UI CSS -->
-    <!--<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">-->
     <link rel="stylesheet" href="../../assets/css/amazeui.css">
     <link rel="stylesheet" href="../../assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../assets/css/LCommon.css">
@@ -57,108 +37,109 @@
     </style>
 </head>
 <body class="">
-<!--
-    字典查询
-    1：党政
-        1
--->
-<!--<div class="top-div">-->
-    <!--<div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >-->
-        <!--<i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;" onclick="topNav()"></i>-->
-        <!--&lt;!&ndash;<div class="sl-margin-left-1rem title" ><span>三重一大</span></div>&ndash;&gt;-->
-        <!--<div class="sl-flex-row-center-flex-end">-->
-            <!--<div class="sl-margin-right-1rem">发布</div>-->
-            <!--<div class="sl-margin-right-1rem">存为草稿</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
 <div style="margin-top: 3rem;">
-    <!--<div class="button button-brown" id="btn-re-common" href="javascript:void(0)"><i class="fa fa-lg fa-mail-reply-all"></i>返回</div>-->
-    <!--<a class="button button-brown" id="btn-confirm-common" href="javascript:void(0);"><i class="fa fa-rocket"></i> <span>提交</span> </a>-->
-    <!--<a class="button button-brown" id="btn-recommit-common" href="javascript:void(0);" style="display: none;"><i class="fa fa-rocket"></i> 再提交</a>-->
-    <!--<a class="button button-brown" id="btn-save-common" href="javascript:void(0);"><i class="fa fa-lg fa-download"></i> 保存</a>-->
-    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
-        <!--<input type="hidden" name="keyId" id="keyId" value=""/>-->
-        <!--<input type="hidden" name="curDutyId" id="curDutyId" value=""/>-->
-        <!--<header  style="display: block;">-->
-            <!--三重一大登记表&nbsp;&nbsp;<span id="title"></span>-->
-        <!--</header>-->
+    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post" data-am-validator>
         <fieldset>
-
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    登记名称
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <input type="text" name=""  placeholder="请输入登记事宜名称" value="" data-required="true" data-descriptions="registerName" >
+                </div>
+            </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
-                    活动类型
+                    会议类型
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="activityType"  placeholder="请选择活动类型" value="" class="dict-data" readonly data-required="true" data-descriptions="activityType">
+                    <input type="text" name=""  placeholder="请选择会议类型" value="" class="dict-data" readonly data-required="true" data-descriptions="meetingType">
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
-                    是否使用党费
+                    是否中心审核
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="isUseGovMoney"  placeholder="请选择是否使用党费" value="" class="dict-data" readonly data-required="true" data-descriptions="isUseGovMoney">
+                    <input type="text" name=""  placeholder="请选择是否中心审核" value="" class="dict-data" readonly data-required="true" data-descriptions="isCenterAudit">
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
                 <!--<div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">-->
-                <!--<label class="sl-flex-row-center-center">-->
-                <!--<input type="radio" checked="checked" name="isCheck" value="1" >-->
-                <!--<span class="sl-margin-0px-5px">是</span>-->
-                <!--</label>-->
-                <!--<label class="sl-flex-row-center-center">-->
-                <!--<input type="radio"  name="isCheck" value="2" >-->
-                <!--<span class="sl-margin-0px-5px">否</span>-->
-                <!--</label>-->
+                    <!--<label class="sl-flex-row-center-center">-->
+                        <!--<input type="radio" checked="checked" name="isCheck" value="1" >-->
+                        <!--<span class="sl-margin-0px-5px">是</span>-->
+                    <!--</label>-->
+                    <!--<label class="sl-flex-row-center-center">-->
+                        <!--<input type="radio"  name="isCheck" value="2" >-->
+                        <!--<span class="sl-margin-0px-5px">否</span>-->
+                    <!--</label>-->
                 <!--</div>-->
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    备案
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <input type="text" name=""  placeholder="请输入备案" value=""  data-required="true" data-descriptions="putOnRecord">
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    结论
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <input type="text" name=""  placeholder="请输入结论" value=""  data-required="true" data-descriptions="conclusion">
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
-                    活动支部
+                    通知对象
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="activityBranch"  placeholder="请选择活动支部" value="" class="dict-data" readonly data-required="true" data-descriptions="activityBranch">
+                    <input type="text" name=""  placeholder="请选择通知对象" value="" class="dict-data" readonly data-required="true" data-descriptions="informObject">
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
-                    活动费用
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="activityMoney"  placeholder="请输入活动费用" value=""  data-required="true" data-descriptions="activityMoney">
-                </div>
-            </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
-                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
-                    可支配金额
-                </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="canUseMoney"  placeholder="自动计算" value="" readonly  data-required="true" data-descriptions="canUseMoney" >
-                </div>
-            </div>
-
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     相应会议记录
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <div class="meeting-record dict-data" name="">请选择相应会议记录</div>
+                    <div class="meeting-record dict-data" >请选择相应会议记录</div>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
-                    <input type="hidden" name="meetingName" id="meetingName" value="" >
+                    <input type="hidden" name="meetingName" id="meetingName" value="" readonly >
                     <input type="hidden" name="meetingId" id="meetingId" value="">
                 </div>
             </div>
+            <div class="am-g sl-margin-top-10px sl-flex-row-center-center">
+                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6">
+                    <div class=" am-form-file">
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                            <i class="am-icon-cloud-upload"></i> 上传图片</button>
+                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()" readonly data-required="true" data-descriptions="relatedAccessory">
+                    </div>
+                </div>
+                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6 sl-flex-row-center-center sl-padding-0px">
+                    <span class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>
+                </div>
+            </div>
+            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">
+
+            </ul>
+            <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
+                <button type="submit"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>
+                <button type="submit" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>
+            </div>
         </fieldset>
     </form>
-
 </div>
 <script>
     //表单验证
@@ -178,8 +159,10 @@
                 sessionStorage.setItem('bottomNavIndex',0);
                 $("#my-confirm").modal({
                     onConfirm: function () {
+
                         alert("aaa");
                         location.href='strong-big-readList.html';
+
                     },
                     onCancel: function () {
                         return false;
@@ -232,36 +215,88 @@
     })
 
 
-    function getIndex(i) {
-        sessionStorage.setItem('bottomNavIndex',i);
-    };
-    $('ul.am-navbar-nav li').each(function (i,v) {
-        var botIndex = sessionStorage.getItem('bottomNavIndex');
-        if(parseInt(botIndex) === i){
-            $(this).find('a').attr('href','#');
+    //将文件以DataURL形式读入页面
+    function html5Upload() {
+        var file;
+        var fileReader;
+        var fileTag = document.getElementById("doc-form-file").files;//每次点击按钮上传的图片个数
+        var len = fileTag.length;
+        //判断是否是图片
+        for (var i = 0; i < len; i++) {
+            var simpleFile = fileTag[i];
+            if(!/image\/\w+/.test(simpleFile.type)){
+                alert("请确保文件类型为图像类型");
+                return false;
+            }
         }
-    });
-    $(document).ready(function(){
-        var h = screen.height;
-        var e= $('div.am-navbar').outerHeight();
-        var top = $("div.am-navbar").offset().top;
-        var num = 0;
-        var pf = navigator.platform;
-        if((pf === 'Win32') == false){
-            num=42;
+        if(!/image\/\w+/.test(simpleFile.type)){
+            alert("请确保文件类型为图像类型");
+            return false;
         }
-        if(top > h){
-            $("#div.am-navbar").css({
-                top: (h-e-num)+"px",
+        //一次性上传图片
+        if(len > 3){
+            alert("最多上传3个文件");
+            return ;
+        }
+        //分多次上传图片
+        var num = $("#result").children().length;
+        if(num + len > 3){
+            alert("最多上传3个文件");
+            return;
+        }
+
+
+        //显示和隐藏提示信息
+        if(len > 0){
+            $("#hintImage").css('display','block');
+        }else{
+            $("#hintImage").css('display','none');
+        }
+        for (var i = 0; i < fileTag.length; i++) {
+            file = fileTag[i];
+            fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
+            fileReader.onload = (function () {//this代表fileReader对象
+//                var img = '<li><img src="' + this.result + '" alt="" class="am-thumbnail" style="width: 95%;height: 95%" onclick="removeSelf(this)"/></li>';
+                var img = '<li><img src="' + this.result + '" alt="" class="am-thumbnail" style="width: 95%;height: 95%" onclick="removeSelf(this)"/></li>';
+//                $(img).appendTo(result);
+                $("#result").append(img)
             })
         }
-    })
+    }
+    //点击图片，删除图片
+    function removeSelf(p) {
+//        alert(111)
+        $(p).parent().remove();
+        var num = $("#result").children();
+        if(num.length > 0){
+            $("#hintImage").css('display','block');
+        }else{
+            $("#hintImage").css('display','none');
+        }
+//        alert(222)
+    }
+    //
+//    function getIndex(i,self) {
+////        var name = $(self).html();
+//        //alert(name);
+////        alert('111');
+//        var rem = new Rem();
+////        alert('22222');
+//
+//        rem.setBottonNavIndex(i,self);
+////        alert('3333');
+//    }
+
 </script>
+
 </body>
 </html>
 
 
-
-
-
-
+<!--<script>-->
+    <!--function getIndex(i,self) {-->
+        <!--var rem = new Rem();-->
+        <!--rem.setBottonNavIndex(i,self);-->
+    <!--}-->
+<!--</script>-->
