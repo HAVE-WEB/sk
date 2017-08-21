@@ -177,11 +177,12 @@
                     } else if(parseInt(bottomNavIndex) === 1){
                         this.topNavInput();
                         this.titleCenter();
-                         this.dataRowInput();
+                         // this.dataRowInput();
                         this.getDictData();
                         this.setSearchDict();
                         // this. my_modal();
                         this.my_confirm();
+                        // this.validation();
                     } else if( parseInt(bottomNavIndex) === 2){
                         this.topNav();
                         this.contentListCheck();
@@ -299,6 +300,71 @@
             })
         }
     },
+        // getDictData: function () {
+        //     var self = this;//this表示Rem对象
+        //     $(document).ready(function () {
+        //         var a = this;//this表示document对象
+        //         var keyArr =[];
+        //         for(var i =0;i<sessionStorage.length;i++){
+        //             keyArr[i]=sessionStorage.key(i);
+        //         }
+        //         var arr = self.fieldEng;
+        //         // console.log("arr"+arr);
+        //         var fieldEng =arr.split(',');
+        //         for(var j = 0 ;j < keyArr.length; j++){
+        //             // console.log("key:"+keyArr[j]);
+        //             for(var k = 0; k < fieldEng.length; k++){
+        //                 // console.log("fieldEng:"+fieldEng[k]);
+        //                 if(keyArr[j] === fieldEng[k]){
+        //                     // console.log("k:"+keyArr[j]+"f:"+fieldEng[k])
+        //                     var name = fieldEng[k];
+        //                     var fieldValue = sessionStorage.getItem(name);
+        //                     if(fieldValue == 'undefined'){
+        //
+        //                     }else{
+        //                         console.log("type:"+fieldEng[k]);
+        //                         var t = $("input[name="+name+"]").prop('type');
+        //
+        //                         if(t === 'hidden'){
+        //                             $("input[name="+name+"]").val(fieldValue);
+        //                             $("input[name="+name+"]").siblings("div").empty().html(fieldValue);
+        //                         }else if(t === 'file'){
+        //                             $("input[name="+name+"Name]").val('').val(fieldValue);
+        //                             var nameArr = fieldValue.split(',');
+        //                             // alert("nameArrLength:"+nameArr.length);
+        //                             var noKong = [];
+        //                             for(var i =0; i < nameArr.length;i++){
+        //                                 if(nameArr[i] != ''){
+        //                                     noKong[i]=nameArr[i];
+        //                                 }
+        //                             }
+        //                             // alert("noKong:"+noKong.length);
+        //                             if(noKong.length > 0){
+        //                                 $('#hintImage').css('display','block');
+        //                             }
+        //                             var d = '';
+        //                             for(var i =0;i<noKong.length;i++){
+        //                                 var div = '<li style="width: 100%;" onclick="removeSelf(this)"><div  class="sl-flex-row-center-flex-start" style="border:3px solid #E1E1E1;background-color: #F6F6F8;padding: 0.3rem;margin: .3rem .6rem;"><i class="fa fa-ils fa-lg text-success" ></i><div style="color: black;">'+noKong[i]+'</div></div></li>';
+        //                                 d += div;
+        //                             }
+        //                             $("#result").empty().append(d)
+        //                         } else {
+        //                             $("input[name="+name+"]").val(fieldValue);
+        //                         }
+        //                         sessionStorage.removeItem(name);
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     });
+        // },
+        getKeyArr: function () {
+            var keyArr =[];
+            for(var i =0;i<sessionStorage.length;i++){
+                keyArr[i]=sessionStorage.key(i);
+            }
+            return keyArr;
+        },
         getDictData: function () {
             var self = this;//this表示Rem对象
             $(document).ready(function () {
@@ -321,35 +387,57 @@
                             if(fieldValue == 'undefined'){
 
                             }else{
-                                console.log("type:"+fieldEng[k]);
-                                var t = $("input[name="+name+"]").prop('type');
-
-                                if(t === 'hidden'){
-                                    $("input[name="+name+"]").val(fieldValue);
-                                    $("input[name="+name+"]").siblings("div[name="+name+"]").empty().html(fieldValue);
-                                }else if(t === 'file'){
-                                    $("input[name="+name+"Name]").val('').val(fieldValue);
-                                    var nameArr = fieldValue.split(',');
-                                    // alert("nameArrLength:"+nameArr.length);
-                                    var noKong = [];
-                                    for(var i =0; i < nameArr.length;i++){
-                                        if(nameArr[i] != ''){
-                                            noKong[i]=nameArr[i];
+                                var me = sessionStorage.getItem('menuEng');
+                                console.log("me:"+me)
+                                if(me  === 'activity-manager'){
+                                    var t = $("input[name="+name+"]").prop('type');
+                                    if(t === 'hidden'){
+                                        $("input[name="+name+"]").val(fieldValue);
+                                        $("input[name="+name+"]").siblings("div").empty().html(fieldValue);
+                                    }else {
+                                        $("input[name="+name+"]").val(fieldValue);
+                                    }
+                                    if(name === 'isUseGovMoney' ){
+                                        if( fieldValue === '是'){
+                                            $("input[name=activityMoney]").parents('div.am-g').css('display','block');
+                                            $("input[name=canUseMoney]").parents('div.am-g').css('display','block');
+                                        }else{
+                                            console.log("fou");
+                                            $("input[name=activityMoney]").parents('div.am-g').css('display','none');
+                                            $("input[name=canUseMoney]").parents('div.am-g').css('display','none');
                                         }
                                     }
-                                    // alert("noKong:"+noKong.length);
-                                    if(noKong.length > 0){
-                                        $('#hintImage').css('display','block');
+                                }else{
+                                    var t = $("input[name="+name+"]").prop('type');
+                                    if(t === 'hidden'){
+                                        $("input[name="+name+"]").val(fieldValue);
+                                        $("input[name="+name+"]").siblings("div").empty().html(fieldValue);
+                                    }else if(t === 'file'){
+                                        $("input[name="+name+"Name]").val('').val(fieldValue);
+                                        var nameArr = fieldValue.split(',');
+                                        // alert("nameArrLength:"+nameArr.length);
+                                        var noKong = [];
+                                        for(var i =0; i < nameArr.length;i++){
+                                            if(nameArr[i] != ''){
+                                                noKong[i]=nameArr[i];
+                                            }
+                                        }
+                                        // alert("noKong:"+noKong.length);
+                                        if(noKong.length > 0){
+                                            $('#hintImage').css('display','block');
+                                        }
+                                        var d = '';
+                                        for(var i =0;i<noKong.length;i++){
+                                            var div = '<li style="width: 100%;" onclick="removeSelf(this)"><div  class="sl-flex-row-center-flex-start" style="border:3px solid #E1E1E1;background-color: #F6F6F8;padding: 0.3rem;margin: .3rem .6rem;"><i class="fa fa-ils fa-lg text-success" ></i><div style="color: black;">'+noKong[i]+'</div></div></li>';
+                                            d += div;
+                                        }
+                                        $("#result").empty().append(d)
+                                    } else {
+                                        $("input[name="+name+"]").val(fieldValue);
                                     }
-                                    var d = '';
-                                    for(var i =0;i<noKong.length;i++){
-                                        var div = '<li style="width: 100%;" onclick="removeSelf(this)"><div  class="sl-flex-row-center-flex-start" style="border:3px solid #E1E1E1;background-color: #F6F6F8;padding: 0.3rem;margin: .3rem .6rem;"><i class="fa fa-ils fa-lg text-success" ></i><div style="color: black;">'+noKong[i]+'</div></div></li>';
-                                        d += div;
-                                    }
-                                    $("#result").empty().append(d)
-                                } else {
-                                    $("input[name="+name+"]").val(fieldValue);
                                 }
+
+                                // sessionStorage.removeItem(name);
                             }
                         }
                     }
@@ -485,7 +573,7 @@
                 var d = top1 + data + bot1;
                 $('body').append(d);
 
-                // this.searchDict();
+                // this.validation();
 
 
             },
@@ -764,7 +852,14 @@
                 $('title').html(title);
                 this.weiXinBrowers();
                 this.setHref();
+                this.setMainContentHeight();
             },
+        setMainContentHeight: function () {
+            var s = this.innerHeight;
+            var divHeight = $('div.am-navbar').outerHeight();
+            var topHeight = $('div.top-div').outerHeight();
+            $('body').find('form').parent().css('height',s-divHeight-topHeight);
+        },
            setHref: function () {
                $('ul.am-navbar-nav li').each(function (i,v) {
                    var botIndex = sessionStorage.getItem('bottomNavIndex');
@@ -972,18 +1067,12 @@
                     oneOrMany:'0,0,1,1',
                 },
                 'activity-manager':{
-                    name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
-                    eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
-                    type: '0,0,0,0,0,0,-1,4',
-                    readOnly: '0,1,1,0,0,1,1,0',
-                    oneOrMany:'1,0,1',
+                    eng: 'activityType,isUseGovMoney,activityBranch,activityMoney,canUseMoney,meetingRecord',
+                    oneOrMany:'1,0,0,1',
                 },
                 'letter-register':{
-                    name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
                     eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
-                    type: '0,0,0,0,0,0,-1,4',
-                    readOnly: '0,1,1,0,0,1,1,0',
-                    oneOrMany:'0,0',
+                    oneOrMany:'0,0,1,1',
                 },
             };
 
@@ -993,6 +1082,104 @@
 
             this.setStorage(moduleName[j],moEng,menuName[index],meEng,field[meEng]);
 
+        },
+//         validation: function () {
+//             $("#strongBig").mvalidate({
+//                 type:1,
+//                 onKeyup:true,
+//                 validateInSubmit:true,
+//                 sendForm:true,
+//                 firstInvalidFocus:false,
+//                 valid:function(event,options){
+//                     //点击提交按钮时,表单通过验证触发函数
+//                     //alert("验证通过！接下来可以做你想做的事情啦！");
+//
+// //                var rem = new Rem();
+// //                rem.setBottonNavIndexBySubmit(0);
+//                     sessionStorage.setItem('bottomNavIndex',0);
+//                     $("#my-confirm").modal({
+//                         onConfirm: function () {
+//                             var menuEng = this.menuEng;
+//
+//                             location.href='strong-big-readList.html';
+//
+//                         },
+//                         onCancel: function () {
+//                             return false;
+//                         }
+//                     });
+//                     // alert("bbb1111");
+//                     event.preventDefault();
+//                     event.stopPropagation();
+//                 },
+//                 invalid:function(event, status, options){
+//                     //点击提交按钮时,表单未通过验证触发函数
+//                 },
+//                 eachField:function(event,status,options){
+//                     //点击提交按钮时,表单每个输入域触发这个函数 this 执向当前表单输入域，是jquery对象
+//                 },
+//                 eachValidField:function(val){},
+//                 eachInvalidField:function(event, status, options){},
+//                 conditional:{
+//                     confirmpwd:function(){
+//                         return $("#pwd").val()==$("#confirmpwd").val();
+//                     }
+//                 },
+//                 descriptions:{
+//                     registerName:{
+//                         required : '请输入登记事宜名称'
+//                     },
+//                     meetingType:{
+//                         required : '请选择会议类型'
+//                     },
+//                     isCenterAudit : {
+//                         required : '请选择是否中心审核',
+//                     },
+//                     putOnRecord:{
+//                         required : '请输入备案'
+//                     },
+//                     conclusion:{
+//                         required : '请输入结论',
+//                     },
+//                     informObject:{
+//                         required : '请选择通知对象',
+//                     },
+//                     meetingRecord:{
+//                         required : '请选择会议记录',
+//                     },
+//                     relatedAccessory:{
+//                         required : '请上传附件',
+//                     },
+//
+//                 }
+//             });
+//         },
+        removeStorage: function (menuEng) {
+            var field ={
+                'strong-big':{
+                    eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                },
+                'activity-manager':{
+                    eng: 'activityType,isUseGovMoney,activityBranch,activityMoney,canUseMoney,meetingRecord',
+                },
+                'letter-register':{
+                    eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
+                },
+
+            };
+            var str = field[menuEng].eng;
+            var strArr = str.split(',');
+            var keyArr = this.getKeyArr();
+            this.removeRepeat(keyArr, strArr);
+        },
+        removeRepeat: function (selectArr, removeArr) {
+            for(var i= 0;i<selectArr.length;i++){
+                for(var j= 0;j<removeArr.length;j++){
+                    if(selectArr[i] == removeArr[j]){
+                        sessionStorage.removeItem(removeArr[j]);
+                    }
+                }
+            }
         },
         setStorage: function (moN,moE,meN,meE,o) {
             //设置模块
@@ -1004,10 +1191,10 @@
             sessionStorage.setItem('menuEng',meE);
 
             //设置页面中字段的值
-            sessionStorage.setItem('fieldName',o.name);
+            // sessionStorage.setItem('fieldName',o.name);
             sessionStorage.setItem('fieldEng',o.eng);
-            sessionStorage.setItem('fieldType',o.type);
-            sessionStorage.setItem('readOnly',o.readOnly);
+            // sessionStorage.setItem('fieldType',o.type);
+            // sessionStorage.setItem('readOnly',o.readOnly);
             sessionStorage.setItem('oneOrMany',o.oneOrMany);
 
             sessionStorage.setItem('bottomNavIndex',1);//设置到哪个页面
@@ -1047,18 +1234,10 @@
                         oneOrMany:'0,0,1,1',
                     },
                     'activity-manager':{
-                        name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
-                        eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
-                        type: '0,0,0,0,0,0,-1,4',
-                        readOnly: '0,1,1,0,0,1,1,0',
-                        oneOrMany:'1,0,1',
+                        eng: 'activityType,isUseGovMoney,activityBranch,activityMoney,canUseMoney,meetingRecord',
                     },
                     'letter-register':{
-                        name: '登记名称,会议类型,是否中心审核,备案,结论,通知对象,相应会议记录,相关附件',
                         eng: 'registerName,meetingType,isCenterAudit,putOnRecord,conclusion,informObject,meetingRecord,relatedAccessory',
-                        type: '0,0,0,0,0,0,-1,4',
-                        readOnly: '0,1,1,0,0,1,1,0',
-                        oneOrMany:'0,0',
                     },
                 };
                 //通过菜单名称得到菜单对应的英文
@@ -1149,10 +1328,18 @@
     var rem =  new Rem();
     $(document).ready(function () {
         rem.init();
+
         console.log("rem:"+rem);
         // var pageName = rem.getPageName();
         rem.getPageNameCallback(function (page) {
             if(page === 'input'){
+                // rem.validation();
+                // document.write('<script src="../../assets/js/export.js"></script>');
+                // var oBody = document.getElementsByTagName('BODY').item(0);
+                // var oScript = document.createElement('script');
+                // oScript.type = 'text/javascript';
+                // oScript.src = '../../assets/js/export.js';
+                // oBody.appendChild(oScript);
                 var s = '<script>\n' +
                     '    function getIndex(i,self) {\n' +
                     '        var rem = new Rem();\n' +

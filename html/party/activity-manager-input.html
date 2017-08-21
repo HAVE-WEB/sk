@@ -55,6 +55,32 @@
             background-color: #F4F4F4;
         }
     </style>
+    <style>
+        #vld-tooltip {
+            position: absolute;
+            z-index: 1000;
+            padding: 5px 10px;
+            background: #F37B1D;
+            min-width: 150px;
+            color: #fff;
+            transition: all 0.15s;
+            box-shadow: 0 0 5px rgba(0,0,0,.15);
+            display: none;
+        }
+
+        #vld-tooltip:before {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            margin-left: -8px;
+            content: "";
+            border-width: 0 8px 8px;
+            border-color: transparent transparent #F37B1D;
+            border-style: none inset solid;
+        }
+    </style>
 </head>
 <body class="">
 <!--
@@ -77,7 +103,7 @@
     <!--<a class="button button-brown" id="btn-confirm-common" href="javascript:void(0);"><i class="fa fa-rocket"></i> <span>提交</span> </a>-->
     <!--<a class="button button-brown" id="btn-recommit-common" href="javascript:void(0);" style="display: none;"><i class="fa fa-rocket"></i> 再提交</a>-->
     <!--<a class="button button-brown" id="btn-save-common" href="javascript:void(0);"><i class="fa fa-lg fa-download"></i> 保存</a>-->
-    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post">
+    <form id="activityManager" class="smart-form" novalidate="novalidate" action="" method="post">
         <!--<input type="hidden" name="keyId" id="keyId" value=""/>-->
         <!--<input type="hidden" name="curDutyId" id="curDutyId" value=""/>-->
         <!--<header  style="display: block;">-->
@@ -91,7 +117,7 @@
                     活动类型
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="activityType"  placeholder="请选择活动类型" value="" class="dict-data" readonly data-required="true" data-descriptions="activityType">
+                    <input type="text" name="activityType"  placeholder="请选择活动类型" value="" class="dict-data" readonly required>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
@@ -101,7 +127,7 @@
                     是否使用党费
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="isUseGovMoney"  placeholder="请选择是否使用党费" value="" class="dict-data" readonly data-required="true" data-descriptions="isUseGovMoney">
+                    <input type="text" name="isUseGovMoney"  placeholder="请选择是否使用党费" value="" class="dict-data" readonly required>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
                 <!--<div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">-->
@@ -121,26 +147,26 @@
                     活动支部
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="activityBranch"  placeholder="请选择活动支部" value="" class="dict-data" readonly data-required="true" data-descriptions="activityBranch">
+                    <input type="text" name="activityBranch"  placeholder="请选择活动支部" value="" class="dict-data" readonly required>
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem" >
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     活动费用
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="activityMoney"  placeholder="请输入活动费用" value=""  data-required="true" data-descriptions="activityMoney">
+                    <input type="number" name="activityMoney"  placeholder="请输入活动费用" value="" required>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem" >
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     可支配金额
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="canUseMoney"  placeholder="自动计算" value="" readonly  data-required="true" data-descriptions="canUseMoney" >
+                    <input type="number" name="canUseMoney"  placeholder="自动计算" value="" readonly >
                 </div>
             </div>
 
@@ -150,11 +176,16 @@
                     相应会议记录
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <div class="meeting-record dict-data" name="">请选择相应会议记录</div>
+                    <!--<div class="meeting-record" >请选择相应会议记录</div>-->
+                    <!--<i class="fa fa-angle-right sl-icon-color-CACACA"></i>-->
+                    <input type="text" name="meetingRecord" id="meetingRecord" class="dict-data" value="" required>
+                    <!--<input type="hidden" name="meetingRecordId" id="meetingRecordId" value="">-->
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
-                    <input type="hidden" name="meetingName" id="meetingName" value="" >
-                    <input type="hidden" name="meetingId" id="meetingId" value="">
                 </div>
+            </div>
+            <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
+                <button type="submit"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>
+                <button type="submit" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>
             </div>
         </fieldset>
     </form>
@@ -162,75 +193,96 @@
 </div>
 <script>
     //表单验证
-    $(function () {
-        $("#strongBig").mvalidate({
-            type:1,
-            onKeyup:true,
-            validateInSubmit:true,
-            sendForm:true,
-            firstInvalidFocus:false,
-            valid:function(event,options){
-                //点击提交按钮时,表单通过验证触发函数
-                //alert("验证通过！接下来可以做你想做的事情啦！");
+//    $(function () {
+//        $("#strongBig").mvalidate({
+//            type:1,
+//            onKeyup:true,
+//            validateInSubmit:true,
+//            sendForm:true,
+//            firstInvalidFocus:false,
+//            valid:function(event,options){
+//                //点击提交按钮时,表单通过验证触发函数
+//                //alert("验证通过！接下来可以做你想做的事情啦！");
+//
+////                var rem = new Rem();
+////                rem.setBottonNavIndexBySubmit(0);
+//                sessionStorage.setItem('bottomNavIndex',0);
+//                $("#my-confirm").modal({
+//                    onConfirm: function () {
+//                        alert("aaa");
+//                        location.href='strong-big-readList.html';
+//                    },
+//                    onCancel: function () {
+//                        return false;
+//                    }
+//                });
+////                alert("bbb");
+//                event.preventDefault();
+//            },
+//            invalid:function(event, status, options){
+//                //点击提交按钮时,表单未通过验证触发函数
+//            },
+//            eachField:function(event,status,options){
+//                //点击提交按钮时,表单每个输入域触发这个函数 this 执向当前表单输入域，是jquery对象
+//            },
+//            eachValidField:function(val){},
+//            eachInvalidField:function(event, status, options){},
+//            conditional:{
+//                confirmpwd:function(){
+//                    return $("#pwd").val()==$("#confirmpwd").val();
+//                }
+//            },
+//            descriptions:{
+//                activityType:{
+//                    required : '请选择活动类型'
+//                },
+//                isUseGovMoney:{
+//                    required : '请选择是否需要党费'
+//                },
+//                activityBranch : {
+//                    required : '请选择活动支部',
+//                },
+//                meetingRecord:{
+//                    required : '请选择会议记录',
+//                },
+//            }
+//        });
+//    });
 
-//                var rem = new Rem();
-//                rem.setBottonNavIndexBySubmit(0);
-                sessionStorage.setItem('bottomNavIndex',0);
-                $("#my-confirm").modal({
-                    onConfirm: function () {
-                        alert("aaa");
-                        location.href='strong-big-readList.html';
-                    },
-                    onCancel: function () {
-                        return false;
-                    }
-                });
-//                alert("bbb");
-                event.preventDefault();
-            },
-            invalid:function(event, status, options){
-                //点击提交按钮时,表单未通过验证触发函数
-            },
-            eachField:function(event,status,options){
-                //点击提交按钮时,表单每个输入域触发这个函数 this 执向当前表单输入域，是jquery对象
-            },
-            eachValidField:function(val){},
-            eachInvalidField:function(event, status, options){},
-            conditional:{
-                confirmpwd:function(){
-                    return $("#pwd").val()==$("#confirmpwd").val();
-                }
-            },
-            descriptions:{
-                registerName:{
-                    required : '请输入登记事宜名称'
-                },
-                meetingType:{
-                    required : '请选择会议类型'
-                },
-                isCenterAudit : {
-                    required : '请选择是否中心审核',
-                },
-                putOnRecord:{
-                    required : '请输入备案'
-                },
-                conclusion:{
-                    required : '请输入结论',
-                },
-                informObject:{
-                    required : '请选择通知对象',
-                },
-                meetingRecord:{
-                    required : '请选择会议记录',
-                },
-                relatedAccessory:{
-                    required : '请上传附件',
-                },
+    $(function () {
+        $('#activityManager').validator({
+            onValid: function () {
 
             }
-        });
-    })
+        })
+    });
 
+    $(function() {
+        var $form = $('#activityManager');
+        var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
+        $tooltip.appendTo(document.body);
+
+        $form.validator();
+
+        var validator = $form.data('amui.validator');
+
+        $form.on('focusin focusout', 'input', function(e) {
+            if (e.type === 'focusin') {
+                var $this = $(this);
+//                console.log("n:"+$(this).attr('name'));
+//                console.log("n:"+$(this).offset().top+"L:"+$(this).offset().left);
+                var offset = $this.offset();
+                var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
+
+                $tooltip.text(msg).show().css({
+                    left: offset.left ,
+                    top: offset.top + $(this).outerHeight()-40
+                });
+            } else {
+                $tooltip.hide();
+            }
+        });
+    });
 
     function getIndex(i) {
         sessionStorage.setItem('bottomNavIndex',i);

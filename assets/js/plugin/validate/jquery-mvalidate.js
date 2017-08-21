@@ -229,6 +229,7 @@
 
 		opts.type=Number(opts.type);
 		opts.firstInvalid=false;
+		console.log("mvalidate");
 		flag=opts.type==1 ? false : true;
 		return this.mvalidateDestroy().each(function(event) {
 			

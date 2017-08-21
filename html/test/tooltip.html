@@ -1,0 +1,117 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>你的标题</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <!-- Amaze UI CSS -->
+    <link rel="stylesheet" href="../../assets/css/amazeui.css">
+    <link rel="stylesheet" href="../../assets/css/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/css/LCommon.css">
+    <link rel="stylesheet" href="../../assets/css/sl.css">
+    <!--<link rel="stylesheet" href="../../assets/css/form.css">-->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/amazeui.js"></script>
+    <script src="../../assets/js/myFirst.js"></script>
+
+</head>
+<body>
+
+<form action="" class="am-form" id="form-with-tooltip">
+    <fieldset>
+        <legend>定义 Tooltip</legend>
+        <div class="am-form-group">
+            <label for="doc-vld-name-2-0">用户名：</label>
+            <input type="text" id="doc-vld-name-2-0" minlength="3"
+                   placeholder="输入用户名（至少 3 个字符）" required/>
+        </div>
+
+        <div class="am-form-group">
+            <label for="doc-vld-pwd-1-0">密码：</label>
+            <input type="password" id="doc-vld-pwd-1-0" placeholder="6 位数字的银行卡密码" pattern="^\d{6}$" required data-foolish-msg="把 IQ 卡密码交出来！"/>
+        </div>
+
+        <button class="am-btn am-btn-secondary" type="submit">提交</button>
+    </fieldset>
+</form>
+
+<style>
+    #vld-tooltip {
+        position: absolute;
+        z-index: 1000;
+        padding: 5px 10px;
+        background: #F37B1D;
+        min-width: 150px;
+        color: #fff;
+        transition: all 0.15s;
+        box-shadow: 0 0 5px rgba(0,0,0,.15);
+        display: none;
+    }
+
+    #vld-tooltip:before {
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        width: 0;
+        height: 0;
+        margin-left: -8px;
+        content: "";
+        border-width: 0 8px 8px;
+        border-color: transparent transparent #F37B1D;
+        border-style: none inset solid;
+    }
+</style>
+<script>
+    $(function() {
+        var $form = $('#form-with-tooltip');
+        var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
+        $tooltip.appendTo(document.body);
+
+        $form.validator();
+
+        var validator = $form.data('amui.validator');
+
+        $form.on('focusin focusout', '.am-form-error input', function(e) {
+            if (e.type === 'focusin') {
+                var $this = $(this);
+                var offset = $this.offset();
+                var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
+
+                $tooltip.text(msg).show().css({
+                    left: offset.left + 10,
+                    top: offset.top + $(this).outerHeight() + 10
+                });
+            } else {
+                $tooltip.hide();
+            }
+        });
+    });
+</script>
+</body>
+</html>
