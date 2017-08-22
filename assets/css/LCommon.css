@@ -62,9 +62,9 @@ a:active{
 .input-background-color{
     background-color: #FEFEFE;
 }
-input:focus{
-    outline: #FEFEFE solid 0px;
-}
+/*input:focus{*/
+    /*outline: #FEFEFE solid 0px;*/
+/*}*/
 /*li{*/
     /*padding:0.5rem;*/
 /*}*/

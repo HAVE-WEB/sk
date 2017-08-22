@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="../../assets/css/font-awesome.css">
 <link rel="stylesheet" href="../../assets/css/LCommon.css">
 <link rel="stylesheet" href="../../assets/css/sl.css">
-<!--<link rel="stylesheet" href="../../assets/css/form.css">-->
 <script src="../../assets/js/jquery.min.js"></script>
 <script src="../../assets/js/amazeui.js"></script>
 <script src="../../assets/js/myFirst.js"></script>
@@ -18,77 +17,39 @@
         <legend>显示验证提示信息</legend>
         <div class="am-form-group">
             <label for="doc-vld-name-2-1">用户名：</label>
-            <input type="text" id="doc-vld-name-2-1" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
+            <input type="text" id="doc-vld-name-2-1" minlength="3" placeholder="输入用户名（至少 3 个字符）" name="userName" required/>
         </div>
 
-        <div class="am-form-group">
-            <label for="doc-vld-email-2-1">邮箱：</label>
-            <input type="email" id="doc-vld-email-2-1" data-validation-message="自定义提示信息：输入地球上的电子邮箱撒" placeholder="输入邮箱" required/>
-        </div>
+        <!--<div class="am-form-group">-->
+            <!--<label for="doc-vld-email-2-1">邮箱：</label>-->
+            <!--<input type="email" id="doc-vld-email-2-1" data-validation-message="自定义提示信息：输入地球上的电子邮箱撒" placeholder="输入邮箱" required/>-->
+        <!--</div>-->
 
-        <div class="am-form-group">
-            <label for="doc-vld-url-2-1">网址：</label>
-            <input type="url" id="doc-vld-url-2-1" placeholder="输入网址" required/>
-        </div>
+        <!--<div class="am-form-group">-->
+            <!--<label for="doc-vld-url-2-1">网址：</label>-->
+            <!--<input type="url" id="doc-vld-url-2-1" placeholder="输入网址" required/>-->
+        <!--</div>-->
 
         <div class="am-form-group">
             <label for="doc-vld-age-2-1">年龄：</label>
-            <input type="number" class=""  id="doc-vld-age-2-1" placeholder="输入年龄  18-120" min="18" max="120" required />
+            <input type="number" class=""  id="doc-vld-age-2-1" placeholder="输入年龄  18-120" name="age" min="18" max="120" required />
         </div>
 
-        <div class="am-form-group">
-            <label class="am-form-label">爱好：</label>
-            <label class="am-checkbox-inline">
-                <input type="checkbox" value="橘子" name="docVlCb" minchecked="2" maxchecked="4" required> 橘子
-            </label>
-            <label class="am-checkbox-inline">
-                <input type="checkbox" value="苹果" name="docVlCb"> 苹果
-            </label>
-            <label class="am-checkbox-inline">
-                <input type="checkbox" value="菠萝" name="docVlCb"> 菠萝
-            </label>
-            <label class="am-checkbox-inline">
-                <input type="checkbox" value="芒果" name="docVlCb"> 芒果
-            </label>
-            <label class="am-checkbox-inline">
-                <input type="checkbox" value="香蕉" name="docVlCb"> 香蕉
-            </label>
-        </div>
 
-        <div class="am-form-group">
-            <label>性别： </label>
-            <label class="am-radio-inline">
-                <input type="radio"  value="" name="docVlGender" required> 男
-            </label>
-            <label class="am-radio-inline">
-                <input type="radio" name="docVlGender"> 女
-            </label>
-            <label class="am-radio-inline">
-                <input type="radio" name="docVlGender"> 其他
-            </label>
-        </div>
 
-        <div class="am-form-group">
-            <label for="doc-select-1-1">下拉单选框</label>
-            <select id="doc-select-1-1" required>
-                <option value="">-=请选择一项=-</option>
-                <option value="option1">选项一...</option>
-                <option value="option2">选项二.....</option>
-                <option value="option3">选项三........</option>
-            </select>
-            <span class="am-form-caret"></span>
-        </div>
+        <!--<div class="am-form-group">-->
+            <!--<label>性别： </label>-->
+            <!--<label class="am-radio-inline">-->
+                <!--<input type="radio"  value="" name="docVlGender" required> 男-->
+            <!--</label>-->
+            <!--<label class="am-radio-inline">-->
+                <!--<input type="radio" name="docVlGender"> 女-->
+            <!--</label>-->
+            <!--<label class="am-radio-inline">-->
+                <!--<input type="radio" name="docVlGender"> 其他-->
+            <!--</label>-->
+        <!--</div>-->
 
-        <div class="am-form-group">
-            <label for="doc-select-2-1">多选框</label>
-            <select multiple class="" id="doc-select-2-1" minchecked="2" maxchecked="4">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-        </div>
 
         <div class="am-form-group">
             <label for="doc-vld-ta-2-1">评论：</label>
@@ -102,10 +63,14 @@
     $(function() {
         $('#doc-vld-msg').validator({
             onValid: function(validity) {
+                alert("val:"+validity.field);
                 $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+
             },
 
             onInValid: function(validity) {
+                alert("onIn:"+validity.field.nodeName);
+//                alert(typeof validity.field +","+ typeof validity);
                 var $field = $(validity.field);
                 var $group = $field.closest('.am-form-group');
                 var $alert = $group.find('.am-alert');

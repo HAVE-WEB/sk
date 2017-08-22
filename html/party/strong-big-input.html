@@ -17,41 +17,66 @@
     <link rel="stylesheet" href="../../assets/css/LCommon.css">
     <link rel="stylesheet" href="../../assets/css/sl.css">
     <link rel="stylesheet" href="../../assets/css/plugin/mvalidate/validate.css">
-    <!--<link rel="stylesheet" href="../../assets/css/form.css">-->
-    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.js"></script>
     <script src="../../assets/js/amazeui.js"></script>
     <!--<script src="../../assets/js/plugin/validate/jquery-mvalidate.js" ></script>&lt;!&ndash;a要用到b中的方法，b必须先加载&ndash;&gt;-->
     <script src="../../assets/js/myFirst.js"></script>
     <!--<script src="../../assets/js/export.js"></script>-->
-
     <style>
-        div{
-            padding:0;
+        #vld-tooltip {
+            position: absolute;
+            z-index: 1000;
+            padding: 5px 10px;
+            background: #F37B1D;
+            min-width: 150px;
+            color: #fff;
+            transition: all 0.15s;
+            box-shadow: 0 0 5px rgba(0,0,0,.15);
+            display: none;
+        }
 
+        #vld-tooltip:before {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 0;
+            height: 0;
+            margin-left: -8px;
+            content: "";
+            border-width: 0 8px 8px;
+            border-color: transparent transparent #F37B1D;
+            border-style: none inset solid;
         }
-        fieldset{
-            padding:0
-        }
+    </style>
+    <style>
+
+        /*fieldset{*/
+            /*padding:0*/
+        /*}*/
         input{
             width:90%;
             background-color: #F4F4F4;
+            border: 0px;
+        }
+        button{
+            border: 0px;
         }
     </style>
 </head>
 <body class="">
 <div style="margin-top: 3rem;" id="main-content">
-    <form id="strongBig" class="smart-form" novalidate="novalidate" action="" method="post" data-am-validator>
+    <form id="strongBig" class=""  action="" method="post">
         <fieldset>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group" style="margin-top: 1.5rem;">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     登记名称
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required>
+                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required maxlength="5" data-hint-message="请输入登记事宜名称">
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     会议类型
@@ -61,7 +86,7 @@
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     是否中心审核
@@ -81,7 +106,7 @@
                     <!--</label>-->
                 <!--</div>-->
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     备案
@@ -90,43 +115,45 @@
                     <input type="text" name="putOnRecord"  placeholder="请输入备案" value="" required>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
                     结论
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name="conclusion"  placeholder="请输入结论" value="" >
+                    <input type="text" name="conclusion"  placeholder="请输入结论" value="" required>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     通知对象
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="informObject"  placeholder="请选择通知对象" value="" class="dict-data" readonly >
+                    <input type="text" name="informObject"  placeholder="请选择通知对象" value="" class="dict-data" readonly required >
                     <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
                     <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
                     相应会议记录
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <div class="meeting-record" >请选择相应会议记录</div>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
-                    <input type="hidden" name="meetingRecord" id="meetingRecord" class="dict-data" value="">
+                    <!--<div class="meeting-record" >请选择相应会议记录</div>-->
+                    <!--<i class="fa fa-angle-right sl-icon-color-CACACA"></i>-->
+                    <input type="text" name="meetingRecord" id="meetingRecord" class="dict-data" placeholder="请选择相应会议记录" value="" required readonly>
                     <input type="hidden" name="meetingRecordId" id="meetingRecordId" value="">
+                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-margin-top-10px sl-flex-row-center-center">
+            <div class="am-g sl-margin-top-10px sl-flex-row-center-center am-form-group">
                 <div class="am-u-sm-6 am-u-md-6 am-u-lg-6">
                     <div class=" am-form-file">
                         <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                            <i class="am-icon-cloud-upload"></i> 上传附件</button>
-                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()" name="relatedAccessory" readonly>
+                            <!--<i class="am-icon-cloud-upload"></i> 上传附件</button>-->
+                            上传附件</button>
+                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()" name="relatedAccessory" placeholder="请上传附件" value="" readonly required>
                         <input type="hidden" name="relatedAccessoryName">
                         <input type="hidden" name="relatedAccessoryId">
                     </div>
@@ -146,9 +173,162 @@
     </form>
 </div>
 <script>
-    $('form').submit(function () {
-        $("input")
-    })
+    $(function () {
+//       $("#strongBig").validator({
+//           H5Validation: false,
+//           H5inputType: ['email', 'url', 'number'],
+//           patterns: {},//验证规则
+//           patternClassPrefix: 'js-pattern-',//规则class钩子前缀
+//           activeClass: 'am-active',
+//           inValidClass: 'am-field-error',//验证不通过添加到域上的class1
+//           validClass: 'am-field-valid',//验证通过时添加到域上的class
+//           validateOnSubmit: true,//表单提交时验证
+//           allFields: ':input:not(:button, :disabled, .am-novalidate)',//表单提交时验证的域
+//           ignore: ':not([data-am-selected], .am-validate)',//表单提交时验证忽略的域
+//           customEvents: 'validate()',//调用validate()方法的自定义事件
+//
+//
+//           onValid: function (validity) {//域对象通过验证是回调
+//
+//
+//           },
+//           onInValid: function (validity) {//域对象验证出错时回调
+////                var $field = $(validity.field);
+////                var $group = $field.closest('.am-form-group');
+////                var $alert = $('body').find('am-alert');
+//
+//
+//               var $form = $('#strongBig');
+//               var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
+//               console.log("onInValid:::::");
+//               $tooltip.appendTo(document.body);
+//
+//
+//
+//
+//               var validator = $form.data('amui.validator');
+//               $form.on('focusin focusout', 'am-form-error input', function (e) {
+//                   if(e.type === 'focusin'){
+//                       var $this = $(this);//this代表input对象
+//                       var offset = $this.offset();
+//                       var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
+//                       $tooltip.text(msg).show().css({
+//                           left: offset.left + 10,
+//                            top: offset.top + 10
+//                       })
+//                   }else {
+//                       $tooltip.hide();
+//                   }
+//               })
+//
+//
+//           },
+//           markValid: function (validity) {//域对象验证通过时添加的操作，通过该接口可以定义各种验证提示，
+//               var options = this.options;//this指的的Validator对象
+//               alert("mv:"+options);
+//               var $field = $(validity.field);
+//               var $parent = $field.closest('.am-form-group');
+//               $field.addClass(options.validClass).removeClass(options.inValidClass);
+//               $parent.addClass('am-form-success').removeClass('am-form-error');
+//               options.onValid.call(this, validity);
+//           },
+//           markInValid: function (validity) {//域验证失败是添加的操作，通过该接口可以定义各种验证提示
+//             console.log("1111");
+//                var options = this.options;//this指的是Validator对象
+//                var $field = $(validity.field);
+//                var $parent = $field.closest('.am-form-group');
+//                $field.addClass(options.inValidClass + ' ' + options.activeClass).removeClass(options.validClass);
+//                $parent.addClass('am-form-error').removeClass('am-form-success');
+//                options.onInValid.call(this,validity);
+//
+//           },
+//           validity: function (validity) {//自定义验证接口
+//
+//           },
+//           submit: function () {
+//               var formValidity = this.isFormValid();
+//               $.when(formValidity).then(function () {
+//                   //form的验证状态是验证成功状态，所执行的逻辑
+//               },function () {
+//                   //form的验证状态是不通过状态，所执行的逻辑
+//               })
+//           }
+//       })
+    });
+//$(function() {
+//    var $form = $('#strongBig');
+//    var $tooltip = $('<div id="vld-tooltip" style="position:fixed;z-index: 10010;">提示信息！</div>');
+//    $tooltip.appendTo(document.body);
+//
+//    $form.validator();
+//
+//    var validator = $form.data('amui.validator');
+//
+//    $form.on('focusin focusout', 'input', function(e,validity) {
+//        if (e.type === 'focusin') {
+//            var $this = $(this);
+//            var offset = $this.offset();
+//            var msg = $this.data('foolishMsg') || validator.getValidationMessage(validity);
+//
+//            $tooltip.text(msg).show().css({
+//                left: offset.left + 10,
+//                top: offset.top + $(this).outerHeight() + 10
+//            });
+//        } else {
+//            $tooltip.hide();
+//        }
+//    });
+//
+//});
+    $(function() {
+        $('#strongBig').validator({
+            onValid: function(validity) {
+//                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+                $('body').find('.am-alert').hide();
+            },
+
+
+            onInValid: function(validity) {
+                console.log(validity);
+                var $field = $(validity.field);
+                console.log($field);
+                var $group = $field.closest('.am-form-group');
+//                var offset = $group.offset();
+                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
+                var len = $('div.my-alert').length;
+                if(len){
+                    $('div.my-alert').css('display','block')
+                }else{
+                    $('body').append($alert);
+
+                }
+
+
+                // 使用自定义的提示信息 或 插件内置的提示信息
+                console.log("field:"+$field.attr('name'));
+                var msg = $field.attr('placeholder') || this.getValidationMessage(validity);
+
+//                if (!$alert.length) {
+//                    $alert = $('<div class="am-alert am-alert-danger"  id="vld-tooltip" style="position:fixed;z-index: 10010;"></div>').hide().
+//                    appendTo($group);
+//                }
+
+//                if($alert.length) {
+//                    $alert.index(1).remove();
+//                }
+                console.log("msg:"+msg);
+                    $alert.html('').html(msg).css({
+                        left: window.innerWidth/2-$alert.outerWidth()/2,
+                        top: window.innerHeight/2-$alert.outerHeight()/2,
+                    });
+                    setTimeout(function () {
+                        $('div.my-alert').css('display','none');
+                    },2000)
+            }
+        });
+    });
+
+
     //将文件以DataURL形式读入页面
     function html5Upload() {
         var file;
@@ -202,7 +382,7 @@
                     n += $(this).html()+",";
                 }
             });
-            sessionStorage.setItem('relatedAccessory',n);
+//            sessionStorage.setItem('relatedAccessory',n);
 
 
         }
@@ -225,7 +405,8 @@
 
 
 
-         sessionStorage.setItem('relatedAccessory',name);
+//         sessionStorage.setItem('relatedAccessory',name);
+        $("input:file").val(name);
 //        console.log("fName："+fName);
 //        if(fName == null){
 //            sessionStorage.setItem('relatedAccessory',name);

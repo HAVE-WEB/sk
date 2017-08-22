@@ -15293,7 +15293,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    .find(this.options.allFields).removeData('validity amui.dfdValidity');
 	};
 
-	UI.plugin('validator', Validator);
+	UI.plugin('validator', Validator);//ui
 
 	// init code
 	UI.ready(function(context) {
