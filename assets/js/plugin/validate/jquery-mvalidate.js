@@ -206,7 +206,7 @@
 
 	
 	
-	$.fn.mvalidate=function(options){
+	$.fn.mvalidate=function(options){//$：jquer对象，的函数对象的集合建mvalidate
 		var defaults={
 			type:1,
 			validateInSubmit:true,
@@ -227,7 +227,7 @@
 		flag,
 		namespace=opts.namespace;
 
-		opts.type=Number(opts.type);
+		opts.type=Number(opts.type);//将opts对象中的type的值转化为数字类型
 		opts.firstInvalid=false;
 		console.log("mvalidate");
 		flag=opts.type==1 ? false : true;

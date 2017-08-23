@@ -49,10 +49,6 @@
         }
     </style>
     <style>
-
-        /*fieldset{*/
-            /*padding:0*/
-        /*}*/
         input{
             width:90%;
             background-color: #F4F4F4;
@@ -73,7 +69,7 @@
                     登记名称
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required maxlength="5" data-hint-message="请输入登记事宜名称">
+                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required maxlength="5" >
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
@@ -112,13 +108,7 @@
                     备案
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <!--data
-                            1:必须已    data-   开头
-                            2：如果在 data- 后面有 中划线的话，已中划线分割，将各个字符串拼接，中划线后面的字符串第1个单词大小
-                            如果是中划线，$.data()得到的是
-
-                            -->
-                    <input type="number" name="putOnRecord"  placeholder="请输入备案" value="" data-amui-validator="aaa" data-amui.validator="bbb" data-amui.change = "DDDDD" >
+                    <input type="text" name="putOnRecord"  placeholder="请输入备案" value="" required>
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
@@ -288,9 +278,9 @@
 //});
     $(function() {
 //        $('#strongBig').data('key','1');
-            console.log($('[name="putOnRecord"]').data('amui-validator'));
-        console.log($('[name="putOnRecord"]').data('amui.validator'));
-        $('[name="putOnRecord"]').data('amui.validator','cccccc');
+//            console.log($('[name="putOnRecord"]').data('amui-validator'));
+//        console.log($('[name="putOnRecord"]').data('amui.validator'));
+//        $('[name="putOnRecord"]').data('amui.validator','cccccc');
 //        var v = AMUI.validator
 //        $('#strongBig').fn.toArray();
 //        $('#strongBig').toArray()
@@ -298,13 +288,15 @@
             onValid: function(validity) {
 //                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
                 $('body').find('.am-alert').hide();
+//                console.log(validity);
+//                console.log(this.options.onValid);
             },
 
 
             onInValid: function(validity) {
 //                console.log(validity);
                 var $field = $(validity.field);
-//                console.log($field);
+                console.log($field);
                 var $group = $field.closest('.am-form-group');
 //                var offset = $group.offset();
                 var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
@@ -320,7 +312,12 @@
                 // 使用自定义的提示信息 或 插件内置的提示信息
 //                console.log("field:"+$field.attr('name'));
 //                var msg = $field.attr('placeholder') || this.getValidationMessage(validity);
-                var msg =this.getValidationMessage(validity);
+                if(validity.valueMissing){
+                    var msg = $field.attr('placeholder')||this.getValidationMessage(validity);
+                }else {
+                    this.getValidationMessage(validity);
+                }
+
 
 //                if (!$alert.length) {
 //                    $alert = $('<div class="am-alert am-alert-danger"  id="vld-tooltip" style="position:fixed;z-index: 10010;"></div>').hide().
@@ -339,6 +336,45 @@
                         $('div.my-alert').css('display','none');
                     },2000)
             },
+            submit: function (e) {
+                var formValidity = this.isFormValid();
+//                if(){}
+
+                if(typeof formValidity === 'boolean'){
+//                    alert(typeof formValidity);
+                    if(formValidity){
+//                        alert("true");
+                        e.preventDefault();
+                        sessionStorage.setItem('bottomNavIndex',0);
+                        $("#my-confirm").modal({
+                            onConfirm: function () {
+                                // alert();
+                                location.href='strong-big-readList.html';
+                            },
+                            onCancel: function () {
+                                return false;
+                            }
+                        });
+//                        location.href='strong-big-readList.html';
+//                        alert("end");
+                    }else{
+                        return false;
+//                    e.preventDefault();
+
+                    }
+                }else{
+
+                }
+
+//                $.when(formValidity).then(function() {
+//                    // 验证成功的逻辑
+//                    alert("valid111")
+//                    location.href='strong-big-readList.html'
+//                }, function() {
+//                    alert("inValid")
+//                    // 验证失败的逻辑
+//                });
+            }
         });
     });
 

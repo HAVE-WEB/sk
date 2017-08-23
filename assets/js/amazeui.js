@@ -9,7 +9,7 @@
 	else
 		root["AMUI"] = factory(root["jQuery"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
-	console.log("web:"+__WEBPACK_EXTERNAL_MODULE_1__);//__WEBPACK_EXTERNAL_MODULE_1__代表的是jquery对象
+	// console.log("web:"+__WEBPACK_EXTERNAL_MODULE_1__);//__WEBPACK_EXTERNAL_MODULE_1__代表的是jquery对象
 return /******/ (function(modules) { // webpackBootstrap    //这是一个模块。引用其他模块
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -373,7 +373,7 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	    $.fn[name] = old;
 	    return this;
 	  };
-		console.log($.fn);
+		// console.log($.fn);
 	  UI[name] = Component;
 	};
 
@@ -14714,11 +14714,16 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 		// console.log(element);
 		// console.log(options);
 	  this.options = $.extend({}, Validator.DEFAULTS, options);
+		// console.log(this);
+		// console.log(options);
+		// console.log(this.options);
 	  this.options.patterns = $.extend({}, Validator.patterns,
 	    this.options.patterns);
 	  var locales = this.options.locales;
 	  !Validator.validationMessages[locales] && (this.options.locales = 'zh_CN');
 	  this.$element = $(element);
+		// console.log($(element));
+		// console.log(element);
 	  this.init();
 	};
 
@@ -14771,13 +14776,14 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 
 	  markValid: function(validity) {
 	    // this is Validator instance
-	    var options = this.options;
+	    var options = this.options;//这个this是这个方法call的第一个参数Validator对象
+		  console.log("markValid");
 	    var $field = $(validity.field);
 	    var $parent = $field.closest('.am-form-group');
 
 	    $field.addClass(options.validClass).removeClass(options.inValidClass);
 	    $parent.addClass('am-form-success').removeClass('am-form-error');
-	    options.onValid.call(this, validity);
+	    options.onValid.call(this, validity);//调用 options对象中的onValid函数，this指的是Validator对象
 	  },
 
 	  markInValid: function(validity) {
@@ -14844,6 +14850,7 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	// TODO: 显示提示信息
 
 	Validator.prototype.init = function() {
+		console.log("init");
 	  var _this = this;
 	  var $element = this.$element;
 	  var options = this.options;
@@ -14878,15 +14885,15 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	    !$field.attr('pattern') && $field.attr('pattern', regexToPattern(value));//如果&&前面一个表达式的返回值是true的话，就可以运行&&右边的表达式
 	  });
 
-	  $element.on('submit.validator.amui', function(e) {
+	  $element.on('submit.validator.amui', function(e) {//给jQuery对象form元素绑定submit事件，只要表单提交，触发submint事件
 	    // user custom submit handler
-	    if (typeof options.submit === 'function') {
+	    if (typeof options.submit === 'function') {//如果没有定义的话，就会执行 options.validateOnSubmit，如果定义了为function，下面的(options.validateOnSubmit就执行不到，(options.validateOnSubmit失效
 	      return options.submit.call(_this, e);
 	    }
 
 	    if (options.validateOnSubmit) {
 	      var formValidity = _this.isFormValid();
-	      console.log(formValidity);
+	      // console.log(formValidity);
 	      console.log(typeof formValidity);
 	      // sync validate, return result
 	      if ($.type(formValidity) === 'boolean') {
@@ -14949,13 +14956,14 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 
 	    $(document.body).append(this.$tooltip);
 	  }*/
-	  console.log("end");
+	  // console.log("end");
 	};
 
-	Validator.prototype.isValid = function(field) {
+	Validator.prototype.isValid = function(field) {//检查当前字段是否验证通过
 	  var $field = $(field);
 	  var options = this.options;
 	  // valid field not has been validated
+		console.log($field.data('validity') === undefined || options.alwaysRevalidate)
 	  if ($field.data('validity') === undefined || options.alwaysRevalidate) {
 	    this.validate(field);
 	  }
@@ -14964,7 +14972,7 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	};
 
 	Validator.prototype.validate = function(field) {
-		console.log(field);
+		// console.log(field);
 	  var _this = this;
 	  var $element = this.$element;
 	  var options = this.options;
@@ -15069,6 +15077,7 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 
 	    var event = $.Event('validated.field.validator.amui');
 	    event.validity = validity;
+		  console.log(event);
 
 	    $field.trigger(event).data('validity', validity);
 
@@ -15104,17 +15113,19 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	};
 
 	Validator.prototype.markField = function(validity) {
+		// console.log(validity);
 	  var options = this.options;
 	  var flag = 'mark' + (validity.valid ? '' : 'In') + 'Valid';
 	  options[flag] && options[flag].call(this, validity);
 	};
 
 	// check all fields in the form are valid
-	Validator.prototype.validateForm = function() {
+	Validator.prototype.validateForm = function() {//检查form中所有的字段是否可用
 	  var _this = this;
 	  var $element = this.$element;
 	  var options = this.options;
-	  var $allFields = $element.find(options.allFields).not(options.ignore);
+	  var $allFields = $element.find(options.allFields).not(options.ignore);//allFiedlds:   :input:not(:submit, :button, :disabled, .am-novalidate)
+																			//ignore: ':hidden:not([data-am-selected], .am-validate)',
 	  var radioNames = [];
 	  var valid = true;
 	  var formValidity = [];
@@ -15138,22 +15149,23 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	    }
 	    return true;
 	  });
-
+		console.log($allFields);
+		console.log($filteredFields);
 	  $filteredFields.each(function() {
 	    var $this = $(this);
-	    var fieldValid = _this.isValid(this);
+	    var fieldValid = _this.isValid(this);//DOM元素，获取DOM元素的data(),得到对象validity对象，在获取对象中的valid的值
 	    var fieldValidity = $this.data('validity');
 
 	    valid = !!fieldValid && valid;
 	    formValidity.push(fieldValidity);
 
 	    if (!fieldValid) {
-	      $inValidFields = $inValidFields.add($(this), $element);
+	      $inValidFields = $inValidFields.add($(this), $element);//验证不通过的jquery input对象
 	    }
 
 	    // async validity
 	    var promise = $this.data('amui.dfdValidity');
-
+		  // console.log(promise);
 	    if (promise) {
 	      promises.push(promise);
 	      async = true;
@@ -15161,16 +15173,19 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	      // convert sync validity to Promise
 	      var dfd = new $.Deferred();
 	      promises.push(dfd.promise());
-	      dfd[fieldValid ? 'resolve' : 'reject'](fieldValidity);
+			console.log(fieldValid)
+			console.log(dfd[fieldValid ? 'resolve' : 'reject'](fieldValidity));
+	      dfd[fieldValid ? 'resolve' : 'reject'](fieldValidity);//dfd['reject']({})
 	    }
 	  });
 
 	  // NOTE: If there are async validity, the valid may be not exact result.
+		console.log(promises);
 	  var validity = {
-	    valid: valid,
-	    $invalidFields: $inValidFields,
-	    validity: formValidity,
-	    promises: promises,
+	    valid: valid,//false
+	    $invalidFields: $inValidFields,//验证不通过的jquery input对象数组
+	    validity: formValidity,//不同jquery对象的验证信息对象数组
+	    promises: promises,//Defeered对象中的方法
 	    async: async
 	  };
 
@@ -15179,11 +15194,11 @@ return /******/ (function(modules) { // webpackBootstrap    //这是一个模块
 	  return validity;
 	};
 
-	Validator.prototype.isFormValid = function() {
+	Validator.prototype.isFormValid = function() {//form是否验证通过，form是否验证通过的状态
 	  var _this = this;
 	  var formValidity = this.validateForm();
 	  var triggerValid = function(type) {
-	    _this.$element.trigger(type + '.validator.amui');
+	    _this.$element.trigger(type + '.validator.amui');//form 触发某类事件
 	  };
 
 	  if (formValidity.async) {
