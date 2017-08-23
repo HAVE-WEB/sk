@@ -166,7 +166,7 @@
                 this.initPage();
                 var bottomNavIndex = this.bottomNavIndex;
                 var flag = this.flag;//true:表示在首页，false：在各个模块中的菜单
-                 console.log("flag:"+flag+",in:"+parseInt(bottomNavIndex));
+                 // console.log("flag:"+flag+",in:"+parseInt(bottomNavIndex));
                 if(flag === 'true'){
                     this.adapterWidth_object();
                     this.weiXinBrowers();
@@ -388,7 +388,7 @@
 
                             }else{
                                 var me = sessionStorage.getItem('menuEng');
-                                console.log("me:"+me)
+                                // console.log("me:"+me)
                                 if(me  === 'activity-manager'){
                                     var t = $("input[name="+name+"]").prop('type');
                                     if(t === 'hidden'){
@@ -446,7 +446,7 @@
         },
             setSearchDict: function () {
                 var om = this.oneOrMany;
-                console.log('om:'+om);
+                // console.log('om:'+om);
                 var oneOrMany =om.split(',');
                 if(oneOrMany.length === $("div.am-g").length){
                     alert('数组长度不匹配');
@@ -876,7 +876,7 @@
                 if((pf === 'Win32') == false){
                     num=42;
                 }
-                console.log("h:"+h+",e:"+e+",n:"+num);
+                // console.log("h:"+h+",e:"+e+",n:"+num);
                 $("div.am-navbar").css({
                     top: (h-e-num)+"px",
                 })
@@ -1329,7 +1329,7 @@
     $(document).ready(function () {
         rem.init();
 
-        console.log("rem:"+rem);
+        // console.log("rem:"+rem);
         // var pageName = rem.getPageName();
         rem.getPageNameCallback(function (page) {
             if(page === 'input'){

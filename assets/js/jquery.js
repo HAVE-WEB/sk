@@ -15,7 +15,7 @@
 
 	"use strict";
 
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
+	if ( typeof module === "object" && typeof module.exports === "object" ) {//commonJS规范
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
@@ -32,6 +32,7 @@
 				}
 				return factory( w );
 			};
+		console.log("jquyer:"+module.exports);
 	} else {
 		factory( global );
 	}
@@ -73,7 +74,7 @@ var support = {};
 
 
 
-	function DOMEval( code, doc ) {
+	function DOMEval( code, doc ) {//函数不会自动运行，只有调用的时候才会运行
 		doc = doc || document;
 
 		var script = doc.createElement( "script" );
@@ -92,7 +93,7 @@ var
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
-
+		// console.log("s:"+selector+",c:"+context);
 		// The jQuery object is actually just the init constructor 'enhanced'
 		// Need init if jQuery is called (just allow error to be thrown if not included)
 		return new jQuery.fn.init( selector, context );
@@ -10243,7 +10244,7 @@ jQuery.noConflict = function( deep ) {
 // (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
 // and CommonJS for browser emulators (#13566)
 if ( !noGlobal ) {
-	window.jQuery = window.$ = jQuery;
+	window.jQuery = window.$ = jQuery;//window.jQuery = window.$ = jQuery
 }
 
 

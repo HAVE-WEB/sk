@@ -3,19 +3,19 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("jquery"));
 	else if(typeof define === 'function' && define.amd)
-		define(["jquery"], factory);
+		define(["jquery"], factory);//AMD:异步模块规范，
 	else if(typeof exports === 'object')
 		exports["AMUI"] = factory(require("jquery"));
 	else
 		root["AMUI"] = factory(root["jQuery"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
-return /******/ (function(modules) { // webpackBootstrap
+	console.log("web:"+__WEBPACK_EXTERNAL_MODULE_1__);//__WEBPACK_EXTERNAL_MODULE_1__代表的是jquery对象
+return /******/ (function(modules) { // webpackBootstrap    //这是一个模块。引用其他模块
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
@@ -34,6 +34,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		module.loaded = true;
 
 /******/ 		// Return the exports of the module
+					// console.log(module.exports+",id:"+module.id);
 /******/ 		return module.exports;
 /******/ 	}
 
@@ -51,6 +52,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
+//对其他对象的引用应该通过参数引用，这个的参数是   [    ]
 /******/ ([
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
@@ -154,11 +156,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 
 	    for (var name in transEndEventNames) {
-	      if (element.style[name] !== undefined) {
+	      if (element.style[name] !== undefined) {//name在style对象中的键，键的类型是string
 	        return transEndEventNames[name];
 	      }
 	    }
-	  })();
+	  })();//定义了匿名函数，并立即调用自己
 
 	  return transitionEnd && {end: transitionEnd};
 	})();
@@ -371,7 +373,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    $.fn[name] = old;
 	    return this;
 	  };
-
+		console.log($.fn);
 	  UI[name] = Component;
 	};
 
@@ -14709,6 +14711,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var UI = __webpack_require__(2);
 
 	var Validator = function(element, options) {
+		// console.log(element);
+		// console.log(options);
 	  this.options = $.extend({}, Validator.DEFAULTS, options);
 	  this.options.patterns = $.extend({}, Validator.patterns,
 	    this.options.patterns);
@@ -14788,7 +14792,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  validate: function(validity) {
-	    return validity;
+	    // return validity;
 	  },
 
 	  submit: null
@@ -14843,6 +14847,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var _this = this;
 	  var $element = this.$element;
 	  var options = this.options;
+	  // console.log(options);
+	  // console.log($element)
 
 	  // using H5 form validation if option set and supported
 	  if (options.H5validation && UI.support.formValidation) {
@@ -14858,10 +14864,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  // add pattern to H5 input type
-	  $.each(options.H5inputType, function(i, type) {
+	  $.each(options.H5inputType, function(i, type) {//input标记type是['email', 'url', 'number']，如果开发者没有写pattern属性，妹子ui就自动添加上去pattern
 	    var $field = $element.find('input[type=' + type + ']');
 	    if (!$field.attr('pattern') &&
-	      !$field.is('[class*=' + options.patternClassPrefix + ']')) {
+	      !$field.is('[class*=' + options.patternClassPrefix + ']')) {//如果input标记有['email', 'url', 'number'],但是没有patten属性
 	      $field.attr('pattern', regexToPattern(options.patterns[type]));
 	    }
 	  });
@@ -14869,7 +14875,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  // add pattern to .js-pattern-xx
 	  $.each(options.patterns, function(key, value) {
 	    var $field = $element.find('.' + options.patternClassPrefix + key);
-	    !$field.attr('pattern') && $field.attr('pattern', regexToPattern(value));
+	    !$field.attr('pattern') && $field.attr('pattern', regexToPattern(value));//如果&&前面一个表达式的返回值是true的话，就可以运行&&右边的表达式
 	  });
 
 	  $element.on('submit.validator.amui', function(e) {
@@ -14880,12 +14886,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    if (options.validateOnSubmit) {
 	      var formValidity = _this.isFormValid();
-
+	      console.log(formValidity);
+	      console.log(typeof formValidity);
 	      // sync validate, return result
 	      if ($.type(formValidity) === 'boolean') {
 	        return formValidity;
 	      }
-
+			// console.log("checked");
 	      if ($element.data('amui.checked')) {
 	        return true;
 	      } else {
@@ -14896,6 +14903,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          // fail
 	          $element.data('amui.checked', false).
 	            find('.' + options.inValidClass).eq(0).focus();
+	          console.log("focus");
 	        });
 	        return false;
 	      }
@@ -14903,9 +14911,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  });
 
 	  function bindEvents(fields, eventFlags, debounce) {
+	  	// console.log("E:"+e);
 	    var events = eventFlags.split(',');
 	    var validate = function(e) {
-	      // console.log(e.type);
+	      // console.log(this);
 	      _this.validate(this);
 	    };
 
@@ -14914,7 +14923,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    $.each(events, function(i, event) {
-	      $element.on(event + '.validator.amui', fields, validate);
+	    	// console.log($element);
+	    	// console.log(fields)
+	      $element.on(event + '.validator.amui', fields, validate);//给选择的元素上绑定一个或多个事件的事件处理程序。只是给jquery对象的元素绑定事件，1p;绑定的事件类型，2p:$lement后代的元素，3p:该事件被触发执行的函数。
 	    });
 	  }
 
@@ -14938,6 +14949,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    $(document.body).append(this.$tooltip);
 	  }*/
+	  console.log("end");
 	};
 
 	Validator.prototype.isValid = function(field) {
@@ -14952,6 +14964,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	Validator.prototype.validate = function(field) {
+		console.log(field);
 	  var _this = this;
 	  var $element = this.$element;
 	  var options = this.options;
@@ -15019,7 +15032,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 
 	  // check required
-	  if (required && !value) {
+	  if (required && !value) {//第一是required为true，value为空的话
 	    validity.valid = false;
 	    validity.valueMissing = true;
 	  } else if (($checkboxGroup || $field.is('select[multiple="multiple"]')) &&
@@ -15087,7 +15100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    });
 	  }
 
-	  validateComplete.call(this, validity);
+	  validateComplete.call(this, validity);//validateComplete函数调用，this在本方法中代表Validator对象，在validateComplete函数中，使用this的指针引用validator函数中的对象
 	};
 
 	Validator.prototype.markField = function(validity) {
@@ -15211,12 +15224,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	//    3. checkedUnderflow
 	Validator.prototype.createValidity = function(validity) {
 	  return $.extend({
-	    customError: validity.customError || false,
+	    customError: validity.customError || false,			//tooShort--minLength,
 	    patternMismatch: validity.patternMismatch || false,
 	    rangeOverflow: validity.rangeOverflow || false, // higher than maximum
 	    rangeUnderflow: validity.rangeUnderflow || false, // lower than  minimum
 	    stepMismatch: validity.stepMismatch || false,
-	    tooLong: validity.tooLong || false,
+	    tooLong: validity.tooLong || false,							//对应的是maxLength
 	    // value is not in the correct syntax
 	    typeMismatch: validity.typeMismatch || false,
 	    valid: validity.valid || true,
@@ -15293,11 +15306,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    .find(this.options.allFields).removeData('validity amui.dfdValidity');
 	};
 
-	UI.plugin('validator', Validator);//ui
+	UI.plugin('validator', Validator);//将validator已插件的形式插入到jQuery.fn对象中去。
 
 	// init code
 	UI.ready(function(context) {
-	  $('[data-am-validator]', context).validator();
+	  $('[data-am-validator]', context).validator();//如果元素有data-am-validator的属性()，自动调用从amazeui中的Validator插件插入到jQuery对象中的fn中的方法[name='meetingType'],[data-am-validator='true'],元素对象主要有属性对象中有data-am-validator有这个键，不管你有没有值，都调用jQuery.fn对象中的validator方法
 	});
 
 	module.exports = Validator;
