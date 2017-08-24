@@ -175,7 +175,7 @@
                         this.topNav();
                         this.contentListRead();
                     } else if(parseInt(bottomNavIndex) === 1){
-                        this.topNavInput();
+                        // this.topNavInput();
                         this.titleCenter();
                          // this.dataRowInput();
                         this.getDictData();
@@ -454,7 +454,7 @@
                 }
                 $("div.am-g").click(function () {
                     var eleInput = $(this).find('input.dict-data').parent().get(0);//DOM元素对象
-                    console.log("len:"+$('input.dict-data').parent().length);
+                    // console.log("len:"+$('input.dict-data').parent().length);
                     $('input.dict-data').parent().each(function (i,v) {
                         if(eleInput == v){
                             // sessionStorage.setItem('dictCode','11'+i);//第一个1代表是党政模块的，第二个1代表的是三重一大，第三个1代表的是需要查询的第一个词典
@@ -747,7 +747,7 @@
                 var top1 ='<div class="top-div">\n' +
                     '    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >\n' +
                     '        <a href="';
-                var top2 = '.html" ><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
+                var top2 = '.html" onclick="destroyValidator()"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>\n' +
                     // '        <div class="sl-flex-row-center-flex-end">\n' +
                     // '            <button type="submit" onclick="getIndex(0,this)" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>\n' +
                     // '            <button  type="submit" onclick="getIndex(0,this)"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>\n' +

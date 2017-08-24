@@ -60,6 +60,11 @@
     </style>
 </head>
 <body class="">
+<div class="top-div">
+       <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >
+                <a href="party.html" onclick="destroyValidator()"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>
+        </div>
+</div>
 <div style="margin-top: 3rem;" id="main-content">
     <form id="strongBig" class=""  action="" method="post">
         <fieldset>
@@ -69,7 +74,7 @@
                     登记名称
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required maxlength="5" >
+                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required >
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
@@ -108,7 +113,7 @@
                     备案
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="text" name="putOnRecord"  placeholder="请输入备案" value="" required>
+                    <input type="number" name="putOnRecord"  placeholder="请输入备案" value="" required min="0" data-foolish-msg="不能小于0" data-not-number="输入的不是数字">
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
@@ -169,122 +174,9 @@
     </form>
 </div>
 <script>
-    $(function () {
-//       $("#strongBig").validator({
-//           H5Validation: false,
-//           H5inputType: ['email', 'url', 'number'],
-//           patterns: {},//验证规则
-//           patternClassPrefix: 'js-pattern-',//规则class钩子前缀
-//           activeClass: 'am-active',
-//           inValidClass: 'am-field-error',//验证不通过添加到域上的class1
-//           validClass: 'am-field-valid',//验证通过时添加到域上的class
-//           validateOnSubmit: true,//表单提交时验证
-//           allFields: ':input:not(:button, :disabled, .am-novalidate)',//表单提交时验证的域
-//           ignore: ':not([data-am-selected], .am-validate)',//表单提交时验证忽略的域
-//           customEvents: 'validate()',//调用validate()方法的自定义事件
-//
-//
-//           onValid: function (validity) {//域对象通过验证是回调
-//
-//
-//           },
-//           onInValid: function (validity) {//域对象验证出错时回调
-////                var $field = $(validity.field);
-////                var $group = $field.closest('.am-form-group');
-////                var $alert = $('body').find('am-alert');
-//
-//
-//               var $form = $('#strongBig');
-//               var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
-//               console.log("onInValid:::::");
-//               $tooltip.appendTo(document.body);
-//
-//
-//
-//
-//               var validator = $form.data('amui.validator');
-//               $form.on('focusin focusout', 'am-form-error input', function (e) {
-//                   if(e.type === 'focusin'){
-//                       var $this = $(this);//this代表input对象
-//                       var offset = $this.offset();
-//                       var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
-//                       $tooltip.text(msg).show().css({
-//                           left: offset.left + 10,
-//                            top: offset.top + 10
-//                       })
-//                   }else {
-//                       $tooltip.hide();
-//                   }
-//               })
-//
-//
-//           },
-//           markValid: function (validity) {//域对象验证通过时添加的操作，通过该接口可以定义各种验证提示，
-//               var options = this.options;//this指的的Validator对象
-//               alert("mv:"+options);
-//               var $field = $(validity.field);
-//               var $parent = $field.closest('.am-form-group');
-//               $field.addClass(options.validClass).removeClass(options.inValidClass);
-//               $parent.addClass('am-form-success').removeClass('am-form-error');
-//               options.onValid.call(this, validity);
-//           },
-//           markInValid: function (validity) {//域验证失败是添加的操作，通过该接口可以定义各种验证提示
-//             console.log("1111");
-//                var options = this.options;//this指的是Validator对象
-//                var $field = $(validity.field);
-//                var $parent = $field.closest('.am-form-group');
-//                $field.addClass(options.inValidClass + ' ' + options.activeClass).removeClass(options.validClass);
-//                $parent.addClass('am-form-error').removeClass('am-form-success');
-//                options.onInValid.call(this,validity);
-//
-//           },
-//           validity: function (validity) {//自定义验证接口
-//
-//           },
-//           submit: function () {
-//               var formValidity = this.isFormValid();
-//               $.when(formValidity).then(function () {
-//                   //form的验证状态是验证成功状态，所执行的逻辑
-//               },function () {
-//                   //form的验证状态是不通过状态，所执行的逻辑
-//               })
-//           }
-//       })
-    });
-//$(function() {
-//    var $form = $('#strongBig');
-//    var $tooltip = $('<div id="vld-tooltip" style="position:fixed;z-index: 10010;">提示信息！</div>');
-//    $tooltip.appendTo(document.body);
-//
-//    $form.validator();
-//
-//    var validator = $form.data('amui.validator');
-//
-//    $form.on('focusin focusout', 'input', function(e,validity) {
-//        if (e.type === 'focusin') {
-//            var $this = $(this);
-//            var offset = $this.offset();
-//            var msg = $this.data('foolishMsg') || validator.getValidationMessage(validity);
-//
-//            $tooltip.text(msg).show().css({
-//                left: offset.left + 10,
-//                top: offset.top + $(this).outerHeight() + 10
-//            });
-//        } else {
-//            $tooltip.hide();
-//        }
-//    });
-//
-//});
     $(function() {
-//        $('#strongBig').data('key','1');
-//            console.log($('[name="putOnRecord"]').data('amui-validator'));
-//        console.log($('[name="putOnRecord"]').data('amui.validator'));
-//        $('[name="putOnRecord"]').data('amui.validator','cccccc');
-//        var v = AMUI.validator
-//        $('#strongBig').fn.toArray();
-//        $('#strongBig').toArray()
         $('#strongBig').validator({
+//            keyboardEvents: 'focusout',
             onValid: function(validity) {
 //                $(validity.field).closest('.am-form-group').find('.am-alert').hide();
                 $('body').find('.am-alert').hide();
@@ -294,52 +186,89 @@
 
 
             onInValid: function(validity) {
+                console.log('13')
+                var _this = this;
 //                console.log(validity);
                 var $field = $(validity.field);
-                console.log($field);
+//                console.log($field);
                 var $group = $field.closest('.am-form-group');
 //                var offset = $group.offset();
-                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
-                var len = $('div.my-alert').length;
-                if(len){
-                    $('div.my-alert').css('display','block')
-                }else{
-                    $('body').append($alert);
 
-                }
 
 
                 // 使用自定义的提示信息 或 插件内置的提示信息
 //                console.log("field:"+$field.attr('name'));
 //                var msg = $field.attr('placeholder') || this.getValidationMessage(validity);
+//                console.log($field.attr('placeholder'));
+                console.log(validity);
+                console.log(validity.valueMissing);
+                console.log(validity.rangeUnderflow);
+                var msg = '';
+//                var ro = $field.attr('readonly');
+
                 if(validity.valueMissing){
-                    var msg = $field.attr('placeholder')||this.getValidationMessage(validity);
-                }else {
-                    this.getValidationMessage(validity);
+                    msg = $field.prop('placeholder')||this.getValidationMessage(validity);
                 }
-
-
-//                if (!$alert.length) {
-//                    $alert = $('<div class="am-alert am-alert-danger"  id="vld-tooltip" style="position:fixed;z-index: 10010;"></div>').hide().
-//                    appendTo($group);
+                else if(validity.typeMismatch){
+                    if($field.attr('type') === 'number'){
+                        msg = $field.data('notNumber');
+                    }
+                }
+                else if(validity.rangeUnderflow){
+                    if($field.attr('min')){
+                        msg = $field.data('foolishMsg');
+                    }
+                }else{
+                    msg = this.getValidationMessage(validity);
+                }
+//                var h = false;
+//                console.log("ro:"+ro);
+//                if(ro !=='undefined' || $field.attr('type') === 'file'){
+//                    h =true;
 //                }
+//                console.log("h:"+h);
 
-//                if($alert.length) {
-//                    $alert.index(1).remove();
-//                }
-//                console.log("msg:"+msg);
-                    $alert.html(msg).css({
-                        left: window.innerWidth/2-$alert.outerWidth()/2,
-                        top: window.innerHeight/2-$alert.outerHeight()/2,
+                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
+                var len = $('div.my-alert').length;
+                if(len){
+//                    if(h){
+                        $('div.my-alert').html(msg).show().css({
+                            left: screen.width/2-$('div.my-alert').outerWidth()/2,
+                            top: screen.height/2-$('div.my-alert').outerHeight()/2,
+                        });
+//                    }else{
+//                        $('div.my-alert').html(msg).hide();
+//                    }
+//                    console.log(msg);
+
+                }else{
+                    $('body').append($alert);
+
+                    $alert.html(msg).show().css({
+                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
+                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
                     });
-                    setTimeout(function () {
-                        $('div.my-alert').css('display','none');
-                    },2000)
+                }
+                console.log("SW:"+screen.width/2+",SH:"+screen.height/2+"AW:"+$('div.my-alert').outerWidth()/2+",AH:"+$('div.my-alert').outerHeight()/2)
+                setTimeout(function () {
+                    $('div.my-alert').hide();
+                },2000);
+                console.log("valid_end")
+            },
+            markInValid: function(validity) {
+                console.log('12')
+                var options = this.options;
+                var $field = $(validity.field);
+                var $parent = $field.closest('.am-form-group');
+
+                $field.addClass(options.inValidClass + ' ' + options.activeClass).
+                removeClass(options.validClass);
+                $parent.addClass('am-form-error').removeClass('am-form-success');
+                options.onInValid.call(this, validity);
             },
             submit: function (e) {
+                console.log("6");
                 var formValidity = this.isFormValid();
-//                if(){}
-
                 if(typeof formValidity === 'boolean'){
 //                    alert(typeof formValidity);
                     if(formValidity){
@@ -377,6 +306,11 @@
             }
         });
     });
+    //返回页面之前，销毁validator
+    function destroyValidator() {
+        $("#strongBig").off('submit.validator.amui');//form对象解除绑定的事件
+        $(":input:not(:submit, :button, :disabled, .am-novalidate)").off('focusout, change');//input对象解除绑定的事件
+    }
 
 
     //将文件以DataURL形式读入页面
