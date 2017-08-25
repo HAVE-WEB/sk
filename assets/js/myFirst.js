@@ -172,23 +172,24 @@
                     this.weiXinBrowers();
                 }else{
                     if(parseInt(bottomNavIndex) === 0){
-                        this.topNav();
-                        this.contentListRead();
+                        // this.topNav();
+                        // this.contentListRead();
                     } else if(parseInt(bottomNavIndex) === 1){
                         // this.topNavInput();
                         this.titleCenter();
                          // this.dataRowInput();
-                        this.getDictData();
-                        this.setSearchDict();
+                        // this.getDictData();
+                        // this.setSearchDict();
                         // this. my_modal();
                         this.my_confirm();
                         // this.validation();
                     } else if( parseInt(bottomNavIndex) === 2){
-                        this.topNav();
-                        this.contentListCheck();
+                        // this.topNav();
+                        // this.contentListCheck();
                     }
-                    this.bottomNav();
+                    // this.bottomNav();
                     this.adapterWidth_object();
+                    this.weiXinBrowers();
                 }
             },
             initPage: function () {//根据不同页面，来设置flag的值
@@ -684,15 +685,15 @@
                 var marginLeft = wWindow/2-leftI-wI-wDiv/2;
                 $div.css('margin-left',marginLeft);
             },
-            setBottonNavIndexBySubmit: function (i) {
-                sessionStorage.setItem('bottomNavIndex',i);
+            showConfirm: function (i) {
+                // sessionStorage.setItem('bottomNavIndex',i);
                 $("#my-confirm").modal({
                     onConfirm: function () {
                          alert("aaa");
-                        location.href='strong-big-readList.html';
+                       return 0
                     },
                     onCancel: function () {
-                        return false;
+                        return 1;
                     }
                 });
             },
@@ -1314,6 +1315,25 @@
                 }
             }
             return arrName;
+        },
+        alertInfo: function (msg) {
+            var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
+            var len = $('div.my-alert').length;
+            if(len){
+                $('div.my-alert').html(msg).show().css({
+                    left: screen.width/2-$('div.my-alert').outerWidth()/2,
+                    top: screen.height/2-$('div.my-alert').outerHeight()/2,
+                });
+            }else{
+                $('body').append($alert);
+                $alert.html(msg).show().css({
+                    left: screen.width/2-$('div.my-alert').outerWidth()/2,
+                    top: screen.height/2-$('div.my-alert').outerHeight()/2,
+                });
+            }
+            setTimeout(function () {
+                $('div.my-alert').hide();
+            },2000);
         }
 
     };
@@ -1352,17 +1372,17 @@
                     '</script>';
                 $('body').append(s);
             }else if(page == 'checkList' || page === 'readList'){
-                var script = '<script>\n' +
-                    '    function insertSearch() {\n' +
-                    '        Rem.insertSearch();\n' +
-                    '    };\n' +
-                    '    function getIndex(i,self) {\n' +
-                    '        var rem = new Rem();\n' +
-                    '        rem.setBottonNavIndex(i,self);\n' +
-                    '    }\n' +
-                    '</script>';
-                // $('body').append(s);
-                $('body').append(script);
+                // var script = '<script>\n' +
+                //     '    function insertSearch() {\n' +
+                //     '        Rem.insertSearch();\n' +
+                //     '    };\n' +
+                //     '    function getIndex(i,self) {\n' +
+                //     '        var rem = new Rem();\n' +
+                //     '        rem.setBottonNavIndex(i,self);\n' +
+                //     '    }\n' +
+                //     '</script>';
+                // // $('body').append(s);
+                // $('body').append(script);
             }else if(page === ''){
 
             }

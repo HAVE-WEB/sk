@@ -1,0 +1,227 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>查看三重一大</title>
+    <link rel="stylesheet" href="../../assets/css/amazeui.css">
+    <link rel="stylesheet" href="../../assets/css/LCommon.css">
+    <link rel="stylesheet" href="../../assets/css/sl.css">
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/amazeui.js"></script>
+    <script src="../../assets/js/myFirst.js"></script>
+</head>
+<style>
+    input{
+        width:90%;
+        background-color: #F4F4F4;
+        border: 0px;
+    }
+    button{
+        border: 0px;
+    }
+</style>
+<body class="">
+<div class="top-div">
+    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >
+        <a href="#" onclick="backList()"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>
+    </div>
+</div>
+<div style="margin-top: 3rem;" id="main-content">
+    <form id="strongBig" class=""  action="" method="post">
+        <fieldset>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group" style="margin-top: 1.5rem;">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    登记名称
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <input type="text" name="registerName"  placeholder="请输入登记事宜名称" value="" required >
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    会议类型
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
+                    <input type="text" name="meetingType"  placeholder="请选择会议类型" value="" class="dict-data" readonly required>
+                   <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    是否中心审核
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
+                    <input type="text" name="isCenterAudit"  placeholder="请选择是否中心审核" value="" class="dict-data" readonly  required>
+                   <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
+                </div>
+                <!--<div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">-->
+                <!--<label class="sl-flex-row-center-center">-->
+                <!--<input type="radio" checked="checked" name="isCheck" value="1" >-->
+                <!--<span class="sl-margin-0px-5px">是</span>-->
+                <!--</label>-->
+                <!--<label class="sl-flex-row-center-center">-->
+                <!--<input type="radio"  name="isCheck" value="2" >-->
+                <!--<span class="sl-margin-0px-5px">否</span>-->
+                <!--</label>-->
+                <!--</div>-->
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    备案
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <input type="text" name="putOnRecord"  placeholder="请输入备案" value="" required  data-foolish-msg="不能小于0">
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    结论
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <input type="text" name="conclusion"  placeholder="请输入结论" value="" required maxlength="6">
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    通知对象
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
+                    <input type="text" name="informObject"  placeholder="请选择通知对象" value="" class="dict-data" readonly required="required">
+                   <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
+                </div>
+            </div>
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
+                <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
+                    相应会议记录
+                </div>
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
+                    <!--<div class="meeting-record" >请选择相应会议记录</div>-->
+                    <!--<i class="fa fa-angle-right sl-icon-color-CACACA"></i>-->
+                    <input type="text" name="meetingRecord" id="meetingRecord" class="dict-data" placeholder="请选择相应会议记录" value="" required readonly>
+                    <input type="hidden" name="meetingRecordId" id="meetingRecordId" value="">
+                   <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
+                </div>
+            </div>
+            <div class="am-g sl-margin-top-10px sl-flex-row-center-center am-form-group">
+                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6">
+                    <div class=" am-form-file">
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                            <!--<i class="am-icon-cloud-upload"></i> 上传附件</button>-->
+                            上传附件</button>
+                        <input id="doc-form-file" type="file" multiple onchange="html5Upload()" name="relatedAccessory" placeholder="请上传附件" value="" readonly required>
+                        <input type="hidden" name="relatedAccessoryName">
+                        <input type="hidden" name="relatedAccessoryId">
+                    </div>
+                </div>
+                <div class="am-u-sm-6 am-u-md-6 am-u-lg-6 sl-flex-row-center-center sl-padding-0px">
+                    <span class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>
+                </div>
+            </div>
+            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">
+
+            </ul>
+            <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
+                <button type="button"  id="submitComment" class="sl-margin-right-1rem check" style="color:white;background-color: #F14551;">批准</button>
+                <button type="button" class="sl-margin-right-1rem check" style="color:white;background-color: #F14551;">拒绝</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="am-panel-group" id="accordion">
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+                审批意见
+            </h4>
+        </div>
+        <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+            <div class="am-panel-bd">
+                <textarea rows="5" cols="30" placeholder="请填写审批意见" id="comment" autofocus>
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="am-panel am-panel-default">-->
+        <!--<div class="am-panel-hd">-->
+            <!--<h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">-->
+                <!--莫言 - 你不懂我，我不怪你 #2-->
+            <!--</h4>-->
+        <!--</div>-->
+        <!--<div id="do-not-say-2" class="am-panel-collapse am-collapse">-->
+            <!--<div class="am-panel-bd">-->
+<!--<p>               每个人都有一场爱恋， 用心、用情、用力，感动也感伤。                </p>-->
+<!--<p>               我把最炙热的心情 藏在那里。</p>-->
+<!--<p>               你不懂我，我不怪你。-->
+<!--<p>               每个人都有 一行眼泪， 喝下的冰冷的水，酝酿成的热泪。</p>-->
+<!--<p>               我把最心酸的委屈汇在那里。</p>-->
+<!--<p>               你不懂我，我不怪你。</p>-->
+<!--<p>               每个人都有一段告白， 忐忑、不安，却饱含真心和勇气。</p>-->
+<!--<p>               我把最抒情的语言用在那里。</p>-->
+<!--<p>               你不懂我，我不怪你。</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+      <div class="am-modal-dialog">
+            <div class="am-modal-hd">提示信息</div>
+            <div class="am-modal-bd">
+             确认提交么？
+            </div>
+            <div class="am-modal-footer">
+                  <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                  <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+      </div>
+</div>
+<div class="my-hint" style="display: none;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;">
+
+</div>
+</body>
+<script>
+    var rem = new Rem();
+    $("button.check").click(function () {
+        var val = $.trim($('#comment').val());
+        if(typeof val === 'string' && val === ''){
+            var msg = '意见不能为空';
+            rem.alertInfo(msg);
+            $('textarea').focus();
+            return;
+        }
+        $("#my-confirm").modal({
+            onConfirm: function () {
+               history.back();
+            },
+            onCancel: function () {
+                return 1;
+            }
+        });
+    });
+    $(function () {
+        $("input").attr('disabled','disabled');
+    })
+    function backList() {
+        history.back();
+    }
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+

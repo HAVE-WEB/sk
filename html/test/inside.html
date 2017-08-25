@@ -34,48 +34,42 @@
     </style>
 </head>
 <body >
-<form action="" class="am-form" id="form-with-tooltip">
-    <fieldset>
-        <legend>定义 Tooltip</legend>
-        <div class="am-form-group">
-            <label for="doc-vld-name-2-0">用户名：</label>
-            <input type="text" id="doc-vld-name-2-0" minlength="3"
-                   placeholder="输入用户名（至少 3 个字符）" required/>
+<div class="am-panel-group" id="accordion">
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+                ...
+            </h4>
         </div>
-
-        <div class="am-form-group">
-            <label for="doc-vld-pwd-1-0">密码：</label>
-            <input type="password" id="doc-vld-pwd-1-0" placeholder="6 位数字的银行卡密码" pattern="^\d{6}$" required data-foolish-msg="把 IQ 卡密码交出来！"/>
+        <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+            <div class="am-panel-bd">
+                ...
+            </div>
         </div>
+    </div>
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
+                ...
+            </h4>
+        </div>
+        <div id="do-not-say-2" class="am-panel-collapse am-collapse">
+            <div class="am-panel-bd">
+                ...
+            </div>
+        </div>
+    </div>
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}">...</h4>
+        </div>
+        <div id="do-not-say-3" class="am-panel-collapse am-collapse">
+            <div class="am-panel-bd">
+                ...
+            </div>
+        </div>
+    </div>
+</div>
 
-        <button class="am-btn am-btn-secondary" type="submit">提交</button>
-    </fieldset>
-</form>
-<script>
-    $(function() {
-        var $form = $('#form-with-tooltip');
-        var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
-        $tooltip.appendTo(document.body);
-
-        $form.validator();
-
-        var validator = $form.data('amui.validator');
-
-        $form.on('focusin focusout', '.am-form-error input', function(e) {
-            if (e.type === 'focusin') {
-                var $this = $(this);
-                var offset = $this.offset();
-                var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
-
-                $tooltip.text(msg).show().css({
-                    left: offset.left + 10,
-                    top: offset.top + $(this).outerHeight() + 10
-                });
-            } else {
-                $tooltip.hide();
-            }
-        });
-    });
-</script>
 </body>
 </html>

@@ -19,9 +19,8 @@
             background-color: #F4F4F4;
             border: 0px;
         }
-        button{
-            border: 0px;
-        }
+
+
     </style>
 </head>
 
@@ -40,16 +39,10 @@
     </div>
 </div>
 <div class="data-list">
-    <ul class="am-list sl-padding-10px-10px" id="list1" style="display: block">
-        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6"  style="display: flex;"><span >1党总支会议</span><input type="radio" name="list"></li>-->
-        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6" style="display: flex;"><span >2党总支会议</span><input type="radio" name="list" ></li>-->
-        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6" style="display: flex;"><span >3党总支会议</span><input type="radio" name="list" ></li>-->
-        <!--<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6" style="display: flex;"><span >4党总支会议</span><input type="radio" name="list" ></li>-->
+    <ul class="am-list sl-padding-10px-10px am-active" id="list1" style="display: block">
     </ul>
     <ul class="am-list sl-padding-10px-10px" style="display: none;" id="list2">
     </ul>
-
-
 </div>
 
 <div style="width: 100%; position: fixed;left: 0px;right: 0px;height: 3rem; background-color: #D1D1D1;border-top: 1px solid #BEBEBE;" class="sl-flex-row-center-center sl-icon-color-CACACA" id="bottom-nav">
@@ -62,19 +55,38 @@
 </body>
 
 <script>
+
+    //全局数据
+    var rem = new Rem();
+    var type = sessionStorage.getItem('type');
+
     //文字排版
     $(document).ready(function () {
         var rem = new Rem();
         rem.adapterWidth_object();
         rem.titleCenter();
     });
+    //对于微信，要去除上面的工具栏
+    $(function () {
+        var h = screen.height;
+        var e= $('#bottom-nav').outerHeight();
+        var num = 0;
+        var pf = navigator.platform;
+        if((pf === 'Win32') == false){
+            num=42;
+        }
+        // console.log("h:"+h+",e:"+e+",n:"+num);
+        $("#bottom-nav").css({
+            top: (h-e-num)+"px",
+        })
+    });
     //底部导航栏
     $(document).ready(function () {
-        var hWindow = window.innerHeight
-        var hDiv = $("#bottom-nav").outerHeight();
-        $("#bottom-nav").css({
-            top: hWindow-hDiv+"px"
-        });
+//        var hWindow = window.innerHeight
+//        var hDiv = $("#bottom-nav").outerHeight();
+//        $("#bottom-nav").css({
+//            top: hWindow-hDiv+"px"
+//        });
     });
     //根据字典码来判断该显示什么样的字典列表
     $(document).ready(function () {
@@ -82,11 +94,10 @@
         var hSearch= $(".search-div").outerHeight();
         $('.data-list').css('margin-top',hTitle+hSearch+'px');
         var fieldName = sessionStorage.getItem('fieldName')
-        var type = sessionStorage.getItem('type');
         var val = sessionStorage.getItem('val');
         var dictArr =[];
         var li='';
-        var listPrev = '<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6"  style="display: flex;"><span >';
+        var listPrev = '<li class="sl-flex-row-center-space-between sl-padding-top-10px sl-border-bottom-1px-solid-E6E6E6"  onclick="getFocus(this)" style="display: flex;"><span >';
         var listCenter ='</span><input type="';
         var listNext = '" name="list" ';
         var listCheck = '></li>';
@@ -163,27 +174,49 @@
             });
             var li = '';
             for(var i=0;i<tempArr.length;i++){
-                var li1 =' <li class="sl-flex-row-center-space-between sl-padding-top-10px"  style="display: flex;"><span>'+tempArr[i]+'</span><input type="radio" name="radio" value="option'+i+'"></li>'
+                var li1 =' <li class="sl-flex-row-center-space-between sl-padding-top-10px" onclick="getFocus(this)"  style="display: flex;"><span>'+tempArr[i]+'</span><input type="'+type+'" name="radio" value="option'+i+'"></li>'
                 li+=li1;
             }
-            $("#list2").empty().append(li).css('display','block').attr('disabled',false);
-            $("#list1").css({display:'none'}).attr('disabled',true);
+            $("#list2").empty().append(li).css('display','block');
+            $("#list1").css({display:'none'});
         }else{
-            alert("请输入查询条件")
+            rem.alertInfo("请输入查询条件")
         }
-    })
-    //点击li盒子，input获取焦点
-    $('.am-list li').click(function () {
+    });
+    function getFocus(self) {
+//        alert(!!self.checked);
+//        alert(typeof !!self.checked)
+        var s = $(self).find('input').prop('checked');
+        if(s === true) {
+            $(self).find('input').prop('checked',false);
+        }  else{
+            $(self).find('input').prop('checked',true);
+        }
+//        $(self).find('input').prop('checked',function () {
+//            return !!self.checked;
+//        });
 
-        var index = $(this).index();
+
+//        var state = $(self).find('input')[0].checked;
+//        if(state === true){
+//            $(self).find('input')[0].checked = false;
+//        }else{
+//            $(self).find('input')[0].checked = true;
+
+
+    }
+    //点击li盒子，input获取焦点
+//    $('ul.am-list.am-active li').on('click',function () {
+//        alert('aaaa');
+////    alert()
+//
 //        $(this).find('input')[0].checked=true;
-//        alert("i:"+index);
-//        alert(typeof $(this).find('input')[0])
-    })
+//        alert("i:");
+////        alert(typeof $(this).find('input')[0])
+//    })
     //点击确认按钮，跳转页面传输数据
     $("#bottom-nav button").click(function () {
         var name= $(this).html();
-        var rem = new Rem();
         var moduleEng = sessionStorage.getItem('moduleEng');
         var menuEng = sessionStorage.getItem('menuEng');
 //        alert("I:"+name+"l:"+$("#bottom-nav button").length);
@@ -203,7 +236,7 @@
                             rem.setModuleMenu(moduleEng,menuEng)
                             //判断返回到哪个模块，哪个菜单的，哪个页面
                         }else{
-                            alert('This browser does NOT support localStorage');
+                            rem.alertInfo('This browser does NOT support localStorage');
                         }
                         history.back();
                         return false;//调出循环
@@ -211,7 +244,7 @@
                     //最后一个也没有选中
                     if(result === ''){
                         if(i == $(".am-list:visible input").length-1){
-                            alert("请选择一条数据");
+                            rem.alertInfo('请选择一条数据');
                         }
                     }
                 }
@@ -225,14 +258,14 @@
                     //到达最后一个
                     if (i == $(".am-list:visible input").length - 1) {
                         if (result === '') {
-                            alert("请选择一条数据");
+                            rem.alertInfo('请选择一条数据');
                         } else {
                             if (window.sessionStorage) {
                                 var fileName = sessionStorage.getItem('fieldName');
                                 sessionStorage.setItem(fileName.toString(), result);
                                 rem.setModuleMenu(moduleEng,menuEng);
                             } else {
-                                alert('This browser does NOT support localStorage');
+                                rem.alertInfo('This browser does NOT support localStorage');
                             }
                             history.back();
                         }

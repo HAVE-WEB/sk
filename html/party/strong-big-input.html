@@ -13,15 +13,12 @@
 
 
     <link rel="stylesheet" href="../../assets/css/amazeui.css">
-    <link rel="stylesheet" href="../../assets/css/font-awesome.css">
+    <!--<link rel="stylesheet" href="../../assets/css/font-awesome.css">-->
     <link rel="stylesheet" href="../../assets/css/LCommon.css">
     <link rel="stylesheet" href="../../assets/css/sl.css">
-    <link rel="stylesheet" href="../../assets/css/plugin/mvalidate/validate.css">
     <script src="../../assets/js/jquery.js"></script>
     <script src="../../assets/js/amazeui.js"></script>
-    <!--<script src="../../assets/js/plugin/validate/jquery-mvalidate.js" ></script>&lt;!&ndash;a要用到b中的方法，b必须先加载&ndash;&gt;-->
     <script src="../../assets/js/myFirst.js"></script>
-    <!--<script src="../../assets/js/export.js"></script>-->
     <style>
         #vld-tooltip {
             position: absolute;
@@ -70,7 +67,8 @@
         <fieldset>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group" style="margin-top: 1.5rem;">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     登记名称
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
@@ -79,22 +77,24 @@
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     会议类型
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
                     <input type="text" name="meetingType"  placeholder="请选择会议类型" value="" class="dict-data" readonly required>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     是否中心审核
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
                     <input type="text" name="isCenterAudit"  placeholder="请选择是否中心审核" value="" class="dict-data" readonly  required>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
                 <!--<div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">-->
                     <!--<label class="sl-flex-row-center-center">-->
@@ -109,16 +109,18 @@
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     备案
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="putOnRecord"  placeholder="请输入备案" value="" required min="0" data-foolish-msg="不能小于0" data-not-number="输入的不是数字">
+                    <input type="text" name="putOnRecord"  placeholder="请输入备案" value="" required >
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     结论
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
@@ -127,17 +129,19 @@
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     通知对象
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
                     <input type="text" name="informObject"  placeholder="请选择通知对象" value="" class="dict-data" readonly required="required">
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
             <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <!--<i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>-->
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     相应会议记录
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
@@ -145,7 +149,7 @@
                     <!--<i class="fa fa-angle-right sl-icon-color-CACACA"></i>-->
                     <input type="text" name="meetingRecord" id="meetingRecord" class="dict-data" placeholder="请选择相应会议记录" value="" required readonly>
                     <input type="hidden" name="meetingRecordId" id="meetingRecordId" value="">
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
             <div class="am-g sl-margin-top-10px sl-flex-row-center-center am-form-group">
@@ -163,7 +167,7 @@
                     <span class="" id="hintImage" style="display: none">点击文件删除文件、<br/>最多上传3个文件</span>
                 </div>
             </div>
-            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result">
+            <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4" id="result" style="margin-bottom: 1.5rem;">
 
             </ul>
             <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
@@ -173,7 +177,52 @@
         </fieldset>
     </form>
 </div>
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+     id="">
+    <ul class="am-navbar-nav am-cf am-avg-sm-2">
+        <li >
+            <a href="#" class="" style="color: red">
+                <span class="am-icon-plus"></span>
+                <span class="am-navbar-label">新建三重一大</span>
+            </a>
+        </li>
+        <li >
+            <a href="strong-big-checkList.html" class="sl-icon-color-red">
+                <span class="am-icon-check"></span>
+                <span class="am-navbar-label">审批三重一大</span>
+            </a>
+        </li>
+    </ul>
+</div>
 <script>
+    //全局变量
+    var oneOrMany=['0','0','1','1'];
+    var rem = new Rem();
+    //获取dict数据
+    $(function () {
+        var arr = ['meetingType','isCenterAudit','informObject','meetingRecord'];
+        for(var i =0;i < arr.length; i++){
+            $('input[name="'+arr[i]+'"]').val(sessionStorage.getItem(arr[i]));
+        }
+    });
+    //设置dict条件
+    $("div.am-g").click(function () {
+        var eleInput = $(this).find('input.dict-data').parent().get(0);//DOM元素对象
+        // console.log("len:"+$('input.dict-data').parent().length);
+        $('input.dict-data').parent().each(function (i,v) {
+            if(eleInput == v){
+                sessionStorage.setItem('val',$(this).find('input.dict-data').val());
+                sessionStorage.setItem('fieldName',$(this).find('input.dict-data').prop('name'));
+                if(parseInt(oneOrMany[i]) === 0){
+                    sessionStorage.setItem('type','radio');
+                }else{
+                    sessionStorage.setItem('type','checkbox');
+                }
+                location.href='../dict-search.html'
+            }
+        });
+    });
+
     $(function() {
         $('#strongBig').validator({
 //            keyboardEvents: 'focusout',
@@ -203,24 +252,23 @@
                 console.log(validity);
                 console.log(validity.valueMissing);
                 console.log(validity.rangeUnderflow);
-                var msg = '';
+//                var msg = '';
 //                var ro = $field.attr('readonly');
-
+                var msg;
                 if(validity.valueMissing){
-                    msg = $field.prop('placeholder')||this.getValidationMessage(validity);
+                     msg = $field.prop('placeholder')
                 }
-                else if(validity.typeMismatch){
-                    if($field.attr('type') === 'number'){
-                        msg = $field.data('notNumber');
-                    }
-                }
-                else if(validity.rangeUnderflow){
-                    if($field.attr('min')){
-                        msg = $field.data('foolishMsg');
-                    }
-                }else{
-                    msg = this.getValidationMessage(validity);
-                }
+                rem.alertInfo(msg);
+//                else if(validity.typeMismatch){
+//                    if($field.attr('type') === 'number'){
+//                        msg = $field.data('notNumber');
+//                    }
+//                }
+//                if(validity.rangeUnderflow){
+//                    if($field.attr('min')){
+//                        msg = $field.data('foolishMsg');
+//                    }
+//                }
 //                var h = false;
 //                console.log("ro:"+ro);
 //                if(ro !=='undefined' || $field.attr('type') === 'file'){
@@ -228,32 +276,32 @@
 //                }
 //                console.log("h:"+h);
 
-                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
-                var len = $('div.my-alert').length;
-                if(len){
-//                    if(h){
-                        $('div.my-alert').html(msg).show().css({
-                            left: screen.width/2-$('div.my-alert').outerWidth()/2,
-                            top: screen.height/2-$('div.my-alert').outerHeight()/2,
-                        });
-//                    }else{
-//                        $('div.my-alert').html(msg).hide();
-//                    }
-//                    console.log(msg);
-
-                }else{
-                    $('body').append($alert);
-
-                    $alert.html(msg).show().css({
-                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
-                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
-                    });
-                }
-                console.log("SW:"+screen.width/2+",SH:"+screen.height/2+"AW:"+$('div.my-alert').outerWidth()/2+",AH:"+$('div.my-alert').outerHeight()/2)
-                setTimeout(function () {
-                    $('div.my-alert').hide();
-                },2000);
-                console.log("valid_end")
+//                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
+//                var len = $('div.my-alert').length;
+//                if(len){
+////                    if(h){
+//                        $('div.my-alert').html(msg).show().css({
+//                            left: screen.width/2-$('div.my-alert').outerWidth()/2,
+//                            top: screen.height/2-$('div.my-alert').outerHeight()/2,
+//                        });
+////                    }else{
+////                        $('div.my-alert').html(msg).hide();
+////                    }
+////                    console.log(msg);
+//
+//                }else{
+//                    $('body').append($alert);
+//
+//                    $alert.html(msg).show().css({
+//                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
+//                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
+//                    });
+//                }
+//                console.log("SW:"+screen.width/2+",SH:"+screen.height/2+"AW:"+$('div.my-alert').outerWidth()/2+",AH:"+$('div.my-alert').outerHeight()/2)
+//                setTimeout(function () {
+//                    $('div.my-alert').hide();
+//                },2000);
+//                console.log("valid_end")
             },
             markInValid: function(validity) {
                 console.log('12')
@@ -278,7 +326,13 @@
                         $("#my-confirm").modal({
                             onConfirm: function () {
                                 // alert();
-                                location.href='strong-big-readList.html';
+                                $(function () {
+                                    var arr = ['meetingType','isCenterAudit','informObject','meetingRecord'];
+                                    for(var i =0;i < arr.length; i++){
+                                       sessionStorage.removeItem(arr[i]);
+                                    }
+                                });
+                                location.href='strong-big-CheckList.html';
                             },
                             onCancel: function () {
                                 return false;

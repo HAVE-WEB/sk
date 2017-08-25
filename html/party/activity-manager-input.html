@@ -11,49 +11,13 @@
     <!--&lt;!&ndash; Set render engine for 360 browser &ndash;&gt;-->
     <!--<meta name="renderer" content="webkit">-->
 
-    <!--&lt;!&ndash; No Baidu Siteapp&ndash;&gt;-->
-    <!--<meta http-equiv="Cache-Control" content="no-siteapp"/>-->
 
-    <!--<link rel="icon" type="image/png" href="i/favicon.png">-->
-
-    <!--&lt;!&ndash; Add to homescreen for Chrome on Android &ndash;&gt;-->
-    <!--<meta name="mobile-web-app-capable" content="yes">-->
-    <!--<link rel="icon" sizes="192x192" href="i/app-icon72x72@2x.png">-->
-
-    <!--&lt;!&ndash; Add to homescreen for Safari on iOS &ndash;&gt;-->
-    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
-    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
-    <!--<meta name="apple-mobile-web-app-title" content="Amaze UI"/>-->
-    <!--<link rel="apple-touch-icon-precomposed" href="i/app-icon72x72@2x.png">-->
-
-    <!--&lt;!&ndash; Tile icon for Win8 (144x144 + tile color) &ndash;&gt;-->
-    <!--<meta name="msapplication-TileImage" content="i/app-icon72x72@2x.png">-->
-    <!--<meta name="msapplication-TileColor" content="#0e90d2">-->
-
-    <!-- Amaze UI CSS -->
-    <!--<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">-->
     <link rel="stylesheet" href="../../assets/css/amazeui.css">
-    <link rel="stylesheet" href="../../assets/css/font-awesome.css">
     <link rel="stylesheet" href="../../assets/css/LCommon.css">
     <link rel="stylesheet" href="../../assets/css/sl.css">
-    <link rel="stylesheet" href="../../assets/css/plugin/mvalidate/validate.css">
-    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/jquery.js"></script>
     <script src="../../assets/js/amazeui.js"></script>
     <script src="../../assets/js/myFirst.js"></script>
-    <script src="../../assets/js/plugin/validate/jquery-mvalidate.js"></script>
-    <style>
-        div{
-            padding:0;
-
-        }
-        fieldset{
-            padding:0
-        }
-        input{
-            width:90%;
-            background-color: #F4F4F4;
-        }
-    </style>
     <style>
         #vld-tooltip {
             position: absolute;
@@ -80,239 +44,214 @@
             border-style: none inset solid;
         }
     </style>
+    <style>
+        input{
+            width:90%;
+            background-color: #F4F4F4;
+            border: 0px;
+        }
+        button{
+            border: 0px;
+        }
+    </style>
 </head>
 <body class="">
-<!--
-    字典查询
-    1：党政
-        1
--->
-<!--<div class="top-div">-->
-    <!--<div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >-->
-        <!--<i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;" onclick="topNav()"></i>-->
-        <!--&lt;!&ndash;<div class="sl-margin-left-1rem title" ><span>三重一大</span></div>&ndash;&gt;-->
-        <!--<div class="sl-flex-row-center-flex-end">-->
-            <!--<div class="sl-margin-right-1rem">发布</div>-->
-            <!--<div class="sl-margin-right-1rem">存为草稿</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<div style="margin-top: 3rem;">
-    <!--<div class="button button-brown" id="btn-re-common" href="javascript:void(0)"><i class="fa fa-lg fa-mail-reply-all"></i>返回</div>-->
-    <!--<a class="button button-brown" id="btn-confirm-common" href="javascript:void(0);"><i class="fa fa-rocket"></i> <span>提交</span> </a>-->
-    <!--<a class="button button-brown" id="btn-recommit-common" href="javascript:void(0);" style="display: none;"><i class="fa fa-rocket"></i> 再提交</a>-->
-    <!--<a class="button button-brown" id="btn-save-common" href="javascript:void(0);"><i class="fa fa-lg fa-download"></i> 保存</a>-->
-    <form id="activityManager" class="smart-form" novalidate="novalidate" action="" method="post">
-        <!--<input type="hidden" name="keyId" id="keyId" value=""/>-->
-        <!--<input type="hidden" name="curDutyId" id="curDutyId" value=""/>-->
-        <!--<header  style="display: block;">-->
-            <!--三重一大登记表&nbsp;&nbsp;<span id="title"></span>-->
-        <!--</header>-->
+<div class="top-div">
+    <div class="sl-flex-row-center-space-between sl-background-color-red top-info sl-font-color-white" >
+        <a href="party.html" onclick="destroyValidator()"><i class="am-icon-angle-left am-icon-sm" style="margin-left: 0.5rem;color: white;"></i></a>
+    </div>
+</div>
+<div style="margin-top: 3rem;" id="main-content">
+    <form id="strongBig" class=""  action="" method="post">
         <fieldset>
-
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group" style="margin-top: 1.5rem;">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     活动类型
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
                     <input type="text" name="activityType"  placeholder="请选择活动类型" value="" class="dict-data" readonly required>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6  am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     是否使用党费
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="isUseGovMoney"  placeholder="请选择是否使用党费" value="" class="dict-data" readonly required>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <input type="text" name="isUseGovMoney"  placeholder="请选择是否使用党费" value="" class="dict-data" readonly  required>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
-                <!--<div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">-->
-                <!--<label class="sl-flex-row-center-center">-->
-                <!--<input type="radio" checked="checked" name="isCheck" value="1" >-->
-                <!--<span class="sl-margin-0px-5px">是</span>-->
-                <!--</label>-->
-                <!--<label class="sl-flex-row-center-center">-->
-                <!--<input type="radio"  name="isCheck" value="2" >-->
-                <!--<span class="sl-margin-0px-5px">否</span>-->
-                <!--</label>-->
-                <!--</div>-->
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     活动支部
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
-                    <input type="text" name="activityBranch"  placeholder="请选择活动支部" value="" class="dict-data" readonly required>
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <input type="text" name="activityBranch"  placeholder="请输入活动支部" value="" class="dict-data" required readonly>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem" >
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     活动费用
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="activityMoney"  placeholder="请输入活动费用" value="" required>
+                    <input type="number" name="activityMoney"  placeholder="请输入活动费用" value="" required min="0" max="20">
                 </div>
             </div>
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem" >
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem " ></i>
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     可支配金额
                 </div>
-                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <input type="number" name="canUseMoney"  placeholder="自动计算" value="" readonly >
+                <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
+                    <input type="number" name="canUseMoney"  placeholder="自动计算" value="" readonly>
+
                 </div>
             </div>
-
-            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 sl-padding-08rem-0rem">
+            <div class="am-g sl-border-bottom-1px-solid-E6E6E6 am-form-group">
                 <div class="am-u-sm-4 am-u-md-4 am-u-lg-4 sl-flex-row-center-flex-start sl-padding-0rem-05rem">
-                    <i class="fa fa-asterisk text-icon-color sl-margin-right-02rem" ></i>
+                    <i class="am-icon-asterisk text-icon-color sl-margin-right-02rem"></i>
                     相应会议记录
                 </div>
                 <div class="am-u-sm-8 am-u-md-8 am-u-lg-8 sl-flex-row-center-space-between sl-padding-0rem-05rem">
                     <!--<div class="meeting-record" >请选择相应会议记录</div>-->
-                    <!--<i class="fa fa-angle-right sl-icon-color-CACACA"></i>-->
-                    <input type="text" name="meetingRecord" id="meetingRecord" class="dict-data" value="" required>
+                    <input type="text" name="meetingRecord" id="meetingRecord" class="dict-data" placeholder="请选择相应会议记录" value="" required readonly>
                     <!--<input type="hidden" name="meetingRecordId" id="meetingRecordId" value="">-->
-                    <i class="fa fa-angle-right sl-icon-color-CACACA"></i>
+                    <i class="am-icon-angle-right sl-icon-color-CACACA"></i>
                 </div>
             </div>
             <div class="sl-flex-row-center-flex-end" style="position: fixed;top: 0.84rem;right: 0.84rem;z-index: 10002">
-                <button type="submit"  class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>
+                <button type="submit"  id="submitForm" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">发布</button>
                 <button type="submit" class="sl-margin-right-1rem" style="color:white;background-color: #F14551;">存为草稿</button>
             </div>
         </fieldset>
     </form>
-
+</div>
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+     id="">
+    <ul class="am-navbar-nav am-cf am-avg-sm-2">
+        <li >
+            <a href="#" class="" style="color: red">
+                <span class="am-icon-plus"></span>
+                <span class="am-navbar-label">新建活动管理</span>
+            </a>
+        </li>
+        <li >
+            <a href="activity-manager-checkList.html">
+                <span class="am-icon-check"></span>
+                <span class="am-navbar-label">审批活动管理</span>
+            </a>
+        </li>
+    </ul>
 </div>
 <script>
-    //表单验证
-//    $(function () {
-//        $("#strongBig").mvalidate({
-//            type:1,
-//            onKeyup:true,
-//            validateInSubmit:true,
-//            sendForm:true,
-//            firstInvalidFocus:false,
-//            valid:function(event,options){
-//                //点击提交按钮时,表单通过验证触发函数
-//                //alert("验证通过！接下来可以做你想做的事情啦！");
-//
-////                var rem = new Rem();
-////                rem.setBottonNavIndexBySubmit(0);
-//                sessionStorage.setItem('bottomNavIndex',0);
-//                $("#my-confirm").modal({
-//                    onConfirm: function () {
-//                        alert("aaa");
-//                        location.href='strong-big-readList.html';
-//                    },
-//                    onCancel: function () {
-//                        return false;
-//                    }
-//                });
-////                alert("bbb");
-//                event.preventDefault();
-//            },
-//            invalid:function(event, status, options){
-//                //点击提交按钮时,表单未通过验证触发函数
-//            },
-//            eachField:function(event,status,options){
-//                //点击提交按钮时,表单每个输入域触发这个函数 this 执向当前表单输入域，是jquery对象
-//            },
-//            eachValidField:function(val){},
-//            eachInvalidField:function(event, status, options){},
-//            conditional:{
-//                confirmpwd:function(){
-//                    return $("#pwd").val()==$("#confirmpwd").val();
-//                }
-//            },
-//            descriptions:{
-//                activityType:{
-//                    required : '请选择活动类型'
-//                },
-//                isUseGovMoney:{
-//                    required : '请选择是否需要党费'
-//                },
-//                activityBranch : {
-//                    required : '请选择活动支部',
-//                },
-//                meetingRecord:{
-//                    required : '请选择会议记录',
-//                },
-//            }
-//        });
-//    });
-
+    //全局变量
+    var rem =new Rem();
+    var oneOrMany=['1','0','0','1'];
+    //获取dict数据
     $(function () {
-        $('#activityManager').validator({
-            onValid: function () {
-
+        var arr = ['activityType','isUseGovMoney','activityBranch','meetingRecord'];
+        for(var i =0;i < arr.length; i++){
+            if(arr[i] === 'isUseGovMoney' && sessionStorage.getItem(arr[i]) === '是'){
+                $("input[name=activityMoney]").parents('div.am-g').css('display','block');
+                $("input[name=canUseMoney]").parents('div.am-g').css('display','block');
+            }else if(arr[i] === 'isUseGovMoney' && sessionStorage.getItem(arr[i]) === '否'){
+                $("input[name=activityMoney]").parents('div.am-g').css('display','none');
+                $("input[name=canUseMoney]").parents('div.am-g').css('display','none');
             }
-        })
+            $('input[name="'+arr[i]+'"]').val(sessionStorage.getItem(arr[i]));
+        }
+
     });
 
+    //设置dict条件
+    $("div.am-g").click(function () {
+        var eleInput = $(this).find('input.dict-data').parent().get(0);//DOM元素对象
+        // console.log("len:"+$('input.dict-data').parent().length);
+        $('input.dict-data').parent().each(function (i,v) {
+            if(eleInput == v){
+                sessionStorage.setItem('val',$(this).find('input.dict-data').val());
+                sessionStorage.setItem('fieldName',$(this).find('input.dict-data').prop('name'));
+                if(parseInt(oneOrMany[i]) === 0){
+                    sessionStorage.setItem('type','radio');
+                }else{
+                    sessionStorage.setItem('type','checkbox');
+                }
+                location.href='../dict-search.html'
+            }
+        });
+    })
+
+    //validator
     $(function() {
-        var $form = $('#activityManager');
-        var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
-        $tooltip.appendTo(document.body);
+        $('#strongBig').validator({
+            onValid: function(validity) {
+            },
+            onInValid: function(validity) {
+                var $field = $(validity.field);
+                var $group = $field.closest('.am-form-group');
+                // 使用自定义的提示信息 或 插件内置的提示信息
+                var msg='';
+                if(validity.valueMissing){
+                    msg = $field.prop('placeholder');
+                }
+                if(validity.typeMismatch){
+                    msg='你输入的不是数字';
+                }
+                if(validity.rangeUnderflow || validity.rangeOverflow){
+                    msg = this.getValidationMessage(validity);
+                }
+                rem.alertInfo(msg);
+//                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
+//                var len = $('div.my-alert').length;
+//                if(len){
+//                    $('div.my-alert').html(msg).show().css({
+//                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
+//                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
+//                    });
+//                }else{
+//                    $('body').append($alert);
+//                    $alert.html(msg).show().css({
+//                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
+//                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
+//                    });
+//                }
+//                setTimeout(function () {
+//                    $('div.my-alert').hide();
+//                },2000);
+            },
+            submit: function (e) {
+                var formValidity = this.isFormValid();
+                if(typeof formValidity === 'boolean'){
+                    if(formValidity){
+                        e.preventDefault();
+                        sessionStorage.setItem('bottomNavIndex',0);
+                        $("#my-confirm").modal({
+                            onConfirm: function () {
+                                var arr = ['activityType','isUseGovMoney','activityBranch','meetingRecord'];
+                                for(var i =0;i < arr.length; i++){
+                                   sessionStorage.removeItem(arr[i]);
+                                }
+                                location.href='activity-manager-checkList.html';
+                            },
+                            onCancel: function () {
+                                return false;
+                            }
+                        });
+                    }else{
+                        return false;
+                    }
+                }else{
 
-        $form.validator();
-
-        var validator = $form.data('amui.validator');
-
-        $form.on('focusin focusout', 'input', function(e) {
-            if (e.type === 'focusin') {
-                var $this = $(this);
-//                console.log("n:"+$(this).attr('name'));
-//                console.log("n:"+$(this).offset().top+"L:"+$(this).offset().left);
-                var offset = $this.offset();
-                var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
-
-                $tooltip.text(msg).show().css({
-                    left: offset.left ,
-                    top: offset.top + $(this).outerHeight()-40
-                });
-            } else {
-                $tooltip.hide();
+                }
             }
         });
     });
-
-    function getIndex(i) {
-        sessionStorage.setItem('bottomNavIndex',i);
-    };
-    $('ul.am-navbar-nav li').each(function (i,v) {
-        var botIndex = sessionStorage.getItem('bottomNavIndex');
-        if(parseInt(botIndex) === i){
-            $(this).find('a').attr('href','#');
-        }
-    });
-    $(document).ready(function(){
-        var h = screen.height;
-        var e= $('div.am-navbar').outerHeight();
-        var top = $("div.am-navbar").offset().top;
-        var num = 0;
-        var pf = navigator.platform;
-        if((pf === 'Win32') == false){
-            num=42;
-        }
-        if(top > h){
-            $("#div.am-navbar").css({
-                top: (h-e-num)+"px",
-            })
-        }
-    })
 </script>
 </body>
 </html>
-
-
-
-
-
-

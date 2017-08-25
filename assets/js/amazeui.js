@@ -15019,9 +15019,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    console.log('Regex test: ' + re.test(value) + ', Pattern: ' + pattern);
 	  }
 	  //check 是不是数字
-		console.log("value:"+$(field).val())
-        console.log(!isNaN($(field).val()))
-		if($.trim($(field).val()) != '' &&!isNaN($(field).val())){
+        console.log($(field).attr('type') === 'number')
+		console.log($.trim($(field).val()) != '')
+        console.log(!isNaN(parseInt($(field).val())))
+		if($(field).attr('type') === 'number' && $.trim($(field).val()) != '' && isNaN(parseInt($(field).val()))){
             validity.valid = false;
             validity.typeMismatch = true;
 		}
@@ -15318,7 +15319,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    valid: validity.valid || true,
 	    // Returns true if the element has no value but is a required field
 	    valueMissing: validity.valueMissing || false,
-        // notNumber: validity.notNumber || false
 	  }, validity);
 	};
 
