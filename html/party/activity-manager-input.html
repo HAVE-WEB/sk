@@ -207,23 +207,6 @@
                     msg = this.getValidationMessage(validity);
                 }
                 rem.alertInfo(msg);
-//                var $alert = $('<div class="my-alert" style="display: block;background-color: black;position:fixed;z-index: 10011;color: white;padding: 0.5rem;-webkit-border-radius: .5rem;-moz-border-radius: .5rem;border-radius: .5rem;"></div>');
-//                var len = $('div.my-alert').length;
-//                if(len){
-//                    $('div.my-alert').html(msg).show().css({
-//                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
-//                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
-//                    });
-//                }else{
-//                    $('body').append($alert);
-//                    $alert.html(msg).show().css({
-//                        left: screen.width/2-$('div.my-alert').outerWidth()/2,
-//                        top: screen.height/2-$('div.my-alert').outerHeight()/2,
-//                    });
-//                }
-//                setTimeout(function () {
-//                    $('div.my-alert').hide();
-//                },2000);
             },
             submit: function (e) {
                 var formValidity = this.isFormValid();

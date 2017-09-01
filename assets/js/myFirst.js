@@ -706,7 +706,7 @@
                     $("#my-confirm").modal({
                         onConfirm: function () {
                             // alert();
-                            location.href='strong-big-readList.html';
+                            location.href='strong-big-checkList.html';
                         },
                         onCancel: function () {
                             return false;
@@ -1054,8 +1054,9 @@
 
             }else if(parseInt(moEng) === 3){//行政模块
 
-            }else if(parseInt(moEng) === 4){//主页模块
-
+            }else if(moEng === 'main'){//主页模块
+                menuName = ['主页','提醒待办','待办事项','已办已结','已办未结','个人草稿'];
+                menuEng = ['index','remindList','toDoList','taskRecordList','','draftList'];
             }
             //readOnly: 0:可以编辑。1：只能选择值
             //oneOrMany:0:表示单选，1：表示多选
@@ -1084,77 +1085,35 @@
             this.setStorage(moduleName[j],moEng,menuName[index],meEng,field[meEng]);
 
         },
-//         validation: function () {
-//             $("#strongBig").mvalidate({
-//                 type:1,
-//                 onKeyup:true,
-//                 validateInSubmit:true,
-//                 sendForm:true,
-//                 firstInvalidFocus:false,
-//                 valid:function(event,options){
-//                     //点击提交按钮时,表单通过验证触发函数
-//                     //alert("验证通过！接下来可以做你想做的事情啦！");
-//
-// //                var rem = new Rem();
-// //                rem.setBottonNavIndexBySubmit(0);
-//                     sessionStorage.setItem('bottomNavIndex',0);
-//                     $("#my-confirm").modal({
-//                         onConfirm: function () {
-//                             var menuEng = this.menuEng;
-//
-//                             location.href='strong-big-readList.html';
-//
-//                         },
-//                         onCancel: function () {
-//                             return false;
-//                         }
-//                     });
-//                     // alert("bbb1111");
-//                     event.preventDefault();
-//                     event.stopPropagation();
-//                 },
-//                 invalid:function(event, status, options){
-//                     //点击提交按钮时,表单未通过验证触发函数
-//                 },
-//                 eachField:function(event,status,options){
-//                     //点击提交按钮时,表单每个输入域触发这个函数 this 执向当前表单输入域，是jquery对象
-//                 },
-//                 eachValidField:function(val){},
-//                 eachInvalidField:function(event, status, options){},
-//                 conditional:{
-//                     confirmpwd:function(){
-//                         return $("#pwd").val()==$("#confirmpwd").val();
-//                     }
-//                 },
-//                 descriptions:{
-//                     registerName:{
-//                         required : '请输入登记事宜名称'
-//                     },
-//                     meetingType:{
-//                         required : '请选择会议类型'
-//                     },
-//                     isCenterAudit : {
-//                         required : '请选择是否中心审核',
-//                     },
-//                     putOnRecord:{
-//                         required : '请输入备案'
-//                     },
-//                     conclusion:{
-//                         required : '请输入结论',
-//                     },
-//                     informObject:{
-//                         required : '请选择通知对象',
-//                     },
-//                     meetingRecord:{
-//                         required : '请选择会议记录',
-//                     },
-//                     relatedAccessory:{
-//                         required : '请上传附件',
-//                     },
-//
-//                 }
-//             });
-//         },
+        setStorage: function (moN,moE,meN,meE,o) {
+            //设置模块
+            sessionStorage.setItem('moduleName',moN);
+            sessionStorage.setItem('moduleEng',moE);
+
+            //设置菜单
+            sessionStorage.setItem('menuName',meN);
+            sessionStorage.setItem('menuEng',meE);
+
+            //设置页面中字段的值
+            if(moE === 'main'){
+
+            }else {
+                sessionStorage.setItem('fieldEng',o.eng);
+                sessionStorage.setItem('oneOrMany',o.oneOrMany);
+            }
+
+
+            sessionStorage.setItem('bottomNavIndex',1);//设置到哪个页面
+            sessionStorage.setItem('flag','false');
+            if(moE === 'main'){
+                location.href=meE+'.html';
+            }else{
+                location.href=meE+'-input.html';
+            }
+
+
+        },
+
         removeStorage: function (menuEng) {
             var field ={
                 'strong-big':{
@@ -1182,27 +1141,7 @@
                 }
             }
         },
-        setStorage: function (moN,moE,meN,meE,o) {
-            //设置模块
-            sessionStorage.setItem('moduleName',moN);
-            sessionStorage.setItem('moduleEng',moE);
 
-            //设置菜单
-            sessionStorage.setItem('menuName',meN);
-            sessionStorage.setItem('menuEng',meE);
-
-            //设置页面中字段的值
-            // sessionStorage.setItem('fieldName',o.name);
-            sessionStorage.setItem('fieldEng',o.eng);
-            // sessionStorage.setItem('fieldType',o.type);
-            // sessionStorage.setItem('readOnly',o.readOnly);
-            sessionStorage.setItem('oneOrMany',o.oneOrMany);
-
-            sessionStorage.setItem('bottomNavIndex',1);//设置到哪个页面
-            sessionStorage.setItem('flag','false');
-            location.href=meE+'-input.html';
-
-        },
         moduleSelect: function (moduleId,mMame) {//模块的选择
                 var moduleName = ['党政','财政','人事','行政','主页'];
                 var moduleCode = [];
@@ -1353,13 +1292,7 @@
         // var pageName = rem.getPageName();
         rem.getPageNameCallback(function (page) {
             if(page === 'input'){
-                // rem.validation();
-                // document.write('<script src="../../assets/js/export.js"></script>');
-                // var oBody = document.getElementsByTagName('BODY').item(0);
-                // var oScript = document.createElement('script');
-                // oScript.type = 'text/javascript';
-                // oScript.src = '../../assets/js/export.js';
-                // oBody.appendChild(oScript);
+
                 var s = '<script>\n' +
                     '    function getIndex(i,self) {\n' +
                     '        var rem = new Rem();\n' +

@@ -4266,6 +4266,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	var Collapse = function(element, options) {
+		console.log(element);
+		console.log(options);
 	  this.$element = $(element);
 	  this.options = $.extend({}, Collapse.DEFAULTS, options);
 	  this.transitioning = null;

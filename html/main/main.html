@@ -1,0 +1,297 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>党政</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <!-- Amaze UI CSS -->
+    <!--<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">-->
+    <!--<link rel="stylesheet" href="../assets/css/font-awesome.css">-->
+    <link rel="stylesheet" href="../../assets/css/LCommon.css">
+
+    <link rel="stylesheet" href="../../assets/css/amazeui.css">
+    <link rel="stylesheet" href="../../assets/css/sl.css">
+    <script src="../../assets/js/jquery.js"></script>
+    <script src="../../assets/js/amazeui.js"></script>
+    <script src="../../assets/js/myFirst.js"></script>
+    <style>
+        ul.am-list li{
+            padding: 0rem;
+        }
+    </style>
+
+</head>
+<body onselect="alert('You have selected some of the text.')" >
+
+<!--头信息-->
+<div class="top-div">
+    <div class="sl-flex-row-center-center sl-background-color-red top-info sl-font-color-white" >
+        <!--<i class="am-icon-angle-left" style="margin-left: 0.5rem;" onclick="topNav()"></i>-->
+        <div class="sl-margin-left-1rem title" ><span>门户主页</span></div>
+        <!--<div class="sl-flex-row-center-flex-end">-->
+        <!--<div class="sl-margin-right-1rem">发布</div>-->
+        <!--<div class="sl-margin-right-1rem">存为草稿</div>-->
+        <!--</div>-->
+    </div>
+</div>
+<ul class="am-list am-list-static am-list-border" style="margin-top: 3rem;position: fixed;z-index: 1001;overflow: scroll;width: 100%;">
+    <li class="active " >
+        <a href="#" title="主页">
+            <i class="am-icon-home"></i>
+            <span eng="strong-big">主页</span>
+        </a>
+    </li>
+    <li >
+        <a href="#" title="提醒待办">
+            <i class="am-icon-rss"></i>
+            <span eng="remindList">提醒待办</span>
+        </a>
+    </li>
+    <li>
+        <a href="#" title="待办事项">
+            <i class="am-icon-reorder"></i>
+            <span eng="activity-manager">待办事项</span>
+        </a>
+    </li>
+    <li>
+        <a href="#" title="已办未结">
+            <i class="am-icon-bar-chart"></i>
+            <span eng="money-manager">已办未结</span>
+        </a>
+    </li>
+    <li>
+        <a href="#" title="已办已结">
+            <i class="am-icon-print"></i>
+            <span >已办已结</span>
+        </a>
+    </li>
+
+    <li>
+        <a href="#" title="个人草稿">
+            <i class="am-icon-file-text-o"></i>
+            <span eng="letter-register">个人草稿</span>
+        </a>
+    </li>
+    <li>
+        <a href="#" title="快速入口" class="sl-flex-row-center-space-between" style="display: flex">
+            <div>
+                <i class="am-icon-rocket"></i>
+                <span eng="letter-register">快速入口</span>
+            </div>
+            <b>
+                <em class="am-icon-plus-square-o"></em>
+            </b>
+        </a>
+    </li>
+
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="公告通知发布">
+            <i class="am-icon-bullhorn"></i>
+            <span eng="strong-big">公告通知发布</span>
+        </a>
+    </li>
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="日程安排登记">
+            <i class="am-icon-calendar"></i>
+            <span eng="money-avg">日程安排登记</span>
+        </a>
+    </li>
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="会议使用申请">
+            <i class="am-icon-coffee"></i>
+            <span>会议使用申请</span>
+        </a>
+    </li>
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="发文登记管理">
+            <i class="am-icon-file-powerpoint-o"></i>
+            <span>发文登记管理</span>
+        </a>
+    </li>
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="收文登记管理">
+            <i class="am-icon-file-archive-o"></i>
+            <span>收文登记管理</span>
+        </a>
+    </li>
+
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="出款登记管理">
+            <i class="am-icon-yen"></i>
+            <span>出款登记管理</span>
+        </a>
+    </li>
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="../party/strong-big-checkList.html" title="三重一大管理">
+            <i class="am-icon-gavel"></i>
+            <span>三重一大管理</span>
+        </a>
+    </li>
+    <li style="display: none;" class="hidden-door small-font">
+        <a href="#" title="培训报名登记">
+            <i class="am-icon-graduation-cap"></i>
+            <span>培训报名登记</span>
+        </a>
+    </li>
+
+</ul>
+
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default "
+     id="">
+    <ul class="am-navbar-nav am-cf am-avg-sm-5" >
+        <li >
+            <a href="../main/main.html" class="">
+                <span class="am-icon-home sl-font-color-red"></span>
+                <span class="am-navbar-label sl-font-color-red">主页</span>
+            </a>
+        </li>
+        <li >
+            <a href="strong-big-input.html" class="">
+                <span class="am-icon-legal "></span>
+                <span class="am-navbar-label " >行政</span>
+            </a>
+        </li>
+        <li >
+            <a href="l" class="">
+                <span class="am-icon-user-plus"></span>
+                <span class="am-navbar-label">人事</span>
+            </a>
+        </li>
+        <li >
+            <a href="" class="">
+                <span class="am-icon-money"></span>
+                <span class="am-navbar-label">财政</span>
+            </a>
+        </li>
+        <li >
+            <a href="../party/party.html" class="">
+                <span class="am-icon-paper-plane "></span>
+                <span class="am-navbar-label ">党务</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+</body>
+<script>
+
+    //全局变量
+    var rem = new Rem();
+
+    //定义模块索引
+    $(function () {
+        sessionStorage.setItem('moduleId',0);
+    });
+    //定义菜单栏的总高度
+    $(function () {
+        var sH = screen.height;
+        var tH = $('.top-div').outerHeight();
+        var barH =$('div.am-navbar').outerHeight();
+        var listH = sH - tH - barH;
+       $('ul.am-list').css('height',listH);
+    });
+    //将子菜单栏右移
+    $(document).ready(function () {
+        $('.hidden-door a').addClass('sl-flex-row-center-flex-end').css('display','flex');
+        $('.hidden-door:last').css('margin-bottom','3rem');
+        $('ul.am-list li').each(function () {
+            $(this).css('padding','0rem')
+        })
+    });
+    //    //文字排版
+    //    $(document).ready(function () {
+    //        var rem = new Rem();
+    //        rem.adapterWidth_object();
+    //        rem.weiXinBrowers();
+    //    });
+
+    $("ul.am-list").children('li').click(function () {
+        //先获取是那个菜单的点击事件
+        var index = $(this).index();//点击的元素在同辈中的索引位置
+
+        $(this).addClass('active').siblings('li').removeClass('active');
+        var name = $(this).find('span').html();
+        if (name == '快速入口') {
+            if ($(this).attr('state') == '1') {
+                $(this).attr('state', '2').siblings('.hidden-door').each(function () {
+                    $(this).slideUp();
+                });
+                $(this).find('em').removeClass().addClass('am-icon-plus-square-o');
+
+            } else {
+                $(this).attr('state', '1').siblings('.hidden-door').each(function () {
+                    $(this).slideDown();
+                });
+                $(this).find('em').removeClass().addClass('am-icon-minus-square-o');
+
+            }
+            $(this).siblings().removeClass('active');
+            $(this).siblings('.hidden-door:first').addClass('active');
+
+        } else if ($(this).hasClass('small-font')) {
+            if ($(this).hasClass('hidden-door')) {
+                $('.hidden-door:first').prev().addClass('active');
+            }
+        } else {
+            //隐藏党费
+            $(this).siblings(".hidden-door").each(function () {
+                $(this).slideUp();
+            });
+            $('.hidden-door:first').prev().find('em').removeClass().addClass('am-icon-plus-square-o');
+
+            $(this).siblings('.hidden-door').eq(0).prev().attr('state', '2');
+            //
+            $(this).siblings().removeClass('active');
+
+
+            //跳转页面
+            var moduleEng = 'main';
+//            var menuName = name;
+            var menuEng = $(this).find('span').attr('eng')
+            rem.setModuleMenu(moduleEng,menuEng);
+//            if(index === 0){
+//                href='strong-big';
+//                flag = true;
+//            }else if(index == 1){
+//
+//            }else if(index ==2){
+//                href='activity-manager';
+//                flag = true;
+//            }
+            //设置属于什么模块，属于哪个模块的菜单，
+//            if(flag){
+//                sessionStorage.setItem('module',href);
+//                location.href=href+'-input.html';
+//            }
+
+        }
+
+    });
+</script>
+</html>
